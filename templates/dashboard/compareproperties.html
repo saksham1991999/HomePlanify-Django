@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+    <!-- Wrapper -->
+    <div id="wrapper" class="mm-page mm-slideout">
+
+
+    <!-- Titlebar
+    ================================================== -->
+    <div id="titlebar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h2>Comparing Properties</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Content
+    ================================================== -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <!-- Compare List -->
+                <div class="compare-list-container">
+                    <ul id="compare-list">
+
+                        <li class="compare-list-properties">
+                            <div class="blank-div"></div>
+
+                            {% if property1 %}
+                            <div>
+
+                                    <div class="clp-img">
+                                        <a href="{% url 'core:property' property1.id %}"><img src="{{ property1.main_image.url }}" alt=""></a>
+                                        <a href="{% url 'core:removefromcompare' property1.id %}"><span class="remove-from-compare"><i class="fa fa-close"></i></span></a>
+                                    </div>
+
+                                    <div class="clp-title">
+                                        <h4>{{ property1.property_name }}</h4>
+                                        <span>{{ property1.total_price }}</span>
+                                    </div>
+
+                            </div>
+                            {% endif %}
+
+                            {% if property2 %}
+                            <div>
+                                <a href="#">
+                                    <div class="clp-img">
+                                        <a href="{% url 'core:property' property2.id %}"><img src="{{ property2.main_image.url }}" alt=""></a>
+                                        <a href="{% url 'core:removefromcompare' property2.id %}"><span class="remove-from-compare"><i class="fa fa-close"></i></span></a>
+                                    </div>
+                                    <div class="clp-title">
+                                        <h4>{{ property2.property_name }}</h4>
+                                        <span>{{ property2.total_price }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            {% if property3 %}
+                            <div>
+                                <a href="#">
+                                    <div class="clp-img">
+                                        <a href="{% url 'core:property' property3.id %}"><img src="{{ property3.main_image.url }}" alt=""></a>
+                                        <a href="{% url 'core:removefromcompare' property3.id %}"><span class="remove-from-compare"><i class="fa fa-close"></i></span></a>
+                                    </div>
+                                    <div class="clp-title">
+                                        <h4>{{ property3.property_name }}</h4>
+                                        <span>{{ property3.total_price }}</span>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endif %}
+                        </li>
+
+                        <li>
+                            <div>Bedrooms</div>
+                            {% if property1 %}<div>{{ property1.bedrooms }}</div>{% endif %}
+                            {% if property2 %}<div>{{ property2.bedrooms }}</div>{% endif %}
+                            {% if property3 %}<div>{{ property3.bedrooms }}</div>{% endif %}
+
+                        </li>
+
+                        <li>
+                            <div>Bathrooms</div>
+                            {% if property1 %}<div>{{ property1.bathrooms }}</div>{% endif %}
+                            {% if property2 %}<div>{{ property2.bathrooms }}</div>{% endif %}
+                            {% if property3 %}<div>{{ property3.bathrooms }}</div>{% endif %}
+                        </li>
+
+                        <li>
+                            <div>Rooms</div>
+                            {% if property1 %}<div>{{ property1.rooms }}</div>{% endif %}
+                            {% if property2 %}<div>{{ property2.rooms }}</div>{% endif %}
+                            {% if property3 %}<div>{{ property3.rooms }}</div>{% endif %}
+                        </li>
+
+                        {% for feature in features %}
+                        <li>
+                            <div>{{ feature.title }}</div>
+                            {% if property1 %}<div>{% if feature in property1.features.all %}<span class="available"></span>{% else %}<span class="not-available"></span>{% endif %}</div>{% endif %}
+                            {% if property2 %}<div>{% if feature in property2.features.all %}<span class="available"></span>{% else %}<span class="not-available"></span>{% endif %}</div>{% endif %}
+                            {% if property3 %}<div>{% if feature in property3.features.all %}<span class="available"></span>{% else %}<span class="not-available"></span>{% endif %}</div>{% endif %}
+
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <!-- Compare List / End -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+    </div>
+    <!-- Wrapper / End -->
+
+
+
+    <div id="mm-blocker" class="mm-slideout"></div>
+
+
+
+
+
+
+
+
+{% endblock content %}

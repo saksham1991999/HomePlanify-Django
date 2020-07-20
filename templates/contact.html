@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Container / Start -->
+<div class="container" style="margin-top: 100px; margin-bottom: 100px">
+
+	<div class="row">
+
+		<!-- Contact Details -->
+		<div class="col-md-4">
+
+			<h4 class="headline margin-bottom-30">Contact Information</h4>
+
+			<!-- Contact Details -->
+			<div class="sidebar-textbox">
+				<p>
+
+
+</p>
+
+				<ul class="contact-details">
+					<li><i class="im im-icon-Phone-2"></i> <strong>Phone:</strong> <span>+91-9999998627</span></li>
+					<li><i class="im im-icon-Globe"></i> <strong>Web:</strong> <span><a href="www.hudaharyana.com">hudaharyana.com</a></span></li>
+					<li><i class="im im-icon-Envelope"></i> <strong>E-Mail:</strong> <span><a href="mailto:homeplanify@gmail.com">homeplanify@gmail.com</a></span></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<!-- Contact Form -->
+		<div class="col-md-8">
+
+			<section id="contact">
+				<h4 class="headline margin-bottom-35">Contact Form</h4>
+
+				<div id="contact-message"></div>
+
+					<form method="post" action="" class="form-a contactForm" autocomplete="on">
+                    {% csrf_token %}
+
+					<div class="row">
+						{% for field in form %}
+                        <div>
+                            {{ field.label }}
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+					<button class="button margin-top-20 margin-bottom-20" type = "submit">Send</button>
+                    </div>
+					</form>
+			</section>
+		</div>
+		<!-- Contact Form / End -->
+
+	</div>
+
+</div>
+<!-- Container / End -->
+
+{% endblock content %}

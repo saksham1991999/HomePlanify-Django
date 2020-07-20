@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <!-- Titlebar================================================== -->
+    <div id="titlebar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <h2>My Properties</h2>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Content
+    ================================================== -->
+    <div class="container">
+        <div class="row">
+
+
+            {% include 'dashboard/dashboardsidenav.html' %}
+
+            <div class="col-md-8">
+                <table class="manage-table responsive-table">
+
+                    <tr>
+                        <th><i class="fa fa-file-text"></i> Property</th>
+                        <th class="expire-date"><i class="fa fa-calendar"></i> Views</th>
+                        <th></th>
+                    </tr>
+
+                    {% for property in properties %}
+                    <!-- Item #1 -->
+                    <tr>
+                        <td class="title-container">
+                            <img src="{{ property.main_image.url }}" alt="">
+                            <div class="title">
+                                <h4><a href="{% url 'core:property' property.id %}">{{ property.property_name }}</a></h4>
+                                <span>{{ property.city }} </span>
+                                <span class="table-property-price">Rs {{ property.total_price }}</span>
+                            </div>
+                        </td>
+                        <td class="expire-date">{{ property.views }}</td>
+                        <td class="action">
+                            <a href="{% url 'core:editproperty' property.id %}"><i class="fa fa-pencil"></i> Edit</a>
+                            {% if property.visible %}
+                            <a href="{% url 'core:hideproperty' property.id %}"><i class="fa  fa-eye-slash"></i> Hide</a>
+                            {% else %}
+                            <a href="{% url 'core:showproperty' property.id %}"><i class="fa  fa-eye-slash"></i> Show</a>
+                            {% endif %}
+                            <a href="{% url 'core:deleteproperty' property.id %}" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+                <a href="{% url 'core:addproperty' %}" class="margin-top-40 button">Submit New Property</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock content %}

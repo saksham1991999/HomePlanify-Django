@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="submit-page">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2><i class="fa fa-plus-circle"></i> Add Property</h2>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+<div class="row">
+
+	<!-- Submit Page -->
+	<div class="col-md-12">
+		<div class="submit-page">
+
+        {% comment %}
+		<div class="notification notice large margin-bottom-55">
+			<h4>Don't Have an Account?</h4>
+			<p>If you don't have an account you can create one by entering your email address in contact details section. A password will be automatically emailed to you.</p>
+		</div>
+        {% endcomment %}
+
+		<!-- Section -->
+		<h3>Basic Information</h3>
+		<div class="submit-section">
+
+                <form class="form-a contactForm" enctype="multipart/form-data" action="" method="POST" role="form">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+					<label>{{ field.label_tag }}</label>
+                        {{ field.errors }}
+                        {{ field }}
+                    {% endfor %}
+
+                    {% for field in imagesform %}
+                        <label>{{ field.label_tag }}</label>
+                        {{ field.errors }}
+                        {{ field }}
+                    {% endfor %}
+					<button class="button margin-top-20 margin-bottom-20" type = "submit">Save Changes</button>
+                </form>
+
+		</div>
+
+
+
+	</div>
+
+</div>
+</div>
+</div>
+
+
+
+    <script>
+
+
+
+    </script>
+{% endblock content %}

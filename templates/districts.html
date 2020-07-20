@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load indian_numbers_tags %}
+
+{% block content %}
+<!-- Wrapper -->
+<div id="wrapper" class="mm-page mm-slideout">
+
+
+    <!-- Container -->
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+
+            <div class="col-md-12">
+                <h3 class="headline centered margin-bottom-35 margin-top-10">Districts <span>Maps of all Districts of Haryana</span></h3>
+            </div>
+
+            {% for district in districts %}
+            <div class="col-md-4">
+
+                <!-- Image Box -->
+                <a href="{% url 'core:maps' district.id %}" class="img-box" data-background-image="{{ district.image.url }}">
+
+                    <!-- Badge -->
+{#                    <div class="listing-badges">#}
+{#                        <span class="featured">Featured</span>#}
+{#                    </div>#}
+
+                    <div class="img-box-content visible">
+                        <h4>{{ district.title }}</h4>
+                        <span>{{ district.get_no_of_areas }} Maps</span>
+                    </div>
+                </a>
+
+            </div>
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+    <!-- Container / End -->
+
+</div>
+{% endblock content %}

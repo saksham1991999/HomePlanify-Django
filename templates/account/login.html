@@ -1,0 +1,69 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+
+
+<!-- Container -->
+<div class="container">
+
+	<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+
+	<!--Tab -->
+	<div class="my-account style-1 margin-top-5 margin-bottom-40">
+
+		<ul class="tabs-nav">
+			<li class=""><a href="#tab1">Log In</a></li>
+            <li><a href="{% url 'account_signup' %}">Register</a></li>
+		</ul>
+
+		<div class="tabs-container alt">
+
+			<!-- Login -->
+			<div class="tab-content" id="tab1" style="display: none;">
+				<form class="login" method="POST" action="{% url 'account_login' %}">
+                    {% csrf_token %}
+
+					<p class="form-row form-row-wide">
+						<label for="username">Enail-ID:
+							<i class="im im-icon-Mail"></i>
+							<input type="email" class="input-text" name="login" id=id_login"/>
+						</label>
+					</p>
+
+					<p class="form-row form-row-wide">
+						<label for="password">Password:
+							<i class="im im-icon-Lock-2"></i>
+							<input class="input-text" type="password" name="password" required id="id_password"/>
+						</label>
+					</p>
+
+					<p class="form-row">
+                        <button class="button margin-top-20 margin-bottom-20" type = "submit">Sign in</button>
+
+						<label for="rememberme" class="rememberme">
+						<input name="remember" type="checkbox" id="id_remember" /> Remember Me</label>
+					</p>
+
+					<p class="lost_password">
+						<a href="{% url 'account_reset_password' %}" >Lost Your Password?</a>
+					</p>
+
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	</div>
+	</div>
+
+</div>
+<!-- Container / End -->
+
+{% endblock %}

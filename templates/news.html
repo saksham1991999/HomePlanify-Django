@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>News</h2>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+    <!-- Content
+================================================== -->
+<div class="container">
+
+	<!-- List Styles
+	================================================== -->
+	<div class="row">
+		<div class="col-md-12">
+		<h4 class="headline margin-bottom-15 margin-top-10">Latest News</h4>
+
+			<div class="row">
+
+
+				<div class="col-md-12">
+					<ul class="list-4 color">
+                        {% for news in newslist %}
+						<li><a href="{{ news.pdf }}">{{ news.news }}</a></li>
+                        {% endfor %}
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

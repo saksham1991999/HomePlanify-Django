@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				<h2>My Profile</h2>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+	<div class="row">
+
+
+		{% include 'dashboard/dashboardsidenav.html' %}
+		<div class="col-md-8">
+			<div class="row">
+
+
+            <div class="col-md-8 my-profile">
+                <h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+                <form class="form-a contactForm" action="" method="post" role="form">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+					<label>{{ field.label_tag }}</label>
+                    {{ field }}
+                    {% endfor %}
+					<button class="button margin-top-20 margin-bottom-20" type = "submit">Save Changes</button>
+                </form>
+            </div>
+
+            {% comment %}
+				<div class="col-md-4">
+					<!-- Avatar -->
+					<div class="edit-profile-photo">
+						<img src="images/agent-02.jpg" alt="">
+						<div class="change-photo-btn">
+							<div class="photoUpload">
+							    <span><i class="fa fa-upload"></i> Upload Photo</span>
+							    <input type="file" class="upload" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+            {% endcomment %}
+
+			</div>
+		</div>
+
+	</div>
+</div>
+{% endblock content %}
