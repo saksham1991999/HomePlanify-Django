@@ -1,395 +1,295 @@
 {% extends 'base.html' %}
 {%  load static %}
 {% load indian_numbers_tags %}
+
 {% block content %}
 
-<!-- Wrapper -->
-<div id="wrapper" class="mm-page mm-slideout">
-
-<!-- Titlebar
-================================================== -->
-<div class="parallax titlebar"
-	data-background="{% static 'images/banner-1.jpg' %}"
-	data-color="#333333"
-	data-color-opacity="0.7"
-	data-img-width="800"
-	data-img-height="505">
-
-	<div id="titlebar">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Properties</h2>
-					<span>Find the best suitable property</span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- Content
-================================================== -->
+<!-- Page Content -->
+<div id="page-content-search">
 <div class="container">
-	<div class="row sticky-wrapper">
-
-		<div class="col-md-12">
-
-            <!-- Row With Forms -->
-            <div class="row with-forms">
-                 <form action="{% url 'core:properties' %}">
-                 <div class="col-md-4">
-                        <div class="main-search-input">
-                            <input type="search" placeholder="Enter city" aria-label="City" name='city' value="{{ city }}" id = "city" />
+    <div class="wide_container_2">
+        <div class="col-xs-12 content_2">
+            <div class="col-lg-10 col-lg-offset-1 col-md-12">
+                <!-- Range slider -->
+                <div class="row">
+                    <div class="explore col-xs-12">
+                        <h2>Properties for sale</h2>
+                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum has been the industry's standard </h5>
+                    </div>
+                    <form method="post">
+                        <div class="col-md-2 col-sm-3">
+                            <div class="form-inline">
+                                <label class="price-range">Price Range:</label>
+                            </div>
                         </div>
-                </div>
-
-                <!-- Main Search Input -->
-                <div class="col-md-8">
-                        <div class="main-search-input">
-                            <input type="search" placeholder="Search Using a Key Word" aria-label="Search" name='search' value="{{search_term}}"  />
-                            <button type = "submit" class="button"><i class="fa fa-search"></i></button>
+                        <div class="col-md-8 col-sm-7">
+                            <div class="form-group">
+                                <div class="price-range">
+                                    <input class="price-input" type="text" name="price" value="0;5000000">
+                                </div>
+                            </div>
                         </div>
+                        <div class="select-block no-border pull-right col-sm-2 col-xs-12">
+                            <select class="selection">
+                                <option>Sort By:</option>
+                                <option>Date</option>
+                                <option>Price</option>
+                                <option>Type</option>
+                            </select>
+                        </div>	<!-- select-block -->
+                    </form>
+                </div><!-- row -->
+                <!-- End Range slider -->
+                <div class="wide-2">
+                    <div class="container">
+                        <div class="row white">
+                            <div class="col-md-3 col-sm-3 prp-img">
+                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
+                                    <span class="filter"></span>
+                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                    <div class="overlay">
+                                        <div class="img-counter">23 Photo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
+                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
+                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
+                                <div class="block">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bedroom.png" alt="">
+                                        <p class="info-line">3 Bedrooms</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bathroom.png" alt="">
+                                        <p class="info-line">1 Bathroom</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/square.png" alt="">
+                                        <p class="info-line">100 m<span class="rank">2</span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/garage.png" alt="">
+                                        <p class="info-line">1 Garage</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <hr>
+                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                            </div>
+                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="sum col-sm-12 col-xs-6">
+                                    <p>$1,000,000</p>
+                                    <p class="team-color">for rent</p>
+                                </div>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
+                                <div class="sum favorite col-sm-12 col-xs-6">
+                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                    </div>
+                                    <p class="col-xs-3">Fav</p>
+                                    <div class="compare col-xs-3" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                    </div>
+                                    <p class="col-xs-3">Comp</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row white">
+                            <div class="col-md-3 col-sm-3 prp-img">
+                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
+                                    <span class="filter"></span>
+                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                    <div class="overlay">
+                                        <div class="img-counter">23 Photo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
+                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
+                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
+                                <div class="block">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bedroom.png" alt="">
+                                        <p class="info-line">3 Bedrooms</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bathroom.png" alt="">
+                                        <p class="info-line">1 Bathroom</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/square.png" alt="">
+                                        <p class="info-line">100 m<span class="rank">2</span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/garage.png" alt="">
+                                        <p class="info-line">1 Garage</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <hr>
+                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                            </div>
+                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="sum col-sm-12 col-xs-6">
+                                    <p>$1,000,000</p>
+                                    <p class="team-color">for rent</p>
+                                </div>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
+                                <div class="sum favorite col-sm-12 col-xs-6">
+                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                    </div>
+                                    <p class="col-xs-3">Fav</p>
+                                    <div class="compare col-xs-3" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                    </div>
+                                    <p class="col-xs-3">Comp</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row white">
+                            <div class="col-md-3 col-sm-3 prp-img">
+                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
+                                    <span class="filter"></span>
+                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                    <div class="overlay">
+                                        <div class="img-counter">23 Photo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
+                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
+                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
+                                <div class="block">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bedroom.png" alt="">
+                                        <p class="info-line">3 Bedrooms</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bathroom.png" alt="">
+                                        <p class="info-line">1 Bathroom</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/square.png" alt="">
+                                        <p class="info-line">100 m<span class="rank">2</span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/garage.png" alt="">
+                                        <p class="info-line">1 Garage</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <hr>
+                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                            </div>
+                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="sum col-sm-12 col-xs-6">
+                                    <p>$1,000,000</p>
+                                    <p class="team-color">for rent</p>
+                                </div>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
+                                <div class="sum favorite col-sm-12 col-xs-6">
+                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                    </div>
+                                    <p class="col-xs-3">Fav</p>
+                                    <div class="compare col-xs-3" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                    </div>
+                                    <p class="col-xs-3">Comp</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row white">
+                            <div class="col-md-3 col-sm-3 prp-img">
+                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
+                                    <span class="filter"></span>
+                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                    <div class="overlay">
+                                        <div class="img-counter">23 Photo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
+                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
+                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
+                                <div class="block">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bedroom.png" alt="">
+                                        <p class="info-line">3 Bedrooms</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/bathroom.png" alt="">
+                                        <p class="info-line">1 Bathroom</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/square.png" alt="">
+                                        <p class="info-line">100 m<span class="rank">2</span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="assets/img/garage.png" alt="">
+                                        <p class="info-line">1 Garage</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <hr>
+                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                            </div>
+                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="sum col-sm-12 col-xs-6">
+                                    <p>$1,000,000</p>
+                                    <p class="team-color">for rent</p>
+                                </div>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
+                                <div class="sum favorite col-sm-12 col-xs-6">
+                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                    </div>
+                                    <p class="col-xs-3">Fav</p>
+                                    <div class="compare col-xs-3" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                    </div>
+                                    <p class="col-xs-3">Comp</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </form>
+                <!-- end wide-2 -->
             </div>
-            <!-- Row With Forms / End -->
-
-
-
-			<!-- Sorting / Layout Switcher -->
-			<div class="row margin-bottom-15">
-
-				<div class="col-md-6">
-					<!-- Sort by -->
-					<div class="sort-by">
-						<label>Sort by:</label>
-
-						<div class="sort-by-select">
-							<select data-placeholder="Default order" class="chosen-select-no-single" >
-								<option> Default Order</option>
-								<option><a href="?Order=low_to_high">Price Low to High</a></option>
-                                <option><a href="?Order=high_to_low">Price High to Low</a></option>
-                                <option><a href="?Order=nearest">Nearest Properties</a></option>
-							</select>
-						</div>
-					</div>
-				</div>
-
-                <div class="col-md-6">
-					<!-- Layout Switcher -->
-					<div class="layout-switcher">
-						<a href="#" class="list"><i class="fa fa-th-list"></i></a>
-						<a href="#" class="grid"><i class="fa fa-th-large"></i></a>
-						<a href="#" class="grid-three"><i class="fa fa-th"></i></a>
-					</div>
-				</div>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-md-10 col-md-offset-1 col-xs-12">
+                <nav id="nav-below" class="site-navigation paging-navigation navbar">
+                    <div class="nav-previous"><a href="#">PREV PAGE</a></div>
+                    <ul class="pagination pagination-lg">
+                        <li><a href="#">1</a></li>
+                        <li><span class="active">2</span></li>
+                        <li><a href="#">3</a></li>
+                        <li><span class="nav-dots">...</span></li>
+                        <li><a href="#">5</a></li>
+                    </ul>
+                    <div class="nav-next"><a href="#">NEXT PAGE</a></div>
+                </nav>
             </div>
-
-
-			<!-- Listings -->
-			<div class="listings-container list-layout">
-                {% for property in properties %}
-                    {% if property.verified and property.visible %}
-				<!-- Listing Item -->
-				<div class="listing-item">
-
-					<a href="{% url 'core:property' property.id %}" class="listing-img-container">
-
-                        {% comment %}
-						<div class="listing-badges">
-							<span class="featured">Featured</span>
-							<span>For Sale</span>
-						</div>
-						{% endcomment %}
-
-						<div class="listing-img-content">
-							<span class="listing-price"><i>₹ {{ property.total_price|floatword_indian }}</i></span>
-							<span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-							<span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-						</div>
-
-						<div class="listing-carousel">
-							<div><img src="{{ property.main_image.url }}" alt=""></div>
-						</div>
-					</a>
-
-					<div class="listing-content">
-
-						<div class="listing-title">
-							<h4><a href="{% url 'core:property' property.id %}">{{ property.property_name }}</a></h4>
-								<i class="fa fa-map-marker"></i>
-								{{ property.city }}
-
-							<a href="{% url 'core:property' property.id %}" class="details button border">Details</a>
-						</div>
-
-						<ul class="listing-details">
-							<li>Bedrooms - {{ property.bedrooms }}</li>
-							<li>Rooms - {{ property.rooms }}</li>
-							<li>Bathrooms - {{ property.bathrooms }}</li>
-						</ul>
-
-						<div class="listing-footer">
-							<a href="#"><i class="fa fa-user"></i> {{ property.owner }}</a>
-							{% comment %}<span><i class="fa fa-calendar-o"></i> 1 day ago</span>{% endcomment %}
-						</div>
-
-					</div>
-
-				</div>
-				<!-- Listing Item / End -->
-
-{% endif %}
-				{% endfor %}
-
-			</div>
-			<!-- Listings Container / End -->
-
-            {% if properties.has_other_pages %}
-			<!-- Pagination -->
-			<div class="pagination-container margin-top-20">
-				<nav class="pagination">
-					<ul>
-                        <li><a href="" class="current-page">{{ properties.number }}</a></li>
-						<li class="blank">...</li>
-						<li><a href="?page={{ properties.paginator.num_pages }}">{{ properties.paginator.num_pages }}</a></li>
-					</ul>
-				</nav>
-
-				<nav class="pagination-next-prev">
-					<ul>
-                        {% if properties.has_previous %}
-						<li><a href="?page={{ properties.previous_page_number }}" class="prev">Previous</a></li>
-                        {% endif %}
-                        {% if properties.has_next %}
-						<li><a href="?page={{ properties.next_page_number }}" class="next">Next</a></li>
-                        {% endif %}
-					</ul>
-				</nav>
-			</div>
-			<!-- Pagination / End -->
-        {% endif %}
-
-		</div>
-
-        {% comment %}
-		<!-- Sidebar
-		================================================== -->
-		<div class="col-md-4">
-			<div class="sidebar sticky right">
-
-				<!-- Widget -->
-				<div class="widget margin-bottom-40">
-					<h3 class="margin-top-0 margin-bottom-35">Find New Home</h3>
-
-                    {% comment %}
-					<!-- Row -->
-					<div class="row with-forms">
-						<!-- Status -->
-						<div class="col-md-12">
-							<select data-placeholder="Any Status" class="chosen-select-no-single" >
-								<option>Any Status</option>
-								<option>For Sale</option>
-								<option>For Rent</option>
-							</select>
-						</div>
-					</div>
-					<!-- Row / End -->
-
-
-					<!-- Row -->
-					<div class="row with-forms">
-						<!-- Type -->
-						<div class="col-md-12">
-							<select data-placeholder="Any Type" class="chosen-select-no-single" >
-								<option>Any Type</option>
-								<option>Apartments</option>
-								<option>Houses</option>
-								<option>Commercial</option>
-								<option>Garages</option>
-								<option>Lots</option>
-							</select>
-						</div>
-					</div>
-					<!-- Row / End -->
-
-
-					<!-- Row -->
-					<div class="row with-forms">
-						<!-- States -->
-						<div class="col-md-12">
-							<select data-placeholder="All States" class="chosen-select" >
-								<option>All States</option>
-								<option>Alabama</option>
-								<option>Alaska</option>
-								<option>Arizona</option>
-								<option>Arkansas</option>
-								<option>California</option>
-								<option>Colorado</option>
-								<option>Connecticut</option>
-								<option>Delaware</option>
-								<option>Florida</option>
-								<option>Georgia</option>
-								<option>Hawaii</option>
-								<option>Idaho</option>
-								<option>Illinois</option>
-								<option>Indiana</option>
-								<option>Iowa</option>
-								<option>Kansas</option>
-								<option>Kentucky</option>
-								<option>Louisiana</option>
-								<option>Maine</option>
-								<option>Maryland</option>
-								<option>Massachusetts</option>
-								<option>Michigan</option>
-								<option>Minnesota</option>
-								<option>Mississippi</option>
-								<option>Missouri</option>
-								<option>Montana</option>
-								<option>Nebraska</option>
-								<option>Nevada</option>
-								<option>New Hampshire</option>
-								<option>New Jersey</option>
-								<option>New Mexico</option>
-								<option>New York</option>
-								<option>North Carolina</option>
-								<option>North Dakota</option>
-								<option>Ohio</option>
-								<option>Oklahoma</option>
-								<option>Oregon</option>
-								<option>Pennsylvania</option>
-								<option>Rhode Island</option>
-								<option>South Carolina</option>
-								<option>South Dakota</option>
-								<option>Tennessee</option>
-								<option>Texas</option>
-								<option>Utah</option>
-								<option>Vermont</option>
-								<option>Virginia</option>
-								<option>Washington</option>
-								<option>West Virginia</option>
-								<option>Wisconsin</option>
-								<option>Wyoming</option>
-							</select>
-						</div>
-					</div>
-					<!-- Row / End -->
-
-
-					<!-- Row -->
-					<div class="row with-forms">
-						<!-- Cities -->
-						<div class="col-md-12">
-							<select data-placeholder="All Cities" class="chosen-select" >
-								<option>All Cities</option>
-								<option>New York</option>
-								<option>Los Angeles</option>
-								<option>Chicago</option>
-								<option>Brooklyn</option>
-								<option>Queens</option>
-								<option>Houston</option>
-								<option>Manhattan</option>
-								<option>Philadelphia</option>
-								<option>Phoenix</option>
-								<option>San Antonio</option>
-								<option>Bronx</option>
-								<option>San Diego</option>
-								<option>Dallas</option>
-								<option>San Jose</option>
-							</select>
-						</div>
-					</div>
-					<!-- Row / End -->
-
-
-					<!-- Row -->
-					<div class="row with-forms">
-
-						<!-- Min Area -->
-						<div class="col-md-6">
-							<select data-placeholder="Beds" class="chosen-select-no-single" >
-								<option label="blank"></option>
-								<option>Beds (Any)</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-
-						<!-- Max Area -->
-						<div class="col-md-6">
-							<select data-placeholder="Baths" class="chosen-select-no-single" >
-								<option label="blank"></option>
-								<option>Baths (Any)</option>
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-							</select>
-						</div>
-
-					</div>
-					<!-- Row / End -->
-
-					<br>
-
-					<!-- Area Range -->
-					<div class="range-slider">
-						<label>Area Range</label>
-						<div id="area-range" data-min="0" data-max="100" data-unit="No of Seats"></div>
-						<div class="clearfix"></div>
-					</div>
-
-					<br>
-
-					<!-- Price Range -->
-					<div class="range-slider">
-						<label>No of Seats Available</label>
-						<div id="price-range" data-min="0" data-max="100" data-unit=""></div>
-						<div class="clearfix"></div>
-					</div>
-
-					<!-- More Search Options -->
-					<a href="#" class="more-search-options-trigger margin-bottom-10 margin-top-30" data-open-title="Amenities" data-close-title="Amenities"></a>
-
-					<div class="more-search-options relative">
-
-						<!-- Checkboxes -->
-						<div class="checkboxes one-in-row margin-bottom-10">
-                            {% for amenity in amenities %}
-							<input id="check-2" type="checkbox" name="check" value="{{ amenity.title }}">
-							<label for="check-2">{{ amenity.title }}</label>
-                            {% endfor %}
-						</div>
-						<!-- Checkboxes / End -->
-
-					</div>
-					<!-- More Search Options / End -->
-
-					<button class="button fullwidth margin-top-30">Search</button>
-
-
-				</div>
-				<!-- Widget / End -->
-
-			</div>
-		</div>
-		<!-- Sidebar / End -->
-    {% endcomment %}
-
-
-	</div>
+        </div>
+    </div>
 </div>
-
-
-
 </div>
-<!-- Wrapper / End -->
-
-
+</div>
+<!-- end Page Content -->
 
 {% endblock content %}

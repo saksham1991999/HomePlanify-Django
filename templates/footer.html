@@ -1,58 +1,87 @@
 {% load static %}
 
-<!-- Footer
-================================================== -->
-<div id="footer" class="dark">
-	<!-- Main -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 col-sm-6">
-				<img class="footer-logo" src="{%  static 'images/logo2.png' %}" alt="">
-				<br><br>
-				<p>About Us<br>
-At HomePlanify, we believe that when it comes to finding a home what's outside the front door is just as important as what's behind it. A Home is one of the most expensive things in one's life and we make certain you get the best deals with us.. We're committed to helping them discover a place where they will love to live and where they will feel more connected to the community and to each other. It's why we strive every day to help build a more neighborly world.
-</p>
-			</div>
+<footer id="page-footer">
+		<div class="inner">
+			<section id="footer-main">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3 col-sm-3">
+							<article>
+								<h3>About Us</h3>
+								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed
+								</p>
+							</article>
+						</div><!-- /.col-sm-3 -->
+						<div class="col-md-3 col-sm-3">
+							<article>
+								<h3>Recent Properties For Sale</h3>
+								<div class="property small">
+									<a href="property-detail.html">
+										<div class="property-thumbnail">
+											<img alt="" src="http://placehold.it/60X55">
+										</div>
+									</a>
+									<div class="info">
+										<a href="property-detail.html">2186 Rinehart Road</a>
+										<figure>Doral, FL 33178 </figure>
+										<div class="tag price">$ 72,000</div>
+									</div>
+								</div><!-- /.property -->
+								<div class="property small">
+									<a href="property-detail.html">
+										<div class="property-thumbnail">
+											<img alt="" src="http://placehold.it/60X55">
+										</div>
+									</a>
+									<div class="info">
+										<a href="property-detail.html">2479 Murphy Court</a>
+										<figure>Minneapolis, MN 55402</figure>
+										<div class="tag price">$ 36,000</div>
+									</div>
+								</div><!-- /.property -->
+							</article>
+						</div><!-- /.col-sm-3 -->
+						<div class="col-md-3 col-sm-3">
+							<article class="contact-us">
+								<h3>Contact Us</h3>
+								<address>
+									Company Name<br>
+									4877 Spruce Drive<br>
+									West Newton, PA 15089
+								</address>
+								+1 (734) 123-4567<br>
+								<a href="mailto=hello@example.com" class="mailto">hello@example.com</a>
+							</article>
+						</div><!-- /.col-sm-3 -->
+						<div class="col-md-3 col-sm-3">
+							<article>
+								<h3>Useful Links</h3>
+								<ul class="list-unstyled list-links">
+									<li><a href="our_property.html">All Properties</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="terms_and_conditions.html">Terms and Conditions</a></li>
+								</ul>
+							</article>
+						</div><!-- /.col-sm-3 -->
+						<div class="col-md-12 col-sm-12">
+							<span class="pull-right"><a href="#page-top" class="roll">Go to top</a></span>
+						</div>
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</section><!-- /#footer-main -->
 
-			<div class="col-md-4 col-sm-6 ">
-				<h4>Helpful Links</h4>
-				<ul class="footer-links">
-					<li><a href="{% url 'account_login' %}">Login</a></li>
-					<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-					<li><a href="{% url 'core:userprofile' %}">My Account</a></li>
-					<li><a href="{% url 'core:addproperty' %}">Add Property</a></li>
-					<li><a href="{% url 'core:bookmarks' %}">Bookmarks</a></li>
-                    <li><a href="{% url 'core:agents' %}">Our Agents</a></li>
-                    <li><a href="{% url 'core:contact' %}">Contact</a></li>
-				</ul>
-
-				<div class="clearfix"></div>
-			</div>
-
-			<div class="col-md-3  col-sm-12">
-				<h4>Contact Us</h4>
-				<div class="text-widget">
-                    Phone: <span>  <a href="tel:999-999-8627">+91-9999998627 </a></span><br>
-					E-Mail:<span> <a href="mailto:homeplanify@gmail.com">homeplanify@gmail.com</a> </span><br>
+			<section id="footer-thumbnails" class="footer-thumbnails"></section><!-- /#footer-thumbnails -->
+			<section id="footer-copyright">
+				<div class="container">
+					<a href="http://fruitfulcode.com" target="blank">© HomePlanify,</a>
+{#					<span>Powered by</span>#}
+{#					<a href="http://getbootstrap.com " target="blank">Bootstrap</a>#}
+{#					<img class="pull-right bank-logo" alt="" src="assets/img/master-card.png">#}
+{#					<img class="pull-right bank-logo" alt="" src="assets/img/visa.png">#}
+{#					<img class="pull-right bank-logo" alt="" src="assets/img/stripe.png">#}
+{#					<img class="pull-right bank-logo" alt="" src="assets/img/paypal.png">#}
+{#					<span class="pull-right">We accept:</span>#}
 				</div>
-
-				<ul class="social-icons margin-top-20">
-					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-                </ul>
-
-			</div>
-
-		</div>
-
-		<!-- Copyright -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="copyrights">© 2020 Huda Haryana. It doesn't have any connection with Government nor government involved it just a informative site.</div>
-			</div>
-		</div>
-
-	</div>
-
-</div>
-<!-- Footer / End -->
+			</section>
+		</div><!-- /.inner -->
+	</footer>

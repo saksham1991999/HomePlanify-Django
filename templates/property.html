@@ -2,232 +2,397 @@
 {% load static %}
 {% load property_template_tag %}
 {% load indian_numbers_tags %}
+
+
 {% block content %}
-
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="property-titlebar margin-bottom-0">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-
-				<a href="{% url 'core:properties' %}" class="back-to-listings"></a>
-				<div class="property-title">
-					<h2>{{ property.property_name }} <span class="property-badge">{{ property.get_type_display }}</span></h2>
-					<span>
-						<a href="" class="listing-address">
-							<i class="fa fa-map-marker"></i>
-							{{ property.city }}
-						</a>
-					</span>
-				</div>
-
-				<div class="property-pricing">
-					<div class="property-price">₹ {{ property.total_price|floatword_indian }}</div>
-					{% if property.price_sq %}
-                    <div class="sub-price">₹ {{ property.price_sq|floatword_indian }} / sq ft</div>
-                    {% endif %}
-				</div>
-
-
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- Content
-================================================== -->
-<div class="container">
-	<div class="row margin-bottom-50">
-		<div class="col-md-12">
-
-			<!-- Slider -->
-			<div class="property-slider default">
-                {% for image in property.images_set.all %}
-				<a href="{{ image.image.url }}" data-background-image="{{ image.image.url }}" class="item mfp-gallery"></a>
-			    {% endfor %}
-            </div>
-
-			<!-- Slider Thumbs -->
-			<div class="property-slider-nav">
-                {% for image in property.images_set.all %}
-                    <div class="item"><img src="{{ image.image.url }}" alt=""></div>
-			    {% endfor %}
-
-			</div>
-
-		</div>
-	</div>
-</div>
-
-
-<div class="container">
-	<div class="row">
-
-		<!-- Property Description -->
-		<div class="col-lg-8 col-md-7 sp-content">
-			<div class="property-description">
-
-				<!-- Main Features -->
-				<ul class="property-main-features">
-                    <li>Area <span>1450 sq ft</span></li>
-                    {%  if property.construction_status %}
-					<li>Construction Status <span>{{ property.get_construction_status_display }}</span></li>
-                    {% endif %}
-                    {%  if property.available_from %}
-					<li>Available From <span>{{ property.available_from }}</span></li>
-                    {% endif %}
-					<li>Rooms <span>4</span></li>
-					<li>Bedrooms <span>{{ property.bedrooms }}</span></li>
-					<li>Bathrooms <span>{{ property.bathrooms }}</span></li>
-				</ul>
-
-                {% if property.additional_features %}
-				<!-- Description -->
-				<h3 class="desc-headline">Description</h3>
-				<div class="show-more">
-					<p>
-						{{ property.additional_features }}
-					</p>
-					<a href="#" class="show-more-button">Show More <i class="fa fa-angle-down"></i></a>
-				</div>
-                {% endif %}
-
-            {% comment %}
-				<!-- Details -->
-				<h3 class="desc-headline">Details</h3>
-				<ul class="property-features margin-top-0">
-					<li>Building Age: <span>2 Years</span></li>
-					<li>Parking: <span>Attached Garage</span></li>
-					<li>Cooling: <span>Central Cooling</span></li>
-					<li>Heating: <span>Forced Air, Gas</span></li>
-					<li>Sewer: <span>Public/City</span></li>
-					<li>Water: <span>City</span></li>
-					<li>Exercise Room: <span>Yes</span></li>
-					<li>Storage Room: <span>Yes</span></li>
-				</ul>
-            {% endcomment %}
-
-                {% comment %}
-                {% if property.features %}
-				<!-- Features -->
-				<h3 class="desc-headline">Features</h3>
-				<ul class="property-features checkboxes margin-top-0">
-                {% for feature in property.features %}
-					<li>{{ feature.title }}</li>
-                {% endif %}
-				</ul>
-                {% endif %}
-                {% endcomment %}
-
-                <!-- Features -->
-				<h3 class="desc-headline">Features</h3>
-				<ul class="property-features checkboxes margin-top-0">
-                    {% for feature in property.features.all %}
-					    <li>{{ feature.title }}</li>
-                    {% endfor %}
-				</ul>
-
-
-                {% if property.youtube_video %}
-				<!-- Video -->
-				<h3 class="desc-headline no-border">Video</h3>
-				<div class="responsive-iframe" style="margin-bottom: 50px">
-                    <video width="560" height="315" controls>
-                        <source src="{{ property.youtube_video }}" type="video/mp4">
-                    </video>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ property.youtube_video }}" frameborder="0" allowfullscreen></iframe>
-				</div>
-                {% endif %}
-
-                {% if property.youtube_video_2 %}
-				<!-- Video -->
-				<h3 class="desc-headline no-border">Video</h3>
-				<div class="responsive-iframe" style="margin-bottom: 50px">
-                    <video width="560" height="315" controls>
-                        <source src="{{ property.youtube_video_2 }}" type="video/mp4">
-                    </video>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ property.youtube_video_2 }}" frameborder="0" allowfullscreen></iframe>
-				</div>
-                {% endif %}
-
-
-
-                {% comment %}
-				<!-- Location -->
-				<h3 class="desc-headline no-border" id="location">Location</h3>
-				<div id="propertyMap-container">
-					<div id="propertyMap" data-latitude="40.7427837" data-longitude="-73.11445617675781"></div>
-					<a href="#" id="streetView">Street View</a>
-				</div>
-				{% endcomment %}
-
-			</div>
-		</div>
-		<!-- Property Description / End -->
-
-
-		<!-- Sidebar -->
-		<div class="col-lg-4 col-md-5 sp-sidebar">
-			<div class="sidebar sticky right">
-
-				<!-- Widget -->
-				<div class="widget margin-bottom-30">
-                    {% if request.user|added_to_bookmark:property.id  %}
-                    <a href="{% url 'core:removefrombookmarks' property.id %}" class="button medium"><i class="fas fa-star"></i></a>
-                    {% else %}
-                    <a href="{% url 'core:addtobookmarks' property.id %}" class="button medium border"><i class="far fa-star"></i></a>
-                    {% endif %}
-
-                    {% if request.user|added_to_compare:property.id  %}
-                    <a href="{% url 'core:removefromcompare' property.id %}" class="button medium">Remove from Compare List</a>
-                    {% else %}
-                    <a href="{% url 'core:addtocompare' property.id %}" class="button medium border"><i class="icon-compare">Compare</i></a>
-                    {% endif %}
-				</div>
-				<!-- Widget / End -->
-
-				<!-- Widget -->
-				<div class="widget">
-
-					<!-- Agent Widget -->
-					<div class="agent-widget">
-						<div class="agent-title">
-                        <!--
-							<div class="agent-photo"><img src="images/agent-avatar.jpg" alt="" /></div>
-							-->
-							<div class="agent-details">
-                                {% if property.owner.first_name %}
-                                    <h4>{{ property.owner.first_name }} {{ property.owner.last_name }}</h4>
-                                {% else %}
-								<h4><a href="#">{{ property.owner.username }}</a></h4>
-                                {% endif %}
-                            {% if property.owner.mobile %}
-								<span><i class="sl sl-icon-call-in"></i>{{ property.owner.mobile }}</span>
-                            {% endif %}
-							</div>
-							<div class="clearfix"></div>
-						</div>
-                        <form method="POST" role="form">
-                            {% csrf_token %}
-                            {% for field in enquiryform %}
-                            {{ field }}
-                            {{ field.errors }}
-                            {% endfor %}
-						<button class="button fullwidth margin-top-5" type="submit">Send Enquiry</button>
-					    </form>
+<!-- Page Content -->
+<div id="page-property-content">
+    <div class="wide_container_3 carousel-full-width">
+        <div class="tabs">
+            <div class="tab-content">
+                <div id="tab1" class="tab active">
+                    <!-- Owl carousel -->
+                    <div id="owl-demo-2" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="image" style="background: url(http://placehold.it/635x350) center"></div>
+                        </div>
+                        <div class="item">
+                            <div class="image" style="background: url(http://placehold.it/635x350) center"></div>
+                        </div>
+                        <div class="item">
+                            <div class="image" style="background: url(http://placehold.it/635x350) center"></div>
+                        </div>
+                        <div class="item">
+                            <div class="image" style="background: url(http://placehold.it/635x350) center"></div>
+                        </div>
                     </div>
-					<!-- Agent Widget / End -->
-
-				</div>
-				<!-- Widget / End -->
-
-			</div>
-		</div>
-		<!-- Sidebar / End -->
-
-	</div>
+                    <!-- End Owl carousel -->
+                </div>
+                <div id="tab22" class="tab">
+                    <!-- Map -->
+                    <div id="map4"></div>
+                    <!-- end Map -->
+                </div>
+                <div id="tab3" class="tab">
+                </div>
+            </div>
+            <ul class="tab-links col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
+                <li class="active col-xs-4"><a href="#tab1"><img src="assets/img/camera-black.png" alt=""/>Photo</a></li>
+                <li class="col-xs-4"><a href="#tab22" class="map4"><img src="assets/img/map.png" alt=""/>Map</a></li>
+                <li class="col-xs-4"><a href="#tab3" class="street-view"><img class="street-view-image" src="assets/img/street_view.png" alt=""/>Street View</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="wide-2">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li class="active">St Floor Wintage House</li>
+            </ol>
+        </div>
+        <div class="container">
+            <div class="row">
+                <aside class="pr-summary col-md-4 col-xs-12">
+                    <form action="agent_profile.html">
+                        <div class="col-lg-7 col-md-6 col-sm-3 col-xs-6 hl-bl">
+                            <h2>$1,000</h2>
+                            <h5 class="team-color">APARTMENT FOR RENT</h5>
+                        </div>
+                        <div class="col-lg-5 col-md-6 col-sm-3 col-xs-6 hl-bl">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i><br>
+                            <div class="row">
+                                <p class="team-color col-md-6 col-xs-3">Rating:</p>
+                                <p class="team-color col-md-6 col-xs-3"><strong>5.0</strong>/5.0</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-6 col-xs-6 cat-img">
+                                        <img src="assets/img/bedroom.png" alt="">
+                                        <p>3 Bedrooms</p>
+                                    </div>
+                                    <div class="col-lg-7 col-md-6 col-xs-6 cat-img cat-img">
+                                        <img src="assets/img/bathroom.png" alt="">
+                                        <p >1 Bathroom</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="col-lg-5 col-md-6 col-xs-6 cat-img">
+                                                <img src="assets/img/square.png" alt="">
+                                                <p class="info_line">86 m<span class="rank">2</span></p>
+                                            </div>
+                                            <div class="col-lg-7 col-md-6 col-xs-6 cat-img">
+                                                <img src="assets/img/garage.png" alt="">
+                                                <p class="info_line">1 Garage</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="col-lg-5 col-md-6 col-xs-6 line"></div>
+                                                <div class="col-lg-5 col-md-6 col-xs-6 line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="full-width">
+                            </div>
+                        </div>
+                        <div class="picker-block col-md-12 col-sm-6 col-xs-12">
+                            <div class="row">
+                                <h3 class="chek">Сheck availability</h3>
+                                <div class="col-xs-6 rgt-bord">
+                                    <div class="form-group">
+                                        <input id="date-from" placeholder="From" readonly="">
+                                        <span class="point"></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <input id="date-to" placeholder="To" readonly="">
+                                        <span class="point"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" col-xs-12">
+                                    <div class="circle">
+                                        <img src="http://placehold.it/65x65" alt="">
+                                    </div>
+                                    <div class="team-info">
+                                        <h3>Jason Satti</h3>
+                                        <p class="team-color">Superhero Agent</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-6 col-xs-12">
+                                <span class="ffs-bs">
+                                    <button type="submit" class="btn btn-large btn-primary">contact agent</button>
+                                </span>
+                                <div class="col-xs-12 fav-block">
+                                    <div class="bookmark col-xs-6" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                        <p class="col-xs-9 fav-text">Add to Favorit</p>
+                                    </div>
+                                    <div class="compare col-xs-6" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                        <p class="fav-text">Compare</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </aside>
+                <div class="pr-info col-md-8 col-xs-12">
+                    <h2>St Floor Wingate House</h2>
+                    <div class="map-marker"></div>
+                    <h5 class="team-color">London, 93-107 Shaftesbury Ave, W1D 5DY &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-eye"></i>1092</h5>
+                    <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque. In luctus pellentesque hendrerit. Vivamus congue laoreet urna, sed cursus odio scelerisque id. Curabitur volutpat pretium laoreet. Cras pulvinar vulputate porttitor. Ut sed lorem purus. Morbi posuere mauris odio, quis venenatis nisi viverra eu. Phasellus suscipit sem sapien. Phasellus risus purus, accumsan vel molestie vitae, sagittis sed massa. Sed elementum nisl tellus, at pharetra odio pharetra vel.</p>
+                </div>
+                <div class="pr-info col-md-8 col-xs-12">
+                    <h3>Property Features:</h3>
+                    <section class="block">
+                        <ul class="submit-features">
+                            <li class="col-md-4 col-xs-4"><div >Air conditioning</div></li>
+                            <li class="col-md-4 col-xs-4 nonexistent"><div class="team-color">Hi-Fi</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Balcony</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Balcony</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Internet</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Beach</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Iron</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                            <li class="col-md-4 col-xs-4 nonexistent"><div class="team-color">Coffee pot</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Parquet</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Balcony</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Balcony</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Balcony</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                            <li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="pr-info col-md-8 col-xs-12">
+                    <h3>Floor plans & Additional photo:</h3>
+                    <div class="row cust-row">
+                        <div class="col-xs-3 cust-pad">
+                            <div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
+                        </div>
+                        <div class="col-xs-3 cust-pad">
+                            <div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
+                        </div>
+                        <div class="col-xs-3 cust-pad">
+                            <div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
+                        </div>
+                        <div class="col-xs-3 cust-pad">
+                            <div class="pr-img" style="background: url(http://placehold.it/175x125) center;">
+                                <span class="filter"></span>
+                                <label class="img-label" for="op">+32 More</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3>Video Presentation:</h3>
+                            <p><iframe src="https://player.vimeo.com/video/34741214"></iframe></p>
+                            <hr>
+                            <div class="row">
+                                <section class="social-block col-sm-6 col-xs-12">
+                                    <ul class="social">
+                                        <li class="social-text">SHARE:</li>
+                                        <li><a class="facebook" href="https://www.facebook.com" target="blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a class="twitter" href="https://twitter.com" target="blank"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a class="google" href="https://www.google.com" target="blank"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a class="pinterest" href="https://www.pinterest.com" target="blank"><i class="fa fa-pinterest"></i></a></li>
+                                    </ul>
+                                </section>
+                                <p class="error-block col-sm-6 col-xs-12 pull-right"><a href="#" data-toggle="modal" data-target="#modal-error"><i class="fa fa-exclamation-triangle"></i>Report About Error</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wide_container_3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-xs-12">
+                    <header><h4>3 Feedback</h4></header>
+                    <div class="hl-bl col-xs-12">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <p class="team-color"><span class="bold_text">5.0</span>/5.0</p>
+                    </div>
+                    <ul class="comments">
+                        <li class="comment">
+                            <div class="comment-wrapper">
+                                <div class="name pull-left">Michael Salmon</div>
+                                <span class="date-block team-color">4 days ago</span>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                                </p>
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <div class="comment-wrapper">
+                                <div class="name pull-left">Michael Salmon</div>
+                                <span class="date-block team-color">4 days ago</span>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="comments-more">
+                        <a href="#">Show More</a>
+                    </div>
+                    <span class="ffs-bs transparent">
+                        <button type="submit" id="show-reply-form" class="btn btn-default btn-large"><i class="fa fa-star-o"></i><span class="btn-text">leave review</span></button>
+                    </span>
+                    <section id="leave-reply">
+                        <header><h4>Leave Review</h4></header>
+                        <div class="clearfix">
+                            <aside>
+                                <div class="rating rating-user">
+                                    <div class="inner"></div>
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="row">
+                            <form id="form-single-property-reply" method="post">
+                                <div class="col-sm-6 col-xs-12">
+                                    <input type="text" class="form-control" id="form-blog-reply-name" name="form-blog-reply-name" placeholder="Your Name" required>
+                                </div><!-- /.form-group -->
+                                <div class="col-sm-6 col-xs-12">
+                                    <input type="email" class="form-control" id="form-blog-reply-email" name="form-blog-reply-email" placeholder="Your Email" required>
+                                </div><!-- /.form-group -->
+                                <div class="col-xs-12">
+                                    <textarea class="form-control" id="form-blog-reply-message" rows="5" name="form-blog-reply-message" placeholder="Write Your Text..."></textarea>
+                                </div><!-- /.form-group -->
+                                <div class="col-xs-12 btm-indent">
+                                    <button type="submit" class="btn pull-right btn-small btn-primary" id="form-blog-reply-submit">Send</button>
+                                </div><!-- /.form-group -->
+                                <div id="form-rating-status"></div>
+                            </form><!-- /#form-contact -->
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-4 col-xs-12 some-prp">
+                    <h4>Here is some Similar property:</h4>
+                    <p class="team-color">in London, UK</p>
+                    <hr>
+                    <div class="property-block-small">
+                        <a href="property_page.html">
+                            <div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
+                            <h3>37 Great Russell St</h3>
+                            <p class="team-color">London, 37 Great Russell St Street Good</p>
+                            <h4>$15,000/month</h4>
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="property-block-small">
+                        <a href="property_page.html">
+                            <div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
+                            <h3>37 Great Russell St</h3>
+                            <p class="team-color">London, 37 Great Russell St Street Good</p>
+                            <h4>$15,000/month</h4>
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="property-block-small">
+                        <a href="property_page.html">
+                            <div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
+                            <h3>37 Great Russell St</h3>
+                            <p class="team-color">London, 37 Great Russell St Street Good</p>
+                            <h4>$15,000/month</h4>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
+<!-- end Page Content -->
 {% endblock content %}
+
+
+{% block extra_stylesheet %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places"></script>
+<script>
+ 	//Date picker
+ 	$(document).ready(function() {
+ 		$("#date-from").datepicker({
+ 			showOtherMonths: true,
+ 			selectOtherMonths: true
+ 		});
+ 		$("#date-to").datepicker({
+ 			showOtherMonths: true,
+ 			selectOtherMonths: true
+ 		});
+ 	});
+
+	//Google map for property page
+	function initialize() {
+		$.getScript("assets/js/locations.js", function() {
+			var latlng = {lat: 51.512707, lng:  -0.130447};
+			var mapOptions = {
+				center: latlng,
+				zoom: 15
+			};
+			var map = new google.maps.Map(document.getElementById('map4'),
+				mapOptions);
+			var marker = new MarkerWithLabel({
+				position: latlng,
+				map: map,
+				labelContent: '<div class="marker-loaded"><div class="map-marker"><img src="assets/img/f.svg" alt="" /></div></div>',
+				labelClass: "marker-style"
+			});
+			var contentString =   '<div id="mapinfo">'+
+			'<h4 class="firstHeading">St Floor Wingate House</h4>'+
+			'<h6>London, 93-107 Shaftesbury Ave, W1D 5DY</h6>';
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+			});
+			//resize for opeening and to get center of map
+			$('.map4').bind('click', function(){
+				google.maps.event.trigger(map4, 'resize');
+				map.panTo(marker.getPosition());
+			});
+
+			// Use this code below only if you are using google street view
+			/*	var fenway = {lat: 42.345573, lng: -71.098326};
+			var panorama = new google.maps.StreetViewPanorama(document.getElementById('tab3'), {
+					position: fenway,
+					pov: {
+						heading: 34,
+						pitch: 10
+					}
+				});
+			map.setStreetView(panorama);
+			$('.street-view').bind('click', function(e){
+				setTimeout(function() {
+					google.maps.event.trigger(panorama, 'resize');
+				}, 400 );
+			});*/
+
+		});
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock extra_stylesheet %}

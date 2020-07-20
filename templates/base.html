@@ -3,55 +3,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Huda Haryana</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home Planify</title>
 
-    <meta content="" name="keywords">
-    <meta content="" name="description">
-    
-    <!-- Favicon -->   
-    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon"/>
+    <!-- Favicon -->
+{#    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon"/>#}
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!--FONT AWESOOME
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <link href="{% static 'fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/color.css'%}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/icons.css'%}">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/selectize.css' %}" type="text/css">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-
-	{% block extra_stylesheet %}
+    {% block extra_stylesheet %}
 	{% endblock extra_stylesheet %}
-
 </head>
 
 
-<body>
-    <div id="wrapper" class="mm-page mm-slideout">
-	{% include "navbar.html" %}
+<body id="page-top">
+
+    <!-- Preloader -->
+	<div id="page-preloader">
+		<div class="loader-ring"></div>
+		<div class="loader-ring2"></div>
+	</div>
+	<!-- End Preloader -->
+
+    <!-- Wrapper -->
+	<div class="wrapper">
+
+    {% include "navbar.html" %}
 
 
     <!-- Messages -->   
-	{% if messages %}
-	<div class="">
-        {% for message in messages %}
-
-            <div class="notification {{ message.tags }} closeable">
-				<p>{{ message }}</p>
-				<a class="close"></a>
-			</div>
-
-        {% endfor %}
-    </div>
-	{% endif %}
+{#	{% if messages %}#}
+{#	<div class="">#}
+{#        {% for message in messages %}#}
+{##}
+{#            <div class="notification {{ message.tags }} closeable">#}
+{#				<p>{{ message }}</p>#}
+{#				<a class="close"></a>#}
+{#			</div>#}
+{##}
+{#        {% endfor %}#}
+{#    </div>#}
+{#	{% endif %}#}
     <!-- EndMessages --> 
 
 
@@ -62,11 +63,7 @@
     {% endblock extra_body %}
   
     {% include "footer.html" %}
-    <!-- Back To Top Button -->
-    <div id="backtotop"><a href="#"></a></div>
 
-        </div>
-    <!-- Wrapper -->
     {% include "scripts.html" %}
   
     {% block extra_scripts %}
