@@ -174,6 +174,9 @@ def AgentsView(request):
     }
     return render(request, 'agents.html', context)
 
+def AboutView(request):
+    return render(request, 'about_us.html')
+
 def ContactView(request):
     if request.method == 'POST':
         form = forms.contactForm(request.POST)

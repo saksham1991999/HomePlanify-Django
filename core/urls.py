@@ -8,6 +8,7 @@ urlpatterns = [
     path('districts/', views.DistrictsView, name='districts'),
     path('district/<int:id>/maps/', views.MapsView, name='maps'),
     path('contact/', views.ContactView, name='contact'),
+    path('about/', views.AboutView, name='about'),
     path('agents/', views.AgentsView, name='agents'),
     path('properties/', views.PropertiesView, name='properties'),
     path('property/<int:id>/', views.PropertyView, name='property'),
