@@ -11,10 +11,10 @@
         <div id="owl-demo-header" class="owl-carousel owl-theme carousel-full-width">
             <div class="item">
                 <span class="filter"></span>
-                <div class="head-title-2" style="background: url(http://placehold.it/1900X575) center;background-size: cover;">
+                <div class="head-title-2" style="background: url({%  static 'img/homepage/slide1.jpg' %}) center;background-size: cover;">
                     <div class="container">
                         <div class="title col-lg-6 col-lg-offset-0 col-md-6 col-sm-8 col-sm-offset-1 col-xs-9 col-xs-offset-1">
-                            <h1>The simplest way <br> to find the right Property</h1>
+                            <h1>Slide 1 <br> to find the right Property</h1>
                             <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</h4>
                             <span class="ffs-bs"><a href={% url 'core:properties' %} class="btn btn-large btn-primary">learn more</a></span>
                         </div>
@@ -23,10 +23,10 @@
             </div>
             <div class="item">
                 <span class="filter"></span>
-                <div class="head-title-2" style="background: url(http://placehold.it/1900X575) center;background-size: cover;">
+                <div class="head-title-2" style="background: url({%  static 'img/homepage/slide2.jpg' %}) center;background-size: cover;">
                     <div class="container">
                         <div class="title col-lg-6 col-lg-offset-0 col-md-6 col-sm-8 col-sm-offset-1 col-xs-9 col-xs-offset-1">
-                            <h1>The simplest way <br> to find the right Property</h1>
+                            <h1>Slide 2<br> to find the right Property</h1>
                             <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</h4>
                             <span class="ffs-bs"><a href="property_page.html" class="btn btn-large btn-primary">learn more</a></span>
                         </div>
@@ -35,105 +35,119 @@
             </div>
         </div>
     </div>
+
+
+    <!-- Most popular Properties -->
     <div class="container">
         <div class="explore">
-            <h2>Explore Properties in Your Area</h2>
-            <h5><i class="fa fa-map-marker"></i>Warsaw, Poland <span class="team-color">Change location</span></h5>
+            <h2>Most Popular Places</h2>
+{#            <h5><i class="fa fa-map-marker"></i>Warsaw, Poland <span class="team-color">Change location</span></h5>#}
         </div>
         <div class="row">
+
+            <!--- Faridabad -->
             <div class="col-md-4 col-sm-6">
-                <a href="search_result.html" class="exp-img" style="background:url(http://placehold.it/360X240) center;background-size: cover;">
+                <a href="properties?city=faridabad&search=" class="exp-img" style="background:url({%  static 'img/homepage/faridabad.jpg' %}) center;background-size: cover;">
                     <span class="filter"></span>
                     <div class="img-info">
-                        <h3>Studio Apartment’s</h3>
-                        <h6>33 Properties</h6>
+                        <h3>Faridabad</h3>
+                        <h6>133 Properties</h6>
                         <span class="ffs-bs btn btn-small btn-primary">explore more</span>
                     </div>
                 </a>
             </div>
+
+            <!-- Gurgaon -->
             <div class="col-md-4 col-sm-6">
-                <a href="search_result.html" class="exp-img" style="background:url(http://placehold.it/360X240) center;background-size: cover;">
+                <a href="properties?city=gurgaon&search=" class="exp-img" style="background:url({%  static 'img/homepage/gurgoan.jpg' %}) center;background-size: cover;">
                     <span class="filter"></span>
                     <div class="img-info">
-                        <h3>1+ Bedroom Apt</h3>
-                        <h6>33 Properties</h6>
+                        <h3>Gurgaon</h3>
+                        <h6>240 Properties</h6>
                         <span class="ffs-bs btn btn-small btn-primary">explore more</span>
                     </div>
                 </a>
             </div>
+
+            <!-- Karnal -->
             <div class="col-md-4 col-sm-6">
-                <a href="search_result.html" class="exp-img" style="background:url(http://placehold.it/360X240) center;background-size: cover;">
+                <a href="properties?city=karnal&search=" class="exp-img" style="background:url({%  static 'img/homepage/karnal.jpg' %}) center;background-size: cover;">
                     <span class="filter"></span>
                     <div class="img-info">
-                        <h3>Cozy Houses</h3>
-                        <h6>33 Properties</h6>
+                        <h3>Karnal</h3>
+                        <h6>25 Properties</h6>
                         <span class="ffs-bs btn btn-small btn-primary">explore more</span>
                     </div>
                 </a>
             </div>
+
+            <!-- Rohtak -->
             <div class="col-md-4 col-sm-6">
-                <a href="search_result.html" class="exp-img" style="background:url(http://placehold.it/360X240) center;background-size: cover;">
+                <a href="properties?city=rohtak&search=" class="exp-img" style="background:url({%  static 'img/homepage/rohtak.jpg' %}) center;background-size: cover;">
                     <span class="filter"></span>
                     <div class="img-info">
-                        <h3>Luxury House</h3>
-                        <h6>33 Properties</h6>
+                        <h3>Rohtak</h3>
+                        <h6>17 Properties</h6>
                         <span class="ffs-bs btn btn-small btn-primary">explore more</span>
                     </div>
                 </a>
             </div>
+
+            <!-- SOnipat -->
             <div class="col-md-8">
-                <a href="search_result.html" class="exp-img" style="background:url(http://placehold.it/750X240) center;background-size: cover;">
+                <a href="properties?city=sonipat&search=" class="exp-img" style="background:url({%  static 'img/homepage/sonipat.jpg' %}) center;background-size: cover;">
                     <span class="filter"></span>
                     <div class="img-info">
-                        <h3>With Swimming Pool</h3>
-                        <h6>33 Properties</h6>
+                        <h3>Sonipat</h3>
+                        <h6>11 Properties</h6>
                         <span class="ffs-bs btn btn-small btn-primary">explore more</span>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+
     <!-- end container -->
     <div class="wide-1">
         <div class="container rel-img">
             <div class="col-md-8 col-sm-8 ab-us">
                 <h2>We are Suburb Real Estate Agency</h2>
+
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12 ex-block">
+                        <h4><i class="fa fa-circle-o"></i>About us</h4>
+                        <p>At HomePlanify, we believe that when it comes to finding a home what's outside the front door is just as important as what's behind it. A Home is one of the most expensive things in one's life and we make certain you get the best deals with us.. We're committed to helping them discover a place where they will love to live and where they will feel more connected to the community and to each other. It's why we strive every day to help build a more neighborly world.</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+
                 <div class="row">
                     <div class="col-md-6 col-sm-6 ex-block">
                         <h4><i class="fa fa-circle-o"></i>Wide Range of Properties</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p>More than 10,000 customers buy or sell a home with us each year. We help people and homes find each together.</p>
                     </div>
                     <div class="col-md-6 col-sm-6 ex-block">
-                        <h4><i class="fa fa-circle-o"></i>About us</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry five centuries, but also the leap.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 ex-block">
-                        <h4><i class="fa fa-circle-o"></i>14 Agents for Your Service</h4>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                    <div class="col-md-6 col-sm-6 ex-block">
-                        <h4>&nbsp;</h4>
-                        <p>Typesetting, remaining essentially unchanged. It was popularised in the 1960s.</p>
+                        <h4><i class="fa fa-circle-o"></i>Home Designs Ideas</h4>
+                        <p>Our specialists can help you get started on that home project. Find paint colors, that perfect tile and more.</p>
                     </div>
                 </div>
                 <span class="ffs-bs"><a href={% url 'core:properties' %} class="btn btn-large">explore property</a></span>
             </div>
         </div>
-        <div class="ab-us-img col-md-4 col-sm-4"></div>
+        <div class="ab-us-img col-md-4 col-sm-4" style="background-image:url({%  static 'img/homepage/slide2.jpg' %}) !important;"></div>
     </div>
-    <!-- end wide-1 -->
+
+
+    <!-- end wide-1 Featured Properties -->
+    {% if properties %}
     <div class="wide-2">
         <div class="container">
             <div class="explore">
-                <h2>Our New Exclusive Homes</h2>
-                <h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>
+                <h2>Featured Properties</h2>
+                <h5 class="team-color">Featured Properties available. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>
             </div>
-
-
-
-            {% if properties %}
                         {% for property in properties %}
 
                         <div class="row white">
@@ -141,9 +155,9 @@
                                 <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
                                     <span class="filter"></span>
                                     <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
+{#                                    <div class="overlay">#}
+{#                                        <div class="img-counter">23 Photo</div>#}
+{#                                    </div>#}
                                 </div>
                             </div>
                             <div class="item-info col-lg-7 col-md-6 col-sm-6">
@@ -151,20 +165,20 @@
                                 <p class="team-color">{{ property.city }}</p>
                                 <div class="block">
                                     <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bedroom.png" alt="">
+                                        <img src="{% static 'img/bedroom.png' %}" alt="">
                                         <p class="info-line">{{ property.bedrooms }} Bedroom(s)</p>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bathroom.png" alt="">
+                                        <img src="{% static 'img/bathroom.png' %}" alt="">
                                         <p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/square.png" alt="">
+                                        <img src="{% static 'img/square.png' %}" alt="">
                                         <p class="info-line">{{ property.price_sq }} m<span class="rank">2</span></p>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/garage.png" alt="">
-                                        <p class="info-line">1 Garage</p>
+                                        <img src="{% static 'img/marker.png' %}" alt="">
+                                        <p class="info-line">{{ property.city }} City</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
@@ -177,7 +191,12 @@
                             <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                 <div class="sum col-sm-12 col-xs-6">
                                     <p>₹{{ property.total_price }}</p>
-                                    <p class="team-color">for {{ property.type }}</p>
+                                    {% if property.type == "R" %}
+                                        <p class="team-color">Available from {{ property.available_from }}</p>
+                                    {% else %}
+                                        <p class="team-color">{{ property.get_construction_status_display }}</p>
+                                    {% endif %}
+
                                 </div>
                                 <span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">See more <i class="fa fa-caret-right"></i></a></span>
                                 <div class="sum favorite col-sm-12 col-xs-6">
@@ -195,146 +214,159 @@
 
                         {% endfor %}
                     {% else %}
-
                         <div class="row text-center">
                             No Property to show.
                         </div>
-
                     {% endif %}
 
             <span class="ffs-bs bottom"><a href={% url 'core:properties' %} class="btn btn-default btn-large">explore property</a></span>
         </div>
     </div>
-    <!-- end wide-2 -->
-    <div class="wide-3">
-        <div class="explore">
-            <h2>Meet the Suburb Team</h2>
-            <h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="item col-md-4 col-sm-4 col-xs-12">
-                    <div class="image" style="background:url(http://placehold.it/360X450) center">
-                        <div class="img-info">
-                            <div class="row">
-                                <div class="half col-xs-7">
-                                    <h3><a href="agent_profile.html">Marta Haufman</a></h3>
-                                    <h6>Manager Assistent</h6>
-                                </div>
-                                <div class="half col-xs-5 info-right">
-                                    <p></p>
-                                </div>
-                                <hr>
-                            </div>
-                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item col-md-4 col-sm-4 col-xs-12">
-                    <div class="image" style="background:url(http://placehold.it/360X450) center">
-                        <div class="img-info">
-                            <div class="row">
-                                <div class="half col-xs-7">
-                                    <h3><a href="agent_profile.html">Lisa Milk</a></h3>
-                                    <h6>Realtor</h6>
-                                </div>
-                                <div class="half col-xs-5 info-right">
-                                    <p></p>
-                                </div>
-                                <hr>
-                            </div>
-                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item col-md-4 col-sm-4 col-xs-12">
-                    <div class="image" style="background:url(http://placehold.it/360X450) center">
-                        <div class="img-info">
-                            <div class="row">
-                                <div class="half col-xs-7">
-                                    <h3><a href="agent_profile.html">Jason Satti</a></h3>
-                                    <h6>Superhero</h6>
-                                </div>
-                                <div class="half col-xs-5 info-right">
-                                    <p>415 Deals Done</p>
-                                </div>
-                                <hr>
-                            </div>
-                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <span class="ffs-bs"><a href={% url 'core:about' %} class="btn btn-default btn-large">more about us</a></span>
-    </div>
+
+
+{#    <!-- end wide-2 -->#}
+{#    <div class="wide-3">#}
+{#        <div class="explore">#}
+{#            <h2>Meet the Suburb Team</h2>#}
+{#            <h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>#}
+{#        </div>#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
+{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
+{#                        <div class="img-info">#}
+{#                            <div class="row">#}
+{#                                <div class="half col-xs-7">#}
+{#                                    <h3><a href="agent_profile.html">Marta Haufman</a></h3>#}
+{#                                    <h6>Manager Assistent</h6>#}
+{#                                </div>#}
+{#                                <div class="half col-xs-5 info-right">#}
+{#                                    <p></p>#}
+{#                                </div>#}
+{#                                <hr>#}
+{#                            </div>#}
+{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
+{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
+{#                        <div class="img-info">#}
+{#                            <div class="row">#}
+{#                                <div class="half col-xs-7">#}
+{#                                    <h3><a href="agent_profile.html">Lisa Milk</a></h3>#}
+{#                                    <h6>Realtor</h6>#}
+{#                                </div>#}
+{#                                <div class="half col-xs-5 info-right">#}
+{#                                    <p></p>#}
+{#                                </div>#}
+{#                                <hr>#}
+{#                            </div>#}
+{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
+{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
+{#                        <div class="img-info">#}
+{#                            <div class="row">#}
+{#                                <div class="half col-xs-7">#}
+{#                                    <h3><a href="agent_profile.html">Jason Satti</a></h3>#}
+{#                                    <h6>Superhero</h6>#}
+{#                                </div>#}
+{#                                <div class="half col-xs-5 info-right">#}
+{#                                    <p>415 Deals Done</p>#}
+{#                                </div>#}
+{#                                <hr>#}
+{#                            </div>#}
+{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <span class="ffs-bs"><a href={% url 'core:about' %} class="btn btn-default btn-large">more about us</a></span>#}
+{#    </div>#}
+
     <!-- end wide-3 -->
     <div class="container">
         <section class="block testimonials">
             <header class="center">
-                <h2 class="no-border">We love Suburb Work!</h2>
+                <h2 class="no-border">What our Clients say!</h2>
             </header>
             <div class="owl-carousel testimonials-carousel">
+
+
                 <blockquote class="item">
                     <aside class="cite">
-                        <p class="team-color">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"</p>
+                        <p class="team-color"> "I felt 110% confident by partnering with HUDA Haryana."</p>
                     </aside>
                     <figure>
                         <div class="image">
-                            <img src="http://placehold.it/55X55" alt="">
+                            <img src="{%  static 'img/homepage/profileimage.png' %}" alt="">
                         </div>
-                        <p>Johan Nordquist</p>
-                        <p class="team-color">Someone From Company</p>
+                        <p>Sanjay Choudhary</p>
+                        <p class="team-color">Realtor</p>
                     </figure>
                 </blockquote>
+
+
                 <blockquote class="item">
                     <aside class="cite">
-                        <p class="team-color">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"</p>
+                        <p class="team-color">"I am thankful to HUDA Haryana for their support and expertise in finding me a residential plot in Sector 8, Faridabad . For a first time buyer, they not only helped find a right house, they also assisted me with all legal and commercial concerns."</p>
                     </aside>
                     <figure>
                         <div class="image">
-                            <img src="http://placehold.it/55X55" alt="">
+                            <img src="{%  static 'img/homepage/profileimage.png' %}" alt="">
                         </div>
-                        <p>Sara Genergy</p>
-                        <p class="team-color">Someone From Company</p>
+                        <p>Pradeep Tewatia</p>
+{#                        <p class="team-color">Company Name</p>#}
                     </figure>
                 </blockquote>
+
+
                 <blockquote class="item">
                     <aside class="cite">
-                        <p class="team-color">"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"</p>
+                        <p class="team-color">"Finding Apartment on rent  I struggled for couple of months,but team Huda Haryana helped me to find right Apartment in my budget.Good experience with team."</p>
                     </aside>
                     <figure>
                         <div class="image">
-                            <img src="http://placehold.it/55X55" alt="">
+                            <img src="{%  static 'img/homepage/profileimage.png' %}" alt="">
                         </div>
-                        <p>Sara Strawberry</p>
-                        <p class="team-color">Someone From Company</p>
+                        <p>Shannu Shahi</p>
+{#                        <p class="team-color">Someone From Company</p>#}
                     </figure>
                 </blockquote>
+
+
             </div>
         </section>
     </div>
-    <!-- end container -->
-    <div class="wide-3">
-        <div class="container">
-        <div class="logo-cont">
-            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>
-        </div>
-        <div class="logo-cont">
-            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>
-        </div>
-        <div class="logo-cont">
-            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>
-        </div>
-        <div class="logo-cont">
-            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>
-        </div>
-        <div class="logo-cont">
-            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>
-        </div>
-        </div>
-    </div>
+
+
+    <!-- end container Featured Images -->
+{#    <div class="wide-3">#}
+{#        <div class="container">#}
+{#        <div class="logo-cont">#}
+{#            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>#}
+{#        </div>#}
+{#        <div class="logo-cont">#}
+{#            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>#}
+{#        </div>#}
+{#        <div class="logo-cont">#}
+{#            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>#}
+{#        </div>#}
+{#        <div class="logo-cont">#}
+{#            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>#}
+{#        </div>#}
+{#        <div class="logo-cont">#}
+{#            <div class="logos" style="background:url(http://placehold.it/190X80) center no-repeat"></div>#}
+{#        </div>#}
+{#        </div>#}
+{#    </div>#}
     <!-- end wide-3 -->
+
+
 </div>
 <!-- end Page Content -->
 
