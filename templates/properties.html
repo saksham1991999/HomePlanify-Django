@@ -13,259 +13,116 @@
                 <!-- Range slider -->
                 <div class="row">
                     <div class="explore col-xs-12">
-                        <h2>Properties for sale</h2>
-                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Lorem Ipsum is simply dummy text of the printing and Lorem Ipsum has been the industry's standard </h5>
+                        <h2>Properties</h2>
+                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Find the best suitable property</h5>
                     </div>
-                    <form method="post">
-                        <div class="col-md-2 col-sm-3">
-                            <div class="form-inline">
-                                <label class="price-range">Price Range:</label>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-sm-7">
-                            <div class="form-group">
-                                <div class="price-range">
-                                    <input class="price-input" type="text" name="price" value="0;5000000">
+                    <div class="col-xs-12" style="padding: 0; ">
+                        <div class="row">
+                            <form method="post">
+                                <div class="col-md-2 col-sm-12" style="text-align: center; margin-bottom: 15px">
+                                    <select class="selection" style="width: 100%; height: 50px;  border: 1px solid lightgray; border-radius: 4px; padding-left: 20px; color: grey">
+                                        <option>Sort By : </option>
+                                        <option>Date</option>
+                                        <option>Price</option>
+                                        <option>Type</option>
+                                    </select>
                                 </div>
-                            </div>
+
+                                <div class="col-md-10 col-sm-12" style="text-align: center; margin-bottom: 15px">
+                                    <div class="row">
+
+                                        <div class="col-md-9 col-sm-12">
+                                            <input class="price-input" type="text" name="price" placeholder="Price Range - ₹0 - ₹50,00,000" style="height: 50px; width: 100%; border: 1px solid lightgray; border-top-left-radius: 4px; border-bottom-left-radius: 4px">
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <button class="btn btn-dark" style=" height: 50px; width: 100%">Search</button>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </form>
                         </div>
-                        <div class="select-block no-border pull-right col-sm-2 col-xs-12">
-                            <select class="selection">
-                                <option>Sort By:</option>
-                                <option>Date</option>
-                                <option>Price</option>
-                                <option>Type</option>
-                            </select>
-                        </div>	<!-- select-block -->
-                    </form>
+                    </div>
+
                 </div><!-- row -->
                 <!-- End Range slider -->
                 <div class="wide-2">
                     <div class="container">
+
+                    {% if properties %}
+                        {% for property in properties %}
+
                         <div class="row white">
-                            <div class="col-md-3 col-sm-3 prp-img">
-                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
-                                    <span class="filter"></span>
-                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
-                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
-                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
-                                <div class="block">
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bedroom.png" alt="">
-                                        <p class="info-line">3 Bedrooms</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bathroom.png" alt="">
-                                        <p class="info-line">1 Bathroom</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/square.png" alt="">
-                                        <p class="info-line">100 m<span class="rank">2</span></p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/garage.png" alt="">
-                                        <p class="info-line">1 Garage</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <hr>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
-                            </div>
-                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                <div class="sum col-sm-12 col-xs-6">
-                                    <p>$1,000,000</p>
-                                    <p class="team-color">for rent</p>
-                                </div>
-                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
-                                <div class="sum favorite col-sm-12 col-xs-6">
-                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
-                                        <span class="title-add">Add to bookmark</span>
-                                    </div>
-                                    <p class="col-xs-3">Fav</p>
-                                    <div class="compare col-xs-3" data-compare-state="empty">
-                                        <span class="plus-add">Add to compare</span>
-                                    </div>
-                                    <p class="col-xs-3">Comp</p>
-                                </div>
-                            </div>
+										<div class="col-md-3 col-sm-3 prp-img">
+											<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
+												<span class="filter"></span>
+												<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+												<div class="overlay">
+													<div class="img-counter">23 Photo</div>
+												</div>
+											</div>
+										</div>
+										<div class="item-info col-lg-7 col-md-6 col-sm-6">
+											<h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
+											<p class="team-color">{{ property.city }}</p>
+											<div class="block">
+												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+													<img src={% static 'img/bedroom.png' %} alt="">
+													<p class="info-line">{{ property.bedrooms }} Bedroom(s)</p>
+												</div>
+												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+													<img src={% static 'img/bathroom.png' %} alt="">
+													<p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>
+												</div>
+												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+													<img src={% static 'img/square.png' %} alt="">
+													<p class="info-line">{{ property.price_sq }} m<span class="rank">2</span></p>
+												</div>
+												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+													<img src={% static 'img/garage.png' %} alt="">
+													<p class="info-line">{{ property.rooms }} Room(s)</p>
+												</div>
+											</div>
+											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+											<hr>
+											<p style="color: transparent">Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+										</div>
+										<div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+											<div class="sum col-sm-12 col-xs-6">
+												<h4>$ {{ property.total_price }}</h4>
+												<p class="team-color">for {{ property.get_type_display }}</p>
+											</div>
+											<span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">Show more <i class="fa fa-caret-right"></i></a></span>
+											<div class="sum favorite col-sm-12 col-xs-6">
+												<div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                                    <a href={% url 'core:addtobookmarks' property.id %}><span class="title-add">Add to bookmark</span></a>
+												</div>
+												<p class="col-xs-3">Fav</p>
+												<div class="compare col-xs-3" data-compare-state="empty">
+                                                    <a href={% url 'core:addtocompare' property.id %}><span class="plus-add">Add to compare</span></a>
+												</div>
+												<p class="col-xs-3">Comp</p>
+											</div>
+										</div>
+									</div>
+
+                        {% endfor %}
+                    {% else %}
+
+                        <div class="row text-center">
+                            No Property to show.
                         </div>
-                        <div class="row white">
-                            <div class="col-md-3 col-sm-3 prp-img">
-                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
-                                    <span class="filter"></span>
-                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
-                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
-                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
-                                <div class="block">
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bedroom.png" alt="">
-                                        <p class="info-line">3 Bedrooms</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bathroom.png" alt="">
-                                        <p class="info-line">1 Bathroom</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/square.png" alt="">
-                                        <p class="info-line">100 m<span class="rank">2</span></p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/garage.png" alt="">
-                                        <p class="info-line">1 Garage</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <hr>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
-                            </div>
-                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                <div class="sum col-sm-12 col-xs-6">
-                                    <p>$1,000,000</p>
-                                    <p class="team-color">for rent</p>
-                                </div>
-                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
-                                <div class="sum favorite col-sm-12 col-xs-6">
-                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
-                                        <span class="title-add">Add to bookmark</span>
-                                    </div>
-                                    <p class="col-xs-3">Fav</p>
-                                    <div class="compare col-xs-3" data-compare-state="empty">
-                                        <span class="plus-add">Add to compare</span>
-                                    </div>
-                                    <p class="col-xs-3">Comp</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row white">
-                            <div class="col-md-3 col-sm-3 prp-img">
-                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
-                                    <span class="filter"></span>
-                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
-                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
-                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
-                                <div class="block">
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bedroom.png" alt="">
-                                        <p class="info-line">3 Bedrooms</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bathroom.png" alt="">
-                                        <p class="info-line">1 Bathroom</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/square.png" alt="">
-                                        <p class="info-line">100 m<span class="rank">2</span></p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/garage.png" alt="">
-                                        <p class="info-line">1 Garage</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <hr>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
-                            </div>
-                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                <div class="sum col-sm-12 col-xs-6">
-                                    <p>$1,000,000</p>
-                                    <p class="team-color">for rent</p>
-                                </div>
-                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
-                                <div class="sum favorite col-sm-12 col-xs-6">
-                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
-                                        <span class="title-add">Add to bookmark</span>
-                                    </div>
-                                    <p class="col-xs-3">Fav</p>
-                                    <div class="compare col-xs-3" data-compare-state="empty">
-                                        <span class="plus-add">Add to compare</span>
-                                    </div>
-                                    <p class="col-xs-3">Comp</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row white">
-                            <div class="col-md-3 col-sm-3 prp-img">
-                                <div class="exp-img-2" style="background:url(http://placehold.it/285x200) center;background-size: cover;">
-                                    <span class="filter"></span>
-                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
-                                <h4><a href="property_page.html">AVA High Line 89 - 916 Apartments</a></h4>
-                                <p class="team-color">525 W 28th St, New York, NY 10001</p>
-                                <div class="block">
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bedroom.png" alt="">
-                                        <p class="info-line">3 Bedrooms</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/bathroom.png" alt="">
-                                        <p class="info-line">1 Bathroom</p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/square.png" alt="">
-                                        <p class="info-line">100 m<span class="rank">2</span></p>
-                                    </div>
-                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-                                        <img src="assets/img/garage.png" alt="">
-                                        <p class="info-line">1 Garage</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-                                <hr>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
-                            </div>
-                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                <div class="sum col-sm-12 col-xs-6">
-                                    <p>$1,000,000</p>
-                                    <p class="team-color">for rent</p>
-                                </div>
-                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="property_page.html" class="btn btn-default btn-small">learn more <i class="fa fa-caret-right"></i></a></span>
-                                <div class="sum favorite col-sm-12 col-xs-6">
-                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
-                                        <span class="title-add">Add to bookmark</span>
-                                    </div>
-                                    <p class="col-xs-3">Fav</p>
-                                    <div class="compare col-xs-3" data-compare-state="empty">
-                                        <span class="plus-add">Add to compare</span>
-                                    </div>
-                                    <p class="col-xs-3">Comp</p>
-                                </div>
-                            </div>
-                        </div>
+
+                    {% endif %}
+
+
+
+
                     </div>
                 </div>
                 <!-- end wide-2 -->

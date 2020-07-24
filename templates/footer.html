@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <footer id="page-footer">
@@ -15,30 +16,28 @@
 						<div class="col-md-3 col-sm-3">
 							<article>
 								<h3>Recent Properties For Sale</h3>
+                                {% if properties %}
+                                {% for property in properties %}
+
+
 								<div class="property small">
-									<a href="property-detail.html">
+									<a href=>
 										<div class="property-thumbnail">
-											<img alt="" src="http://placehold.it/60X55">
+											<img alt="" src={{ property.main_image.url }}>
 										</div>
 									</a>
 									<div class="info">
-										<a href="property-detail.html">2186 Rinehart Road</a>
-										<figure>Doral, FL 33178 </figure>
-										<div class="tag price">$ 72,000</div>
+										<a href={% url 'core:property' property.id %}>{{ property.property_name }}</a>
+										<figure>{{ property.city }}</figure>
+										<div class="tag price">{{ property.total_price }}</div>
 									</div>
 								</div><!-- /.property -->
-								<div class="property small">
-									<a href="property-detail.html">
-										<div class="property-thumbnail">
-											<img alt="" src="http://placehold.it/60X55">
-										</div>
-									</a>
-									<div class="info">
-										<a href="property-detail.html">2479 Murphy Court</a>
-										<figure>Minneapolis, MN 55402</figure>
-										<div class="tag price">$ 36,000</div>
-									</div>
-								</div><!-- /.property -->
+
+                                {% endfor %}
+                                    {% else %}
+                                    <div>No Property to Show</div>
+                            {% endif %}
+
 							</article>
 						</div><!-- /.col-sm-3 -->
 						<div class="col-md-3 col-sm-3">
@@ -57,9 +56,10 @@
 							<article>
 								<h3>Useful Links</h3>
 								<ul class="list-unstyled list-links">
-									<li><a href="our_property.html">All Properties</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="terms_and_conditions.html">Terms and Conditions</a></li>
+									<li><a href={% url 'core:properties' %}>All Properties</a></li>
+									<li><a href={% url 'core:contact' %}>Contact</a></li>
+									<li><a href={% url 'core:about' %}>About</a></li>
+									<li><a href={% url 'core:addproperty' %}>Add Property</a></li>
 								</ul>
 							</article>
 						</div><!-- /.col-sm-3 -->
