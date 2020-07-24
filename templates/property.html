@@ -38,18 +38,18 @@
 						</div>
 					</div>
 					<ul class="tab-links col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
-						<li class="active col-xs-4"><a href="#tab1"><img src="assets/img/camera-black.png" alt=""/>Photo</a></li>
-						<li class="col-xs-4"><a href="#tab22" class="map4"><img src="assets/img/map.png" alt=""/>Map</a></li>
-						<li class="col-xs-4"><a href="#tab3" class="street-view"><img class="street-view-image" src="assets/img/street_view.png" alt=""/>Street View</a></li>
+						<li class="active col-xs-4"><a href="#tab1"><img src={% static 'img/camera-black.png' %} alt=""/>Photo</a></li>
+						<li class="col-xs-4"><a href="#tab22" class="map4"><img src={% static 'img/map.png' %} alt=""/>Map</a></li>
+						<li class="col-xs-4"><a href="#tab3" class="street-view"><img class="street-view-image" src={% static 'img/street_view.png' %} alt=""/>Street View</a></li>
 					</ul>
 				</div>
 			</div>
 			<div class="wide-2">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Blog</a></li>
-						<li class="active">St Floor Wintage House</li>
+						<li><a href={% url 'core:home' %}>Home</a></li>
+						<li><a href={% url 'core:properties' %}>Property</a></li>
+						<li class="active">{{ property.property_name }}</li>
 					</ol>
 				</div>
 				<div class="container">
@@ -57,8 +57,8 @@
 						<aside class="pr-summary col-md-4 col-xs-12">
 							<form action="agent_profile.html">
 								<div class="col-lg-7 col-md-6 col-sm-3 col-xs-6 hl-bl">
-									<h2>$1,000</h2>
-									<h5 class="team-color">APARTMENT FOR RENT</h5>
+									<h2>$ {{ property.total_price }}</h2>
+									<h5 class="team-color">APARTMENT FOR {{ property.get_type_display }}</h5>
 								</div>
 								<div class="col-lg-5 col-md-6 col-sm-3 col-xs-6 hl-bl">
 									<i class="fa fa-star"></i>
@@ -75,12 +75,12 @@
 									<div class="col-md-12 col-sm-6 col-xs-12">
 										<div class="row">
 											<div class="col-lg-5 col-md-6 col-xs-6 cat-img">
-												<img src="assets/img/bedroom.png" alt="">
-												<p>3 Bedrooms</p>
+												<img src={% static "img/bedroom.png" %} alt="">
+												<p>{{ property.bedrooms }} Bedroom(s)</p>
 											</div>
 											<div class="col-lg-7 col-md-6 col-xs-6 cat-img cat-img">
-												<img src="assets/img/bathroom.png" alt="">
-												<p >1 Bathroom</p>
+												<img src={% static "img/bathroom.png.png" %} alt="">
+												<p >{{ property.bathrooms }} Bathroom(s)</p>
 											</div>
 										</div>
 										<hr>
@@ -88,12 +88,12 @@
 											<div class="col-xs-12">
 												<div class="row">
 													<div class="col-lg-5 col-md-6 col-xs-6 cat-img">
-														<img src="assets/img/square.png" alt="">
-														<p class="info_line">86 m<span class="rank">2</span></p>
+														<img src={% static "img/square.png" %} alt="">
+														<p class="info_line">{{ property.price_sq }} m<span class="rank">2</span></p>
 													</div>
 													<div class="col-lg-7 col-md-6 col-xs-6 cat-img">
-														<img src="assets/img/garage.png" alt="">
-														<p class="info_line">1 Garage</p>
+														<img src={% static "img/garage.png" %} alt="">
+														<p class="info_line">{{ property.rooms }} Rooms</p>
 													</div>
 												</div>
 												<div class="row">
@@ -142,12 +142,12 @@
 										</span>
 										<div class="col-xs-12 fav-block">
 											<div class="bookmark col-xs-6" data-bookmark-state="empty">
-												<span class="title-add">Add to bookmark</span>
-												<p class="col-xs-9 fav-text">Add to Favorit</p>
+                                                <a href={% url 'core:addtobookmarks' property.id %}><span class="title-add">Add to bookmark</span>
+												<p class="col-xs-9 fav-text">Add to Bookmark</p></a>
 											</div>
 											<div class="compare col-xs-6" data-compare-state="empty">
-												<span class="plus-add">Add to compare</span>
-												<p class="fav-text">Compare</p>
+                                                <a href={% url 'core:addtocompare' property.id %}><span class="plus-add">Add to Compare</span>
+                                                <p class="fav-text">Compare</p></a>
 											</div>
 										</div>
 									</div>
@@ -155,10 +155,10 @@
 							</form>
 						</aside>
 						<div class="pr-info col-md-8 col-xs-12">
-							<h2>St Floor Wingate House</h2>
+							<h2>{{ property.property_name }}</h2>
 							<div class="map-marker"></div>
-							<h5 class="team-color">London, 93-107 Shaftesbury Ave, W1D 5DY &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-eye"></i>1092</h5>
-							<p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque. In luctus pellentesque hendrerit. Vivamus congue laoreet urna, sed cursus odio scelerisque id. Curabitur volutpat pretium laoreet. Cras pulvinar vulputate porttitor. Ut sed lorem purus. Morbi posuere mauris odio, quis venenatis nisi viverra eu. Phasellus suscipit sem sapien. Phasellus risus purus, accumsan vel molestie vitae, sagittis sed massa. Sed elementum nisl tellus, at pharetra odio pharetra vel.</p>
+							<h5 class="team-color">{{ property.city }} &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-eye"></i>{{ property.views }}</h5>
+							<p>{{ properties.additional_features }}</p>
 						</div>
 						<div class="pr-info col-md-8 col-xs-12">
 							<h3>Property Features:</h3>
