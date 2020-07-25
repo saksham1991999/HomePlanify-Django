@@ -3,6 +3,9 @@
 {% load property_template_tag %}
 {% load indian_numbers_tags %}
 
+{% block extra_stylesheet %}
+
+{% endblock %}
 
 {% block content %}
 <!-- Page Content -->
@@ -12,21 +15,19 @@
 				<div class="tabs">
 					<div class="tab-content">
 						<div id="tab1" class="tab active">
+
+
 							<!-- Owl carousel -->
 							<div id="owl-demo-2" class="owl-carousel owl-theme">
+                                <!-- property images -->
+                                {% for image in property.images_set.all %}
 								<div class="item">
-									<div class="image" style="background: url(http://placehold.it/635x350) center"></div>
+									<div class="image" style="background: url({{ image.image.url }}) center"></div>
 								</div>
-								<div class="item">
-									<div class="image" style="background: url(http://placehold.it/635x350) center"></div>
-								</div>
-								<div class="item">
-									<div class="image" style="background: url(http://placehold.it/635x350) center"></div>
-								</div>
-								<div class="item">
-									<div class="image" style="background: url(http://placehold.it/635x350) center"></div>
-								</div>
+                                {% endfor %}
 							</div>
+
+
 							<!-- End Owl carousel -->
 						</div>
 						<div id="tab22" class="tab">
@@ -37,14 +38,18 @@
 						<div id="tab3" class="tab">
 						</div>
 					</div>
+
 					<ul class="tab-links col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3">
 						<li class="active col-xs-4"><a href="#tab1"><img src={% static 'img/camera-black.png' %} alt=""/>Photo</a></li>
-						<li class="col-xs-4"><a href="#tab22" class="map4"><img src={% static 'img/map.png' %} alt=""/>Map</a></li>
-						<li class="col-xs-4"><a href="#tab3" class="street-view"><img class="street-view-image" src={% static 'img/street_view.png' %} alt=""/>Street View</a></li>
+{#						<li class="col-xs-4"><a href="#tab22" class="map4"><img src={% static 'img/map.png' %} alt=""/>Map</a></li>#}
+{#						<li class="col-xs-4"><a href="#tab3" class="street-view"><img class="street-view-image" src={% static 'img/street_view.png' %} alt=""/>Street View</a></li>#}
 					</ul>
 				</div>
 			</div>
+
+
 			<div class="wide-2">
+
 				<div class="container">
 					<ol class="breadcrumb">
 						<li><a href={% url 'core:home' %}>Home</a></li>
@@ -52,6 +57,7 @@
 						<li class="active">{{ property.property_name }}</li>
 					</ol>
 				</div>
+
 				<div class="container">
 					<div class="row">
 						<aside class="pr-summary col-md-4 col-xs-12">
@@ -66,20 +72,24 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star"></i><br>
-									<div class="row">
-										<p class="team-color col-md-6 col-xs-3">Rating:</p>
-										<p class="team-color col-md-6 col-xs-3"><strong>5.0</strong>/5.0</p>
-									</div>
+{#									<div class="row">#}
+{#										<p class="team-color col-md-6 col-xs-3">Rating:</p>#}
+{#										<p class="team-color col-md-6 col-xs-3"><strong>5.0</strong>/5.0</p>#}
+{#									</div>#}
 								</div>
+
+
 								<div class="row">
 									<div class="col-md-12 col-sm-6 col-xs-12">
+
+                                        <!-- specs -->
 										<div class="row">
 											<div class="col-lg-5 col-md-6 col-xs-6 cat-img">
 												<img src={% static "img/bedroom.png" %} alt="">
 												<p>{{ property.bedrooms }} Bedroom(s)</p>
 											</div>
 											<div class="col-lg-7 col-md-6 col-xs-6 cat-img cat-img">
-												<img src={% static "img/bathroom.png.png" %} alt="">
+												<img src={% static "img/bathroom.png" %} alt="">
 												<p >{{ property.bathrooms }} Bathroom(s)</p>
 											</div>
 										</div>
@@ -107,6 +117,8 @@
 										<hr class="full-width">
 									</div>
 								</div>
+
+
 								<div class="picker-block col-md-12 col-sm-6 col-xs-12">
 									<div class="row">
 										<h3 class="chek">Сheck availability</h3>
@@ -141,14 +153,34 @@
 											<button type="submit" class="btn btn-large btn-primary">contact agent</button>
 										</span>
 										<div class="col-xs-12 fav-block">
-											<div class="bookmark col-xs-6" data-bookmark-state="empty">
+
+                                            <!-- Bookmark -->
+                                            {% if request.user|added_to_bookmark:property.id  %}
+                                            <div class="bookmark col-xs-6" data-bookmark-state="empty">
                                                 <a href={% url 'core:addtobookmarks' property.id %}><span class="title-add">Add to bookmark</span>
 												<p class="col-xs-9 fav-text">Add to Bookmark</p></a>
 											</div>
-											<div class="compare col-xs-6" data-compare-state="empty">
+                                            {% else %}
+											<div class="bookmark col-xs-6" data-bookmark-state="empty">
+                                                <a href={% url 'core:removefrombookmarks' property.id %}><span class="title-add">Remove from bookmark</span>
+												<p class="col-xs-9 fav-text">Remove from Bookmark</p></a>
+											</div>
+											{% endif %}
+
+
+                                            <!-- Compare -->
+                                            {% if request.user|added_to_compare:property.id  %}
+                                            <div class="compare col-xs-6" data-compare-state="empty">
+                                                <a href={% url 'core:removefromcompare' property.id %}><span class="plus-add">Remove from Compare</span>
+                                                <p class="fav-text">Remove from Compare</p></a>
+											</div>
+                                            {% else %}
+                                            <div class="compare col-xs-6" data-compare-state="empty">
                                                 <a href={% url 'core:addtocompare' property.id %}><span class="plus-add">Add to Compare</span>
                                                 <p class="fav-text">Compare</p></a>
 											</div>
+                                            {% endif %}
+
 										</div>
 									</div>
 								</div>
@@ -158,54 +190,39 @@
 							<h2>{{ property.property_name }}</h2>
 							<div class="map-marker"></div>
 							<h5 class="team-color">{{ property.city }} &nbsp;&nbsp;|&nbsp;&nbsp;<i class="fa fa-eye"></i>{{ property.views }}</h5>
-							<p>{{ properties.additional_features }}</p>
+							<p>{{ property.additional_features }}</p>
 						</div>
+
 						<div class="pr-info col-md-8 col-xs-12">
 							<h3>Property Features:</h3>
 							<section class="block">
+
+                                <!-- Features -->
 								<ul class="submit-features">
-									<li class="col-md-4 col-xs-4"><div >Air conditioning</div></li>
-									<li class="col-md-4 col-xs-4 nonexistent"><div class="team-color">Hi-Fi</div></li>
-									<li class="col-md-4 col-xs-4"><div >Balcony</div></li>
-									<li class="col-md-4 col-xs-4"><div >Balcony</div></li>
-									<li class="col-md-4 col-xs-4"><div >Internet</div></li>
-									<li class="col-md-4 col-xs-4"><div >Beach</div></li>
-									<li class="col-md-4 col-xs-4"><div >Bedding</div></li>
-									<li class="col-md-4 col-xs-4"><div >Iron</div></li>
-									<li class="col-md-4 col-xs-4"><div >Bedding</div></li>
-									<li class="col-md-4 col-xs-4 nonexistent"><div class="team-color">Coffee pot</div></li>
-									<li class="col-md-4 col-xs-4"><div >Parquet</div></li>
-									<li class="col-md-4 col-xs-4"><div >Balcony</div></li>
-									<li class="col-md-4 col-xs-4"><div >Balcony</div></li>
-									<li class="col-md-4 col-xs-4"><div >Balcony</div></li>
-									<li class="col-md-4 col-xs-4"><div >Bedding</div></li>
-									<li class="col-md-4 col-xs-4"><div >Bedding</div></li>
-									<li class="col-md-4 col-xs-4"><div >Bedding</div></li>
+                                    {% for feature in property.features.all %}
+                                        <li class="col-md-4 col-xs-4"><div >{{ feature.title }}</div></li>
+                                    {% endfor %}
+{#									<li class="col-md-4 col-xs-4"><div >Air conditioning</div></li>#}
+{#									<li class="col-md-4 col-xs-4 nonexistent"><div class="team-color">Hi-Fi</div></li>#}
 								</ul>
 							</section>
 						</div>
 						<div class="pr-info col-md-8 col-xs-12">
 							<h3>Floor plans & Additional photo:</h3>
 							<div class="row cust-row">
+
+                                <!-- All Images - Bottom -->
+                                {% for image in property.images_set.all %}
 								<div class="col-xs-3 cust-pad">
-									<div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
+									<div class="pr-img" style="background: url({{ image.image.url }}) center;"></div>
 								</div>
-								<div class="col-xs-3 cust-pad">
-									<div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
-								</div>
-								<div class="col-xs-3 cust-pad">
-									<div class="pr-img" style="background: url(http://placehold.it/175x125) center;"></div>
-								</div>
-								<div class="col-xs-3 cust-pad">
-									<div class="pr-img" style="background: url(http://placehold.it/175x125) center;">
-										<span class="filter"></span>
-										<label class="img-label" for="op">+32 More</label>
-									</div>
-								</div>
+                                {% endfor %}
 							</div>
+
+                            <!-- Youtube Video -->
 							<div class="row">
 								<div class="col-xs-12">
-									<h3>Video Presentation:</h3>
+									<h3>Youtube Video:</h3>
 									<p><iframe src="https://player.vimeo.com/video/34741214"></iframe></p>
 									<hr>
 									<div class="row">
@@ -222,106 +239,111 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="wide_container_3">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-8 col-xs-12">
-							<header><h4>3 Feedback</h4></header>
-							<div class="hl-bl col-xs-12">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<p class="team-color"><span class="bold_text">5.0</span>/5.0</p>
-							</div>
-							<ul class="comments">
-								<li class="comment">
-									<div class="comment-wrapper">
-										<div class="name pull-left">Michael Salmon</div>
-										<span class="date-block team-color">4 days ago</span>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-										</p>
-									</div>
-								</li>
-								<li class="comment">
-									<div class="comment-wrapper">
-										<div class="name pull-left">Michael Salmon</div>
-										<span class="date-block team-color">4 days ago</span>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-										</p>
-									</div>
-								</li>
-							</ul>
-							<div class="comments-more">
-								<a href="#">Show More</a>
-							</div>
-							<span class="ffs-bs transparent">
-								<button type="submit" id="show-reply-form" class="btn btn-default btn-large"><i class="fa fa-star-o"></i><span class="btn-text">leave review</span></button>
-							</span>
-							<section id="leave-reply">
-								<header><h4>Leave Review</h4></header>
-								<div class="clearfix">
-									<aside>
-										<div class="rating rating-user">
-											<div class="inner"></div>
-										</div>
-									</aside>
-								</div>
-								<div class="row">
-									<form id="form-single-property-reply" method="post">
-										<div class="col-sm-6 col-xs-12">
-											<input type="text" class="form-control" id="form-blog-reply-name" name="form-blog-reply-name" placeholder="Your Name" required>
-										</div><!-- /.form-group -->
-										<div class="col-sm-6 col-xs-12">
-											<input type="email" class="form-control" id="form-blog-reply-email" name="form-blog-reply-email" placeholder="Your Email" required>
-										</div><!-- /.form-group -->
-										<div class="col-xs-12">
-											<textarea class="form-control" id="form-blog-reply-message" rows="5" name="form-blog-reply-message" placeholder="Write Your Text..."></textarea>
-										</div><!-- /.form-group -->
-										<div class="col-xs-12 btm-indent">
-											<button type="submit" class="btn pull-right btn-small btn-primary" id="form-blog-reply-submit">Send</button>
-										</div><!-- /.form-group -->
-										<div id="form-rating-status"></div>
-									</form><!-- /#form-contact -->
-								</div>
-							</section>
-						</div>
-						<div class="col-md-4 col-xs-12 some-prp">
-							<h4>Here is some Similar property:</h4>
-							<p class="team-color">in London, UK</p>
-							<hr>
-							<div class="property-block-small">
-								<a href="property_page.html">
-									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
-									<h3>37 Great Russell St</h3>
-									<p class="team-color">London, 37 Great Russell St Street Good</p>
-									<h4>$15,000/month</h4>
-								</a>
-							</div>
-							<hr>
-							<div class="property-block-small">
-								<a href="property_page.html">
-									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
-									<h3>37 Great Russell St</h3>
-									<p class="team-color">London, 37 Great Russell St Street Good</p>
-									<h4>$15,000/month</h4>
-								</a>
-							</div>
-							<hr>
-							<div class="property-block-small">
-								<a href="property_page.html">
-									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>
-									<h3>37 Great Russell St</h3>
-									<p class="team-color">London, 37 Great Russell St Street Good</p>
-									<h4>$15,000/month</h4>
-								</a>
-							</div>
-						</div>
+{#			<div class="wide_container_3">#}
+{#				<div class="container">#}
+{#					<div class="row">#}
+{#						<div class="col-md-8 col-xs-12">#}
+{#							<header><h4>3 Feedback</h4></header>#}
+{#							<div class="hl-bl col-xs-12">#}
+{#								<i class="fa fa-star"></i>#}
+{#								<i class="fa fa-star"></i>#}
+{#								<i class="fa fa-star"></i>#}
+{#								<i class="fa fa-star"></i>#}
+{#								<i class="fa fa-star"></i>#}
+{#								<p class="team-color"><span class="bold_text">5.0</span>/5.0</p>#}
+{#							</div>#}
+{#							<ul class="comments">#}
+{#								<li class="comment">#}
+{#									<div class="comment-wrapper">#}
+{#										<div class="name pull-left">Michael Salmon</div>#}
+{#										<span class="date-block team-color">4 days ago</span>#}
+{#										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled#}
+{#										</p>#}
+{#									</div>#}
+{#								</li>#}
+{#								<li class="comment">#}
+{#									<div class="comment-wrapper">#}
+{#										<div class="name pull-left">Michael Salmon</div>#}
+{#										<span class="date-block team-color">4 days ago</span>#}
+{#										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled#}
+{#										</p>#}
+{#									</div>#}
+{#								</li>#}
+{#							</ul>#}
+{#							<div class="comments-more">#}
+{#								<a href="#">Show More</a>#}
+{#							</div>#}
+{#							<span class="ffs-bs transparent">#}
+{#								<button type="submit" id="show-reply-form" class="btn btn-default btn-large"><i class="fa fa-star-o"></i><span class="btn-text">leave review</span></button>#}
+{#							</span>#}
+{#							<section id="leave-reply">#}
+{#								<header><h4>Leave Review</h4></header>#}
+{#								<div class="clearfix">#}
+{#									<aside>#}
+{#										<div class="rating rating-user">#}
+{#											<div class="inner"></div>#}
+{#										</div>#}
+{#									</aside>#}
+{#								</div>#}
+{#								<div class="row">#}
+{#									<form id="form-single-property-reply" method="post">#}
+{#										<div class="col-sm-6 col-xs-12">#}
+{#											<input type="text" class="form-control" id="form-blog-reply-name" name="form-blog-reply-name" placeholder="Your Name" required>#}
+{#										</div><!-- /.form-group -->#}
+{#										<div class="col-sm-6 col-xs-12">#}
+{#											<input type="email" class="form-control" id="form-blog-reply-email" name="form-blog-reply-email" placeholder="Your Email" required>#}
+{#										</div><!-- /.form-group -->#}
+{#										<div class="col-xs-12">#}
+{#											<textarea class="form-control" id="form-blog-reply-message" rows="5" name="form-blog-reply-message" placeholder="Write Your Text..."></textarea>#}
+{#										</div><!-- /.form-group -->#}
+{#										<div class="col-xs-12 btm-indent">#}
+{#											<button type="submit" class="btn pull-right btn-small btn-primary" id="form-blog-reply-submit">Send</button>#}
+{#										</div><!-- /.form-group -->#}
+{#										<div id="form-rating-status"></div>#}
+{#									</form><!-- /#form-contact -->#}
+{#								</div>#}
+{#							</section>#}
+{#						</div>#}
+{##}
+{##}
+{#						<div class="col-md-4 col-xs-12 some-prp">#}
+{#							<h4>Here is some Similar property:</h4>#}
+{#							<p class="team-color">in London, UK</p>#}
+{#							<hr>#}
+{#							<div class="property-block-small">#}
+{#								<a href="property_page.html">#}
+{#									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>#}
+{#									<h3>37 Great Russell St</h3>#}
+{#									<p class="team-color">London, 37 Great Russell St Street Good</p>#}
+{#									<h4>$15,000/month</h4>#}
+{#								</a>#}
+{#							</div>#}
+{#							<hr>#}
+{#							<div class="property-block-small">#}
+{#								<a href="property_page.html">#}
+{#									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>#}
+{#									<h3>37 Great Russell St</h3>#}
+{#									<p class="team-color">London, 37 Great Russell St Street Good</p>#}
+{#									<h4>$15,000/month</h4>#}
+{#								</a>#}
+{#							</div>#}
+{#							<hr>#}
+{#							<div class="property-block-small">#}
+{#								<a href="property_page.html">#}
+{#									<div class="property-image-small" style="background: url(http://placehold.it/65x55) center;"></div>#}
+{#									<h3>37 Great Russell St</h3>#}
+{#									<p class="team-color">London, 37 Great Russell St Street Good</p>#}
+{#									<h4>$15,000/month</h4>#}
+{#								</a>#}
+{#							</div>#}
+{#						</div>#}
+
+
 					</div>
 				</div>
 			</div>

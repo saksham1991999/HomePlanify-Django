@@ -59,9 +59,9 @@
 											<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
 												<span class="filter"></span>
 												<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-												<div class="overlay">
-													<div class="img-counter">23 Photo</div>
-												</div>
+{#												<div class="overlay">#}
+{#													<div class="img-counter">23 Photo</div>#}
+{#												</div>#}
 											</div>
 										</div>
 										<div class="item-info col-lg-7 col-md-6 col-sm-6">
@@ -128,21 +128,29 @@
                 <!-- end wide-2 -->
             </div>
         </div>
-        <div class="col-xs-12">
-            <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <nav id="nav-below" class="site-navigation paging-navigation navbar">
-                    <div class="nav-previous"><a href="#">PREV PAGE</a></div>
-                    <ul class="pagination pagination-lg">
-                        <li><a href="#">1</a></li>
-                        <li><span class="active">2</span></li>
-                        <li><a href="#">3</a></li>
-                        <li><span class="nav-dots">...</span></li>
-                        <li><a href="#">5</a></li>
-                    </ul>
-                    <div class="nav-next"><a href="#">NEXT PAGE</a></div>
-                </nav>
+
+        <!-- pagination -->
+        {% if properties.has_other_pages %}
+            <div class="col-xs-12">
+                <div class="col-md-10 col-md-offset-1 col-xs-12">
+                    <nav id="nav-below" class="site-navigation paging-navigation navbar">
+                         {% if properties.has_previous %}
+                        <div class="nav-previous"><a href="?page={{ properties.previous_page_number }}">PREV PAGE</a></div>
+                        {% endif %}
+
+                        <ul class="pagination pagination-lg">
+                            <li><span class="active">{{ properties.number }}</span></li>
+                            <li><span class="nav-dots">...</span></li>
+                            <li><a href="?page={{ properties.paginator.num_pages }}">{{ properties.paginator.num_pages }}</a></li>
+                        </ul>
+                         {% if properties.has_next %}
+                        <div class="nav-next"><a href="?page={{ properties.next_page_number }}" >NEXT PAGE</a></div>
+                         {% endif %}
+                    </nav>
+                </div>
             </div>
-        </div>
+        {% endif %}
+
     </div>
 </div>
 </div>

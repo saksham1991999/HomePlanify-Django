@@ -151,7 +151,7 @@ def PropertiesView(request):
         city = request.GET['city']
         allProperties = allProperties.filter(city__icontains=city)
 
-    paginator = Paginator(allProperties, 25)
+    paginator = Paginator(allProperties, 2)
     page = request.GET.get('page')
     allProperties = paginator.get_page(page)
 
