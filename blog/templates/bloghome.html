@@ -1,12 +1,12 @@
 {% extends 'new_base.html' %}
 
 
-
+{% load static %}
 {% block content %}
 
 <!-- Page Content -->
 <div id="page-content">
-    <div class="text-center" style="background: url(http://placehold.it/1900X330) no-repeat center;background-size:cover;">
+    <div class="text-center" style="background: url({% static 'img/homepage/slide1.jpg' %}) no-repeat center;background-size:cover;">
         <div class="header-pattern">
             <div class="container blog-sm">
                 <div class="row">
@@ -28,17 +28,15 @@
                         <li class="col-sm-2 col-sm-offset-4 has-child"><a href="">Archive</a>
                             <ul class="child-navigation">
                                 <li><a href="blog_list_category.html">Archive 1</a></li>
-                                <li><a href="blog_list_category.html">Archive 2</a></li>
-                                <li><a href="blog_list_category.html">Archive 3</a></li>
-                                <li><a href="blog_list_category.html">Archive 4</a></li>
                             </ul>
                         </li>
                         <li class="col-sm-2 has-child" onclick=""><a href="">Browse categories</a>
                             <ul class="child-navigation">
-                                <li><a href="blog_list_category.html">Category 1</a></li>
-                                <li><a href="blog_list_category.html">Category 2</a></li>
-                                <li><a href="blog_list_category.html">Category 3</a></li>
-                                <li><a href="blog_list_category.html">Category 4</a></li>
+                                {% for category in categories %}
+
+                                <li><a href="#">{{ category.title }}</a></li>
+
+                                {% endfor %}
                             </ul>
                         </li>
                     </ul>
@@ -51,17 +49,16 @@
                             <li class="col-sm-3 col-xs-12 has-child"><a href="">Archive</a>
                                 <ul class="child-navigation">
                                     <li><a href="blog_list_category.html">Archive 1</a></li>
-                                    <li><a href="blog_list_category.html">Archive 2</a></li>
-                                    <li><a href="blog_list_category.html">Archive 3</a></li>
-                                    <li><a href="blog_list_category.html">Archive 4</a></li>
+
                                 </ul>
                             </li>
                             <li class="col-sm-3 col-xs-12 has-child" onclick=""><a href="">Browse categories</a>
                                 <ul class="child-navigation">
-                                    <li><a href="blog_list_category.html">Category 1</a></li>
-                                    <li><a href="blog_list_category.html">Category 2</a></li>
-                                    <li><a href="blog_list_category.html">Category 3</a></li>
-                                    <li><a href="blog_list_category.html">Category 4</a></li>
+                                    {% for category in categories %}
+
+                                        <li><a href="#">{{ category.title }}</a></li>
+
+                                    {% endfor %}
                                 </ul>
                             </li>
                         </ul>
@@ -76,190 +73,40 @@
             <div class="col-md-12 col-sm-12">
                 <section id="posts">
                     <div class="row grid">
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
+                    {% if posts %}
+                        {% for post in posts %}
+
+                            {% if post.published %}
+
+                                <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
                             <article class="blog-post type-post format-image">
                                 <div class="header-text">
-                                    <a href="blog_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia</h3></a>
+                                    <a href={% url 'blog:post' post.id %}><h3>{{ post.title }}</h3></a>
                                 </div>
                                 <figure class="meta">
                                     <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
+                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>{{ post.date|date }}</a>
                                     </div>
                                     <div class="tags pull-right">
-                                        <a href="#" class="tag article"># interior design</a>
+                                        <a href="#" class="tag article"># {{ post.category }}</a>
                                     </div>
                                 </figure>
-                                <div class="post-thumbnail"><a href="blog_article.html" title="" rel="bookmark"><img src="http://placehold.it/480X275" alt="" /></a></div>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Aliquam vehicula gravida orci. Pellentesque neque justo ...</p>
+                                <div class="post-thumbnail"><a href={% url 'blog:post' post.id %} title="" rel="bookmark"><img src={{ post.main_image.url }} alt="" /></a></div>
+                                <p>{{ post.content|truncatechars:250 }}</p>
                                 <div class="button-continue">
-                                    <a href="blog_article.html">Read Article</a>
+                                    <a href={% url 'blog:post' post.id %}>Read Article</a>
                                 </div>
                             </article>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-gallery">
-                                <div class="header-text">
-                                    <a href="blog_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia Gallery Post</h3></a>
-                                </div>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article"># interior design</a>
-                                    </div>
-                                </figure>
-                                <div id="gallery-12" class="gallery galleryid-555 gallery-columns-3 gallery-size-thumbnail clearfix">
-                                    <div class="row-custom">
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                        <div class="gallery-item gallery-icon landscape col-sm-4 col-xs-4">
-                                            <a href="#"><img src="http://placehold.it/150X135" style="background-position: center;" class="attachment-thumbnail" alt=""></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque ...</p>
-                                <div class="button-continue">
-                                    <a href="blog_article.html">Read Article</a>
-                                </div>
-                            </article>
+
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div style="text-align: center">
+                        No Posts Found
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-video">
-                                <div class="header-text">
-                                    <a href="blog_video.html"><h3>Latin professor at Hampden - Sydney College in Virginia Video Post</h3></a>
-                                </div>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article"># interior design</a>
-                                    </div>
-                                </figure>
-                                <iframe src="https://player.vimeo.com/video/136761532" width="1000" height="562"></iframe><p><a href="https://vimeo.com/136761532">Down To Nothing</a> from <a href="https://vimeo.com/thenorthface">The North Face</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque...</p>
-                                <div class="button-continue">
-                                    <a href="#">View video</a>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-audio">
-                                <div class="header-text">
-                                    <a href="blog_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia Audio Post</h3></a>
-                                </div>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article"># interior design</a>
-                                    </div>
-                                </figure>
-                                <div class="col-xs-12 audio-pl">
-                                    <audio id="player" src="assets/audio/silence_is_golden.mp3" controls="controls"></audio>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-12">
-                                        <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque ...</p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-quote">
-                                <blockquote class="blcq-2">
-                                    <p class="lora">“Latin professor at Hampden-Sydney College in Virginia”<br>
-                                    </p>
-                                    <cite>- Oscar Layer</cite>
-                                </blockquote>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>10/09/2015</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article link-icon"># interior design</a>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-quote">
-                                <blockquote class="blcq-2">
-                                    <img src="assets/img/chain.png" height="25" width="25" alt="">
-                                    <p style="color:#1f2126;font-style:normal;">This is Link for something<br>
-                                    </p>
-                                </blockquote>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>10/09/2015</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article link-icon"># interior design</a>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-standart">
-                                <div class="header-text">
-                                    <a href="blog_text_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia</h3></a>
-                                </div>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article"># interior design</a>
-                                    </div>
-                                </figure>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
-                                    scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software.</p>
-                                    <div class="button-continue">
-                                        <a href="#">Read Article</a>
-                                    </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12 grid-item">
-                            <article class="blog-post type-post format-standart">
-                                <div class="header-text">
-                                    <a href="blog_text_article.html"><h3>Hey! Look at my new tweet!</h3></a>
-                                </div>
-                                <figure class="meta">
-                                    <div class="post-date">
-                                        <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                    </div>
-                                    <div class="tags pull-right">
-                                        <a href="#" class="tag article link-icon"># interior design</a>
-                                    </div>
-                                </figure>
-                                <blockquote class="twitter-tweet" lang="ru">
-                                    <p lang="en" dir="ltr">3 Years of Membership
-                                    <a href="https://twitter.com/EnvatoMarket">@EnvatoMarket</a>
-                                    <a href="https://twitter.com/hashtag/envato?src=hash">#envato</a>
-                                    <a href="https://twitter.com/hashtag/themeforest?src=hash">#themeforest</a>
-                                    <a href="https://twitter.com/hashtag/milestone?src=hash">#milestone</a>
-                                    <a href="http://t.co/MnGukax7XN">http://t.co/MnGukax7XN</a></p>&mdash; fruitfulcode (@fruitfulcode)
-                                    <a href="https://twitter.com/fruitfulcode/status/582992561372966912">31 Март 2015</a>
-                                </blockquote>
-                            </article>
-                        </div>
+                    {% endif %}
+
                     </div>
                 </section>
                 <section id="pagination">

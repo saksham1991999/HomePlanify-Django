@@ -1,218 +1,272 @@
 {% extends 'new_base.html' %}
-
+{% load static %}
 {% block content %}
 
 <!-- Page Content -->
-<div id="page-content" class="blog-styles">
-    <div class="navigation blog-nv">
-        <header class="navbar" id="top">
-            <div class="container">
-                <nav class="secondary col-xs-12">
-                    <ul class="nav navbar-nav">
-                        <li class="col-sm-2 col-sm-offset-2 back"><a href="blog_list.html"><i class="fa fa-sort-desc"></i>Back to List</a>
-                        </li>
-                        <li class="col-sm-2 has-child"><a href="">Archive</a>
-                            <ul class="child-navigation">
-                                <li><a href="blog_list_category.html">Archive 1</a></li>
-                                <li><a href="blog_list_category.html">Archive 2</a></li>
-                                <li><a href="blog_list_category.html">Archive 3</a></li>
-                                <li><a href="blog_list_category.html">Archive 4</a></li>
-                            </ul>
-                        </li>
-                        <li class="col-sm-3 has-child" onclick=""><a href="">Browse categories</a>
-                            <ul class="child-navigation">
-                                <li><a href="blog_list_category.html">Category 1</a></li>
-                                <li><a href="blog_list_category.html">Category 2</a></li>
-                                <li><a href="blog_list_category.html">Category 3</a></li>
-                                <li><a href="blog_list_category.html">Category 4</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav><!-- /.navbar collapse-->
-            </div>
-            <div class="site-header">
-                <div class="mob-menu blog-mn">
-                    <nav class="secondary">
-                        <ul class="nav navbar-nav">
-                            <li class="col-sm-4 back"><a href="blog_list.html"><i class="fa fa-sort-desc"></i>Back to List</a>
-                            </li>
-                            <li class="col-xs-12 has-child"><a href="">Archive</a>
-                                <ul class="child-navigation">
-                                    <li><a href="blog_list_category.html">Archive 1</a></li>
-                                    <li><a href="blog_list_category.html">Archive 2</a></li>
-                                    <li><a href="blog_list_category.html">Archive 3</a></li>
-                                    <li><a href="blog_list_category.html">Archive 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="col-xs-12 has-child" onclick=""><a href="">Browse categories</a>
-                                <ul class="child-navigation">
-                                    <li><a href="blog_list_category.html">Category 1</a></li>
-                                    <li><a href="blog_list_category.html">Category 2</a></li>
-                                    <li><a href="blog_list_category.html">Category 3</a></li>
-                                    <li><a href="blog_list_category.html">Category 4</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav><!-- /.navbar collapse-->
-                </div>
-            </div>
-        </header><!-- /.navbar -->
-    </div>
-    <div class="container blog-sm">
-        <div class="row">
-            <!-- Content -->
-            <div class="col-md-12 col-sm-12">
-                <section id="content" style="margin-top:35px;">
-                        <div class="header-text">
-                            <h1>Latin professor at Hampden - Sydney College in Virginia</h1>
-                            <figure class="meta post">
-                                <div class="post-date">
-                                    <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                </div>
-                                <div class="tags">
-                                    <a href="#" class="tag article"># interior design</a>
-                                </div>
-                            </figure>
-                        </div>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this </p>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this </p>
-                </section><!-- /#content -->
-                <section id="share">
-                    <ul class="social">
-                        <li class="social-text">SHARE:</li>
-                        <li><a class="facebook" href="https://www.facebook.com" target="blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a class="twitter" href="https://twitter.com" target="blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a class="google" href="https://www.google.com" target="blank"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a class="pinterest" href="https://www.pinterest.com" target="blank"><i class="fa fa-pinterest"></i></a></li>
-                    </ul>
-                </section>
-            </div><!-- /.col-md-9 -->
-            <!-- end Content -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
+<!-- Page Content -->
+		<div id="page-content" class="blog-styles">
+			<div class="text-center" style="background: url({% static 'img/homepage/slide1.jpg' %}) no-repeat center;background-size:cover;">
+				<div class="header-pattern">
+					<div class="container blog-sm">
+						<div class="row">
+							<div class="col-md-12 col-sm-12">
+								<div class="header-text">
+									<h1>{{ post.title }}</h1>
+									<figure class="meta">
+										<div class="post-date">
+											<a href="#" class="link-icon"><i class="fa fa-calendar"></i>{{ post.date|date }}</a>
+										</div>
+										<div class="tags">
+											<a href="#" class="tag article"># {{ post.category|lower }}</a>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="navigation blog-nv">
+				<header class="navbar" id="top">
+					<div class="container">
+						<nav class="secondary col-xs-12">
+							<ul class="nav navbar-nav">
+								<li class="col-sm-2 col-sm-offset-2 back"><a href={% url 'blog:home' %}><i class="fa fa-sort-desc"></i>Back to List</a>
+								</li>
+								<li class="col-sm-2 has-child"><a href="">Archive</a>
+									<ul class="child-navigation">
+										<li><a href="#">Archive 1</a></li>
+									</ul>
+								</li>
+								<li class="col-sm-3 has-child" onclick=""><a href="">Browse categories</a>
+									<ul class="child-navigation">
 
-    <div class="wide-1">
-        <div class="container blog-sm">
-            <div class="row">
-                <!-- Content -->
-                <div class="col-md-12 col-sm-12">
-                    <section id="related-posts" class="related-posts">
-                        <header><h3 class="no-border" style="margin-top:35px;">Related Posts</h3></header>
-                        <div class="row">
-                            <div class="col-md-6 col-sm-6">
-                                <article class="blog-post">
-                                    <div class="header-text">
-                                        <a href="blog_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia</h3></a>
-                                    </div>
-                                    <figure class="meta">
-                                        <div class="post-date">
-                                            <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                        </div>
-                                        <div class="tags pull-right">
-                                            <a href="#" class="tag article"># interior design</a>
-                                        </div>
-                                    </figure>
-                                    <div class="post-thumbnail"><a href="#" title="" rel="bookmark"><img src="http://placehold.it/370X210" alt="" /></a></div>
-                                    <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque ...</p>
-                                    <div class="button-continue">
-                                        <a href="blog_article.html">Read Article</a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <article class="blog-post">
-                                    <div class="header-text">
-                                        <a href="blog_article.html"><h3>Latin professor at Hampden - Sydney College in Virginia</h3></a>
-                                    </div>
-                                    <figure class="meta">
-                                        <div class="post-date">
-                                            <a href="#" class="link-icon"><i class="fa fa-calendar"></i>06/04/2014</a>
-                                        </div>
-                                        <div class="tags pull-right">
-                                            <a href="#" class="tag article"># interior design</a>
-                                        </div>
-                                    </figure>
-                                    <div class="post-thumbnail"><a href="#" title="" rel="bookmark"><img src="http://placehold.it/370X210" alt="" /></a></div>
-                                    <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris sed gravida. Pellentesque neque justo, commodo sed varius at, sagittis ut neque ...</p>
-                                    <div class="button-continue">
-                                        <a href="blog_article.html">Read Article</a>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </section>
-                </div><!-- /.col-md-12 -->
-                <!-- end Content -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div>
+                                        {% for category in categories %}
 
-    <div class="container blog-sm">
-        <div class="row">
-            <!-- Content -->
-            <div class="col-md-12 col-sm-12">
-                <br />
-                <div class="row">
-                    <section id="comments">
-                        <div class="col-md-9 col-sm-9">
-                            <header><h4 class="no-border">3 Comments</h4></header>
-                            <ul class="comments">
-                                <li class="comment">
-                                    <div class="comment-wrapper">
-                                        <div class="name pull-left">Catherine Brown</div>
-                                        <span class="date link-icon clearfix"><span class="fa fa-calendar"></span>12.05.2014</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur,
-                                            augue diam ornare massa, ac vehicula leo turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit
-                                            mauris imperdiet vel. Nulla et massa metus. Nam porttitor quam eget ante elementum consectetur. Aenean ac nisl
-                                            et nulla placerat suscipit eu a mauris. Curabitur quis augue condimentum, varius mi in, ultricies velit.
-                                            Suspendisse potenti.
-                                        </p>
-                                    </div>
-                                </li>
-                                <li class="comment">
-                                    <div class="comment-wrapper">
-                                        <div class="name pull-left">John Doe</div>
-                                        <span class="date link-icon clearfix"><span class="fa fa-calendar"></span>24.06.2014</span>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum, sem ut sollicitudin consectetur,
-                                            augue diam ornare massa, ac vehicula leo turpis eget purus. Nunc pellentesque vestibulum mauris, eget suscipit
-                                            mauris.
-                                        </p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="comments-more">
-                                <a href="#">Show More</a>
-                            </div>
-                            <section>
-                                <header><h4 class="no-border">Leave Feedback</h4></header>
-                                <div class="row">
-                                    <form id="form-single-property-reply" method="post">
-                                        <div class="col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" id="form-blog-reply-name" name="form-blog-reply-name" placeholder="Your Name" required>
-                                        </div><!-- /.form-group -->
-                                        <div class="col-sm-6 col-xs-12">
-                                            <input type="email" class="form-control" id="form-blog-reply-email" name="form-blog-reply-email" placeholder="Your Email" required>
-                                        </div><!-- /.form-group -->
-                                        <div class="col-xs-12">
-                                            <textarea class="form-control" id="form-blog-reply-message" rows="5" name="form-blog-reply-message" placeholder="Write Your Text..."></textarea>
-                                        </div><!-- /.form-group -->
-                                        <div class="col-xs-12 btm-indent">
-                                            <button type="submit" class="btn pull-right btn-small btn-primary" id="form-blog-reply-submit">Send</button>
-                                        </div><!-- /.form-group -->
-                                        <div id="form-rating-status"></div>
-                                    </form><!-- /#form-contact -->
-                                </div>
-                            </section>
-                        </div>
-                    </section><!-- /#comments -->
-                    <br />
-                </div><!-- /.col-md-12 -->
-                <!-- end Content -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div>
+										<li><a href="#">{{ category.title }}</a></li>
 
-</div>
+                                        {% endfor %}
+									</ul>
+								</li>
+							</ul>
+						</nav><!-- /.navbar collapse-->
+					</div>
+					<div class="site-header">
+						<div class="mob-menu blog-mn">
+							<nav class="secondary">
+								<ul class="nav navbar-nav">
+									<li class="col-sm-4 back"><a href={% url 'blog:home' %}><i class="fa fa-sort-desc"></i>Back to List</a>
+									</li>
+									<li class="col-xs-12 has-child"><a href="">Archive</a>
+										<ul class="child-navigation">
+											<li><a href="#">Archive 1</a></li>
+										</ul>
+									</li>
+									<li class="col-xs-12 has-child" onclick=""><a href="">Browse categories</a>
+										<ul class="child-navigation">
+                                            {% for category in categories %}
+
+										        <li><a href="#">{{ category.title }}</a></li>
+
+                                            {% endfor %}
+										</ul>
+									</li>
+								</ul>
+							</nav><!-- /.navbar collapse-->
+						</div>
+					</div>
+				</header><!-- /.navbar -->
+			</div>
+			<div class="container blog-sm"><!-- Content -->
+				<div class="row">
+					<div class="col-md-12 col-sm-12">
+						<section id="content" style="margin-top:35px;">
+							<p>{{ post.content }}</p>
+							<section id="img-gallery">
+								<div class="grid js-masonry html-code grid-of-images">
+									<!-- grid start -->
+									<div class="col-xs-12">
+										<a href="#" class="image-popup grid-item">
+											<div class="col-xs-12 img-big" style="background-image:url({{ post.main_image.url }});background-size:cover;">
+											</div>
+										</a>
+									</div>
+									<div class="col-xs-12">
+
+                                        {% if post.image1 %}
+
+										<div class="col-sm-6 col-xs-12 right">
+											<a href="#" class="image-popup grid-item">
+												<div class="col-xs-12 img-big" style="background-image:url({{ post.image1.url }});background-size:cover;">
+												</div>
+											</a>
+										</div>
+
+                                        {% endif %}
+
+                                        {% if post.image2 %}
+
+										<div class="col-sm-6 col-xs-12 left">
+											<a href="#" class="image-popup grid-item">
+												<div class="col-xs-12 img-big" style="background-image:url({{ post.image2.url }});background-size:cover;">
+												</div>
+											</a>
+										</div>
+
+                                        {% endif %}
+
+									</div>
+									<div class="col-xs-12">
+
+                                        {% if post.image3 %}
+
+										<div class="col-sm-6 right">
+											<a href="#" class="image-popup grid-item">
+												<div class="col-xs-12 img-big" style="background-image:url({{ post.image3.url }});background-size:cover;">
+												</div>
+											</a>
+										</div>
+
+                                        {% endif %}
+
+                                        {% if post.image4 %}
+
+										<div class="col-sm-6 left">
+											<a href="#" class="image-popup grid-item">
+												<div class="col-xs-12 img-big" style="background-image:url({{ post.image4.url }});background-size:cover;">
+												</div>
+											</a>
+										</div>
+
+                                        {% endif %}
+
+									</div>
+								</div>
+							</section>
+							<p>Courtesy - <a href={{ post.courtesy_url }}>{{ post.courtesy_title }}</a></p>
+						</section><!-- /#content -->
+						<section id="share">
+							<ul class="social">
+								<li class="social-text">SHARE:</li>
+								<li><a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="blank"><i class="fa fa-facebook"></i></a></li>
+								<li><a class="twitter" href="https://twitter.com" target="blank"><i class="fa fa-twitter"></i></a></li>
+								<li><a class="google" href="https://www.google.com" target="blank"><i class="fa fa-google-plus"></i></a></li>
+								<li><a class="pinterest" href="https://www.pinterest.com" target="blank"><i class="fa fa-pinterest"></i></a></li>
+							</ul>
+						</section>
+					</div><!-- /.col-md-12 col-sm-12 -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+
+			<div class="wide-1">
+				<div class="container blog-sm">
+					<div class="row">
+						<!-- Content -->
+						<div class="col-md-12 col-sm-12">
+							<section id="related-posts" class="related-posts">
+								<header><h3 class="no-border" style="margin-top:35px;">Recent Posts</h3></header>
+								<div class="row">
+
+                                    {% if recent_posts %}
+
+                                        {% for recent_post in recent_posts %}
+
+
+
+									        <div class="col-md-6 col-sm-6">
+										<article class="blog-post">
+											<div class="header-text">
+												<a href={% url 'blog:post' recent_post.id %}><h3>{{ recent_post.title }}</h3></a>
+											</div>
+											<figure class="meta">
+												<div class="post-date">
+													<a href="#" class="link-icon"><i class="fa fa-calendar"></i>{{ recent_post.date|date }}</a>
+												</div>
+												<div class="tags pull-right">
+													<a href="#" class="tag article"># {{ recent_post.category }}</a>
+												</div>
+											</figure>
+											<div class="post-thumbnail" style="background-image: url({{ recent_post.main_image.url }}); height: 190px; background-size: cover"><a href="#" title="" rel="bookmark"></a></div>
+											<p>{{ recent_post.content|truncatechars:100 }}</p>
+											<div class="button-continue">
+												<a href={% url 'blog:post' recent_post.id %}>Read Article</a>
+											</div>
+										</article>
+									</div>
+
+
+
+                                        {% endfor %}
+
+                                    {% endif %}
+
+								</div>
+							</section>
+						</div><!-- /.col-md-12 col-sm-12-->
+					</div><!-- /.row -->
+				</div><!-- /.container -->
+			</div><!-- /.wide-1 -->
+
+			<div class="container blog-sm">
+				<div class="row">
+					<!-- Content -->
+					<div class="col-md-12 col-sm-12">
+						<br />
+						<div class="row">
+
+
+							<section id="comments">
+								<div class="col-md-9 col-sm-9">
+									<header><h3 class="no-border">{{ comments.count }} Comments</h3></header>
+									<ul class="comments">
+
+                                        {% for comment in comments %}
+
+										<li class="comment">
+											<div class="comment-wrapper">
+												<div class="name pull-left">{{ comment.name }}</div>
+												<span class="date link-icon clearfix"><span class="fa fa-calendar"></span>{{ comment.date|date }}</span>
+												<p>
+                                                    {{ comment.comment_text }}
+												</p>
+											</div>
+										</li>
+
+                                        {% endfor %}
+
+									</ul>
+
+									<section>
+										<header><h4 class="no-border">Add Comment</h4></header>
+										<div class="row">
+											<form id="form-single-property-reply" method="post">
+
+                                                {% csrf_token %}
+
+												<div class="col-xs-12">
+													<input type="text" class="form-control" id="form-blog-reply-name" name="name" placeholder="Your Name" required>
+												</div><!-- /.form-group -->
+												<div class="col-xs-12">
+													<textarea class="form-control" id="form-blog-reply-message" rows="5" name="comment-text" placeholder="Write Your Text..."></textarea>
+												</div><!-- /.form-group -->
+												<div class="col-xs-12 btm-indent">
+													<button type="submit" class="btn pull-right btn-small btn-primary" id="form-blog-reply-submit">Comment</button>
+												</div><!-- /.form-group -->
+												<div id="form-rating-status"></div>
+											</form><!-- /#form-contact -->
+										</div>
+									</section>
+								</div>
+							</section><!-- /#comments -->
+
+
+
+							<br />
+						</div><!-- /.row  -->
+					</div><!-- /.col-md-12 col-sm-12-->
+				</div><!-- /.row  -->
+			</div><!-- /.container -->
+		</div><!-- end Page Content -->
 <!-- end Page Content -->
 
 {% endblock content %}
