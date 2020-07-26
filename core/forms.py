@@ -25,7 +25,7 @@ class propertyForm(forms.ModelForm):
             'video': _('Add a Video (Optional)'),
         }
         widgets = {
-            'features': forms.SelectMultiple(attrs={'style':'height:auto;'})
+            'features': forms.SelectMultiple(attrs={'style':'height: auto;'})
         }
 
 class contactForm(forms.ModelForm):

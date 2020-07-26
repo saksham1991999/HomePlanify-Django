@@ -1,74 +1,280 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+
+
 {% block content %}
 
 
-<!-- Titlebar
-================================================== -->
-<div id="titlebar" class="submit-page">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<h2><i class="fa fa-plus-circle"></i> Add Property</h2>
+<div id="page-content">
+			<div class="wide-4">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li><a href={% url 'core:home' %}>Home</a></li>
+						<li class="active">Add Property</li>
+					</ol>
+				</div>
+				<div class="container">
+					<div class="">
+						<h2>Add new Property</h2>
+						<h6 class="team-color" style="font-weight: lighter">It is easy and takes 15 min maximum</h6>
+					</div>
+					<form id="form-submit" class="form-submit" enctype="multipart/form-data" action="" method="POST" role="form">
+
+                        {% csrf_token %}
+
+						<div class="wide-3" style="margin-top: 30px">
+							<div class="container">
+
+                                <div style="margin-top: 20px">
+                                    <div style="font-size: 30px"><i class="fa fa-plus-circle"></i><span> Main Information</span></div>
+                                </div>
+
+                                <hr>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Select Type:</div>
+                                    <div>
+                                        <select name="type" required="" id="id_type" class="form-control">
+                                            <option value="" selected="">---------</option>
+                                            <option value="B">Buy</option>
+                                            <option value="S">Sell</option>
+                                            <option value="R">Rent</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Property Name:</div>
+                                    <div>
+                                        <input type="text" name="property_name" maxlength="50" required="" id="id_property_name" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">City:</div>
+                                    <div>
+                                        <input type="text" name="city" maxlength="50" required="" id="id_city" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
+                                    <div>
+                                        <input type="number" name="city" maxlength="50" required="" id="id_city" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
+                                    <div>
+                                        <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
+                                    <div>
+                                        <select name="construction_status" id="id_construction_status" class="form-control">
+                                            <option value="" selected="">---------</option>
+                                            <option value="RM">Ready to Move</option>
+                                            <option value="UC">Under Construction</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
+                                    <div>
+                                        <input type="text" name="available_from" id="id_available_from" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
+                                    <div>
+                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
+                                    <div>
+                                        <input type="number" name="total_price" step="any" required="" id="id_total_price" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
+                                    <div>
+                                        <textarea name="additional_features" cols="40" rows="10" id="id_additional_features" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
+                                    <div>
+                                        <input type="file" name="main_image" accept="image/*" required="" id="id_main_image" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Label (Optional):</div>
+                                    <div>
+                                        <input type="text" name="label" maxlength="10" id="id_label" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Room(s):</div>
+                                    <div>
+                                        <input type="number" name="rooms" required="" id="id_rooms" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
+                                    <div>
+                                        <select name="features" style="height:auto;"  required="" id="id_features" multiple="" class="form-control">
+                                            {% for feature in forms.features %}
+
+                                                <option value={{ feature.id }}>{{ feature.title }}</option>
+
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube Video ID:</div>
+                                    <div>
+                                        <input type="text" name="youtube_video" maxlength="512" id="id_youtube_video" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube 2nd Video ID:</div>
+                                    <div>
+                                        <input type="text" name="youtube_video_2" maxlength="512" id="id_youtube_video_2" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Add a Video (Optional):</div>
+                                    <div>
+                                        <input type="file" name="video" id="id_video" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Image:</div>
+                                    <div>
+                                        <input type="file" name="image" multiple="" accept="image/*" required="" id="id_image" class="form-control">
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">
+                                        <button class="btn btn-primary form-control" type = "submit">Submit Property</button>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
-
-<!-- Content
-================================================== -->
-<div class="container">
-<div class="row">
-
-	<!-- Submit Page -->
-	<div class="col-md-12">
-		<div class="submit-page">
-
-        {% comment %}
-		<div class="notification notice large margin-bottom-55">
-			<h4>Don't Have an Account?</h4>
-			<p>If you don't have an account you can create one by entering your email address in contact details section. A password will be automatically emailed to you.</p>
-		</div>
-        {% endcomment %}
-
-		<!-- Section -->
-		<h3>Basic Information</h3>
-		<div class="submit-section">
-
-                <form class="form-a contactForm" enctype="multipart/form-data" action="" method="POST" role="form">
-                    {% csrf_token %}
-
-                    {% for field in form %}
-					<label>{{ field.label_tag }}</label>
-                        {{ field.errors }}
-                        {{ field }}
-                    {% endfor %}
-
-                    {% for field in imagesform %}
-                        <label>{{ field.label_tag }}</label>
-                        {{ field.errors }}
-                        {{ field }}
-                    {% endfor %}
-					<button class="button margin-top-20 margin-bottom-20" type = "submit">Save Changes</button>
-                </form>
-
-		</div>
 
 
 
-	</div>
-
-</div>
-</div>
-</div>
 
 
+
+    <script type="text/javascript" src= {% static 'js/icheck.min.js' %}/>
+    <script type="text/javascript" src={% static 'js/fileinput.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/markerwithlabel_packed.js' %}></script>
+	<script type="text/javascript" src={% static 'js/masonry.pkgd.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/jquery.validate.min.js' %}></script>
+	<script type="text/javascript" src={% static 'js/jquery.placeholder.js' %}></script>
+
+    <script>
+		var _latitude = 40.719457;
+		var _longitude = -73.989642;
+		google.maps.event.addDomListener(window, 'load', initSubmitMap(_latitude,_longitude));
+		function initSubmitMap(_latitude,_longitude){
+			var mapCenter = new google.maps.LatLng(_latitude,_longitude);
+			var mapOptions = {
+				zoom: 14,
+				center: mapCenter,
+				disableDefaultUI: false
+			};
+			var mapElement = document.getElementById('submit-map');
+			var map = new google.maps.Map(mapElement, mapOptions);
+			var marker = new MarkerWithLabel({
+				position: mapCenter,
+				map: map,
+				icon: 'assets/img/marker-h.png',
+				labelAnchor: new google.maps.Point(50, 0),
+				draggable: true
+			});
+			$('#submit-map').removeClass('fade-map');
+			google.maps.event.addListener(marker, "mouseup", function (event) {
+				var latitude = this.position.lat();
+				var longitude = this.position.lng();
+				$('#latitude').val( this.position.lat() );
+				$('#longitude').val( this.position.lng() );
+			});
+
+			//Autocomplete
+			var input = /** @type {HTMLInputElement} */( document.getElementById('address-map') );
+			var autocomplete = new google.maps.places.Autocomplete(input);
+			autocomplete.bindTo('bounds', map);
+			google.maps.event.addListener(autocomplete, 'place_changed', function() {
+				var place = autocomplete.getPlace();
+				if (!place.geometry) {
+					return;
+				}
+				if (place.geometry.viewport) {
+					map.fitBounds(place.geometry.viewport);
+				} else {
+					map.setCenter(place.geometry.location);
+					map.setZoom(15);
+				}
+				marker.setPosition(place.geometry.location);
+				marker.setVisible(true);
+				$('#latitude').val( marker.getPosition().lat() );
+				$('#longitude').val( marker.getPosition().lng() );
+				var address = '';
+				if (place.address_components) {
+					address = [
+					(place.address_components[0] && place.address_components[0].short_name || ''),
+					(place.address_components[1] && place.address_components[1].short_name || ''),
+					(place.address_components[2] && place.address_components[2].short_name || '')
+					].join(' ');
+				}
+			});
+	}
+	function success(position) {
+		initSubmitMap(position.coords.latitude, position.coords.longitude);
+		$('#latitude').val( position.coords.latitude );
+		$('#longitude').val( position.coords.longitude );
+	}
+	</script>
+
+{% endblock content %}
+
+{% block extra_scripts %}
 
     <script>
 
-
-
+        inputelement = document.getElementsByTagName("INPUT");
+        inputelement.classList.add("form-control");
     </script>
-{% endblock content %}
+
+{% endblock %}
