@@ -52,6 +52,7 @@
 
                                 <ul class="child-navigation">
                                     <li><a href={% url 'core:userprofile' %}>Profile</a></li>
+                                    <li><a href={% url 'account_logout' %}>Log Out</a> </li>
                                 </ul>
 
                             </li>
@@ -85,12 +86,14 @@
 					<nav class="secondary">
 						<ul class="nav navbar-nav">
 
-                            {% if request.user.if_authenticated %}
+                            {% if request.user.is_authenticated %}
 
-							<li><a href{% url 'core:userprofile' %} >Profile<i class="fa fa-arrow-right"></i></a></li>
+							    <li><a href{% url 'core:userprofile' %} >Profile<i class="fa fa-arrow-right"></i></a></li>
+                                <li><a href={% url 'account_logout' %}>Log Out</a></li>
 
                             {% else %}
-							<li><a href={% url 'account_login' %} >Log In</a></li>
+
+							    <li><a href={% url 'account_login' %} >Log In</a></li>
 
                             {% endif %}
 							<li class="active"><a href={% url 'core:home' %}>Home</a>
