@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from core.views import SignupView, UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet
+from core.views import login_user,SignupView, UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet
 from rest_framework.routers import DefaultRouter
 from blog.views import BlogPostAPIViewSet, CategoriesAPIViewSet, BlogPostCommentAPIViewSet
 router = DefaultRouter()
@@ -19,7 +19,8 @@ router.register('property', BlogPostCommentAPIViewSet, basename='blog-post-comme
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('accounts/signup/', SignupView, name='signup'),
+    path('accounts/signup/', SignupView, name='account_signup'),
+    path('accounts/login/', login_user, name='account_login'),
     path('accounts/', include('allauth.urls')),
     path('', include('core.urls', namespace='core')),
     path('blog/', include('blog.urls', namespace='blog')),

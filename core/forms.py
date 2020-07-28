@@ -106,9 +106,21 @@ class ImagesForm(forms.ModelForm):
 
 class SingupForm(forms.ModelForm):
     username = forms.CharField(label='Username', min_length=3)
+    password1 = forms.CharField(label='Password', min_length=6,
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='Password', min_length=6,
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = models.User
+        fields = ['email', 'password1', 'password2']
+
+
+class LoginForm(forms.ModelForm):
+    username = forms.CharField(label='Username', min_length=3)
     password = forms.CharField(label='Password', min_length=6,
                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
         model = models.User
-        fields = ['username', 'password', 'first_name', 'last_name', 'email', 'mobile', 'profile_pic']
+        fields = ['email', 'password']
