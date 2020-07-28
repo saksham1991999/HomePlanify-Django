@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load widget_tweaks %}
 
 
 
@@ -36,112 +36,126 @@
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Select Type:</div>
                                     <div>
-                                        <select name="type" required="" id="id_type" class="form-control">
-                                            <option value="" selected="">---------</option>
-                                            <option value="B">Buy</option>
-                                            <option value="S">Sell</option>
-                                            <option value="R">Rent</option>
-                                        </select>
+                                        {% render_field form.type class="form-control" %}
+{#                                        <select name="type" required="" id="id_type" class="form-control">#}
+{#                                            <option value="" selected="">---------</option>#}
+{#                                            <option value="B">Buy</option>#}
+{#                                            <option value="S">Sell</option>#}
+{#                                            <option value="R">Rent</option>#}
+{#                                        </select>#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Property Name:</div>
                                     <div>
-                                        <input type="text" name="property_name" maxlength="50" required="" id="id_property_name" class="form-control">
+                                        {% render_field form.property_name maxlength="50" required="" class="form-control" %}
+{#                                        <input type="text" name="property_name" maxlength="50" required="" id="id_property_name" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">City:</div>
                                     <div>
-                                        <input type="text" name="city" maxlength="50" required="" id="id_city" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
-                                    <div>
-                                        <input type="number" name="city" maxlength="50" required="" id="id_city" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
-                                    <div>
-                                        <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
-                                    <div>
-                                        <select name="construction_status" id="id_construction_status" class="form-control">
-                                            <option value="" selected="">---------</option>
-                                            <option value="RM">Ready to Move</option>
-                                            <option value="UC">Under Construction</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
-                                    <div>
-                                        <input type="text" name="available_from" id="id_available_from" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
-                                    <div>
-                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
-                                    <div>
-                                        <input type="number" name="total_price" step="any" required="" id="id_total_price" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
-                                    <div>
-                                        <textarea name="additional_features" cols="40" rows="10" id="id_additional_features" class="form-control"></textarea>
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
-                                    <div>
-                                        <input type="file" name="main_image" accept="image/*" required="" id="id_main_image" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Label (Optional):</div>
-                                    <div>
-                                        <input type="text" name="label" maxlength="10" id="id_label" class="form-control">
+                                        {% render_field form.city maxlength="50" required="" class="form-control" %}
+{#                                        <input type="text" name="city" maxlength="50" required="" id="id_city" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Room(s):</div>
                                     <div>
-                                        <input type="number" name="rooms" required="" id="id_rooms" class="form-control">
+                                        {% render_field form.rooms required="" class="form-control" %}
+{#                                        <input type="number" name="rooms" required="" id="id_rooms" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
+                                    <div>
+                                        {% render_field form.bedrooms required="" class="form-control" %}
+{#                                        <input type="number" name="city" maxlength="50" required="" id="id_city" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
+                                    <div>
+                                        {% render_field form.bathrooms required="" class="form-control" %}
+{#                                        <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
+                                    <div>
+                                        {% render_field form.construction_status required="" class="form-control" %}
+{#                                        <select name="construction_status" id="id_construction_status" class="form-control">#}
+{#                                            <option value="" selected="">---------</option>#}
+{#                                            <option value="RM">Ready to Move</option>#}
+{#                                            <option value="UC">Under Construction</option>#}
+{#                                        </select>#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
+                                    <div>
+                                        {% render_field form.available_from class="form-control" %}
+{#                                        <input type="text" name="available_from" id="id_available_from" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
+                                    <div>
+                                        {% render_field form.price_sq class="form-control" %}
+{#                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
+                                    <div>
+                                        {% render_field form.total_price step="any" required="" class="form-control" %}
+{#                                        <input type="number" name="total_price" step="any" required="" id="id_total_price" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
                                     <div>
-                                        <select name="features" style="height:auto;"  required="" id="id_features" multiple="" class="form-control">
-                                            {% for feature in forms.features %}
+                                        {% render_field form.additional_features cols="40" rows="10" class="form-control" %}
+{#                                        <textarea name="additional_features" cols="40" rows="10" id="id_additional_features" class="form-control"></textarea>#}
+                                    </div>
+                                </div>
 
-                                                <option value={{ feature.id }}>{{ feature.title }}</option>
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
+                                    <div>
+                                        {% render_field form.main_image class="form-control" %}
+{#                                        <input type="file" name="main_image" accept="image/*" required="" id="id_main_image" class="form-control">#}
+                                    </div>
+                                </div>
 
-                                            {% endfor %}
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Label (Optional):</div>
+                                    <div>
+                                        {% render_field form.label maxlength="10" class="form-control" %}
+{#                                        <input type="text" name="label" maxlength="10" id="id_label" class="form-control">#}
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
+                                    <div>
+                                        {% render_field form.features style="height:auto;"  required="" multiple="" class="form-control" %}
+{#                                        <select name="features" style="height:auto;"  required="" id="id_features" multiple="" class="form-control">#}
+{#                                            {% for feature in forms.features %}#}
+{##}
+{#                                                <option value={{ feature.id }}>{{ feature.title }}</option>#}
+{##}
+{#                                            {% endfor %}#}
                                         </select>
                                     </div>
                                 </div>
@@ -149,27 +163,31 @@
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube Video ID:</div>
                                     <div>
-                                        <input type="text" name="youtube_video" maxlength="512" id="id_youtube_video" class="form-control">
+                                        {% render_field form.youtube_video maxlength="512" class="form-control" %}
+{#                                        <input type="text" name="youtube_video" maxlength="512" id="id_youtube_video" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube 2nd Video ID:</div>
                                     <div>
-                                        <input type="text" name="youtube_video_2" maxlength="512" id="id_youtube_video_2" class="form-control">
+                                        {% render_field form.youtube_video_2 maxlength="512" class="form-control" %}
+{#                                        <input type="text" name="youtube_video_2" maxlength="512" id="id_youtube_video_2" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Add a Video (Optional):</div>
                                     <div>
-                                        <input type="file" name="video" id="id_video" class="form-control">
+                                        {% render_field form.video class="form-control" %}
+{#                                        <input type="file" name="video" id="id_video" class="form-control">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Image:</div>
                                     <div>
+{#                                        {% render_field form.file class="form-control" %}#}
                                         <input type="file" name="image" multiple="" accept="image/*" required="" id="id_image" class="form-control">
                                     </div>
                                 </div>
