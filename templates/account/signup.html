@@ -1,5 +1,6 @@
 {% extends "account/base.html" %}
 {% load i18n %}
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -19,7 +20,7 @@
 						<h2>Accounts</h2>
 						<h6 class="team-color" style="font-weight: lighter">It is easy and takes 5 min maximum</h6>
 					</div>
-					<form class="signup" id="signup_form" method="post" action="/accounts/signup/">
+					<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
 
                         {% csrf_token %}
 
@@ -35,21 +36,24 @@
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Email ID:</div>
                                     <div>
-                                        <input type="email" class="input-text form-control" name="email" id=id_email">
+                                        {% render_field form.email class="input-text form-control" %}
+{#                                        <input type="email" class="input-text form-control" name="email" id=id_email">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Password:</div>
                                     <div>
-                                        <input class="input-text form-control" type="password" name="password1" required id="id_password1">
+                                        {% render_field form.password1 class="input-text form-control" %}
+{#                                        <input class="input-text form-control" type="password" name="password1" required id="id_password1">#}
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
                                     <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Repeat Password:</div>
                                     <div>
-                                        <input class="input-text form-control" type="password" name="password2" required id="id_password2">
+                                        {% render_field form.password2 class="input-text form-control" %}
+{#                                        <input class="input-text form-control" type="password" name="password2" required id="id_password2">#}
                                     </div>
                                 </div>
 
@@ -65,8 +69,6 @@
                                         <button class="btn-primary form-control" type = "submit" style="color: white">Register</button>
 
                                     </div>
-
-
                                 </div>
 
 
