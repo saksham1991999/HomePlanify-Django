@@ -105,7 +105,7 @@ class ImagesForm(forms.ModelForm):
 
 
 class SingupForm(forms.ModelForm):
-    username = forms.CharField(label='Username', min_length=3)
+    email = forms.CharField(label='E-mail', min_length=3)
     password1 = forms.CharField(label='Password', min_length=6,
                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label='Password', min_length=6,
@@ -117,7 +117,7 @@ class SingupForm(forms.ModelForm):
 
 
 class LoginForm(forms.ModelForm):
-    username = forms.CharField(label='Username', min_length=3)
+    email = forms.CharField(label='E-mail', min_length=3)
     password = forms.CharField(label='Password', min_length=6,
                                widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 

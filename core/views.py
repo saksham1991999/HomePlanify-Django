@@ -41,9 +41,11 @@ def SignupView(request):
         if form.is_valid():
             password = form.cleaned_data['password1']
             email = form.cleaned_data['email']
-            user = models.User.objects.create_user(email=email, password=password)
+            username = email.split('@')[0]
+            user = models.User.objects.create_user(username=username.lower(), email=email.lower(), password=password)
+            login(request, user)
             user.save()
-            user = authenticate(request, email=email.lower(), password=password)
+            user = authenticate(request, username=username, password=password)
             messages.success(request, 'Thanks for registering {}'.format(user))
             return redirect('core:home')
         else:
@@ -51,7 +53,6 @@ def SignupView(request):
             messages.error(request, form.errors)
     else:
         form = forms.SingupForm()
-        print("#######################################################################################################")
     return render(request, 'account/signup.html', {'form': form})
 
 def login_user(request):
@@ -60,12 +61,14 @@ def login_user(request):
         form = forms.LoginForm(request.POST, request.FILES)
         email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(request, email=email.lower(), password=password)
+        username = email.split("@")[0]
+        user = authenticate(request, username=username, password=password)
+        # user = authenticate(request, email=email.lower(), password=password)
         if user is not None:
             login(request, user)
             redirect_url = request.GET.get('next', 'core:home')
             messages.success(request, 'You\'re logged in as Username: {}'.format(user))
-            return redirect(redirect_url)
+            return redirect('core:home')
         else:
             messages.error(request, 'Username or Password is incorrect')
     else:
