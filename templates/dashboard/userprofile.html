@@ -1,15 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <!-- Titlebar
 ================================================== -->
 <div id="titlebar">
 	<div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href={% url 'core:home' %}>Home</a></li>
+            <li class="active">Profile</li>
+        </ol>
+
 		<div class="row">
 			<div class="col-md-12">
 
-				<h2>My Profile</h2>
+				<h3>My Profile</h3>
 
 
 			</div>
@@ -20,43 +27,44 @@
 
 <!-- Content
 ================================================== -->
+
 <div class="container">
 	<div class="row">
 
+        {% include 'dashboard/dashboardsidenav.html' %}
 
-		{% include 'dashboard/dashboardsidenav.html' %}
-		<div class="col-md-8">
+
+		<div class="col-md-9">
 			<div class="row">
 
 
-            <div class="col-md-8 my-profile">
-                <h4 class="margin-top-0 margin-bottom-30">My Account</h4>
+            <div class="col my-profile wide-3" style="padding: 10px; margin-bottom: 10px">
                 <form class="form-a contactForm" action="" method="post" role="form">
                     {% csrf_token %}
 
-                    {% for field in form %}
-					<label>{{ field.label_tag }}</label>
-                    {{ field }}
-                    {% endfor %}
-					<button class="button margin-top-20 margin-bottom-20" type = "submit">Save Changes</button>
+                    <div style="padding-top: 30px; padding-left: 30px; padding-right: 30px;">
+                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">First Name: </div>
+                        <div>
+                            {% render_field form.first_name class="form-control" %}
+                        </div>
+                    </div>
+
+                    <div style="margin: 30px">
+                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Last Name: </div>
+                        <div>
+                            {% render_field form.last_name class="form-control" %}
+                        </div>
+                    </div>
+
+                    <div style="margin: 30px ">
+                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Last Name: </div>
+                        <div>
+                            <button class="btn-default form-control" type = "submit">Save Changes</button>
+                        </div>
+                    </div>
+
                 </form>
             </div>
-
-            {% comment %}
-				<div class="col-md-4">
-					<!-- Avatar -->
-					<div class="edit-profile-photo">
-						<img src="images/agent-02.jpg" alt="">
-						<div class="change-photo-btn">
-							<div class="photoUpload">
-							    <span><i class="fa fa-upload"></i> Upload Photo</span>
-							    <input type="file" class="upload" />
-							</div>
-						</div>
-					</div>
-
-				</div>
-            {% endcomment %}
 
 			</div>
 		</div>

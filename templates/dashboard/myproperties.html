@@ -8,10 +8,16 @@
     <!-- Titlebar================================================== -->
     <div id="titlebar">
         <div class="container">
+
+            <ol class="breadcrumb">
+                <li><a href={% url 'core:home' %}>Home</a></li>
+                <li class="active">Profile</li>
+            </ol>
+
             <div class="row">
                 <div class="col-md-12">
 
-                    <h2>My Properties</h2>
+                    <h3>My Properties</h3>
 
 
 
@@ -30,40 +36,72 @@
             {% include 'dashboard/dashboardsidenav.html' %}
 
             <div class="col-md-8">
-                <table class="manage-table responsive-table">
 
-                    <tr>
-                        <th><i class="fa fa-file-text"></i> Property</th>
-                        <th class="expire-date"><i class="fa fa-calendar"></i> Views</th>
-                        <th></th>
-                    </tr>
 
-                    {% for property in properties %}
+
                     <!-- Item #1 -->
-                    <tr>
-                        <td class="title-container">
-                            <img src="{{ property.main_image.url }}" alt="">
-                            <div class="title">
-                                <h4><a href="{% url 'core:property' property.id %}">{{ property.property_name }}</a></h4>
-                                <span>{{ property.city }} </span>
-                                <span class="table-property-price">Rs {{ property.total_price }}</span>
-                            </div>
-                        </td>
-                        <td class="expire-date">{{ property.views }}</td>
-                        <td class="action">
-                            <a href="{% url 'core:editproperty' property.id %}"><i class="fa fa-pencil"></i> Edit</a>
-                            {% if property.visible %}
-                            <a href="{% url 'core:hideproperty' property.id %}"><i class="fa  fa-eye-slash"></i> Hide</a>
-                            {% else %}
-                            <a href="{% url 'core:showproperty' property.id %}"><i class="fa  fa-eye-slash"></i> Show</a>
-                            {% endif %}
-                            <a href="{% url 'core:deleteproperty' property.id %}" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
 
-                </table>
-                <a href="{% url 'core:addproperty' %}" class="margin-top-40 button">Submit New Property</a>
+                        <div class="information-block">
+									<div class="wide-2">
+										<div class="row">
+                                            {% for property in properties %}
+
+											<div class="col-sm-4 col-xs-12 prop" style="margin-bottom: 20px">
+												<div class="wht-cont">
+													<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
+														<span class="filter"></span>
+														<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">Show more</label></span>
+
+													</div>
+													<div class="item-title">
+														<h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
+														<p class="team-color">{{ property.city }}</p>
+
+													</div>
+													<hr>
+													<div class="item-title btm-part">
+														<div class="row">
+															<div class="col-md-8 col-sm-8 col-xs-8">
+																<p>Rs. {{ property.total_price }}</p>
+																<p class="team-color">FOR SALE</p>
+															</div>
+															<div class="col-md-4 col-sm-4 col-xs-4 favorite">
+
+                                                                <a href="{% url 'core:editproperty' property.id %}"><i class="fa fa-pencil"></i></a>
+
+                                                                {% if property.visible %}
+
+                                                                <a href="{% url 'core:hideproperty' property.id %}"><i class="fa  fa-eye-slash"></i></a>
+
+                                                                {% else %}
+
+                                                                <a href="{% url 'core:showproperty' property.id %}"><i class="fa  fa-eye-slash"></i></a>
+
+                                                                {% endif %}
+
+                                                                <a href="{% url 'core:deleteproperty' property.id %}" class="delete"><i class="fa fa-remove"></i></a>
+
+{#																<div class="bookmark" data-bookmark-state="empty">#}
+{#																	#}
+{#																</div>#}
+{#																<div class="compare" data-compare-state="empty">#}
+{#																	<span class="fa fa-pencil">Add to compare</span>#}
+{#																</div>#}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+                                            {% endfor %}
+
+										</div>
+									</div>
+								</div>
+
+
+
+
             </div>
 
         </div>

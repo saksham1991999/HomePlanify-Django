@@ -63,7 +63,6 @@ def login_user(request):
         password = request.POST['password']
         username = email.split("@")[0]
         user = authenticate(request, username=username, password=password)
-        # user = authenticate(request, email=email.lower(), password=password)
         if user is not None:
             login(request, user)
             redirect_url = request.GET.get('next', 'core:home')
@@ -75,46 +74,6 @@ def login_user(request):
         form = forms.LoginForm()
     return render(request, 'account/login.html', {'form': form})
 
-# def LoginView(request):
-#     logout(request)
-#     if request.method == 'POST':
-#         type = request.POST['type']
-#         mobile = request.POST['phone_num']
-#         password = request.POST['password']
-#
-#         if type == 'login':
-#             try:
-#                 user = authenticate(request, username=mobile, password=password)
-#                 if user.mobile_verified:
-#                     login(request, user)
-#                     if user.is_vendor:
-#                         redirect('vendor:dashboard')
-#                     else:
-#                         return redirect('customer:dashboard')
-#             except:
-#                 messages.error(request, 'Invalid Credentials', extra_tags = 'alert alert-warning alert-dismissible')
-#                 return redirect('core:login')
-#         elif type == 'register':
-#             try:
-#                 email = request.POST['email_id']
-#                 full_name = request.POST['full_name']
-#                 user = models.User.objects.create_user(username=mobile, email=email, password=password)
-#                 lname = ''
-#                 fname, lname = full_name.split()
-#                 user.first_name = fname
-#                 user.last_name = lname
-#                 user.mobile = mobile
-#                 user.save()
-#                 request.session['mobile'] = mobile
-#                 request.session['password'] = password
-#                 return redirect('core:register_otp_verification')
-#             except:
-#                 messages.error(request, 'Mobile Already Registered', extra_tags='alert alert-warning alert-dismissible')
-#         return redirect('core:login')
-#     else:
-#         context = {
-#         }
-#         return render(request, 'login.html', context)
 
 def HomeView(request):
     properties = models.property.objects.filter(featured = True)[:4]

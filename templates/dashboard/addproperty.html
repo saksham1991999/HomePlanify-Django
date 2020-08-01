@@ -63,63 +63,95 @@
                                 </div>
 
                                 <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Room(s):</div>
-                                    <div>
-                                        {% render_field form.rooms required="" class="form-control" %}
+
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-sm-12">
+                                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Room(s):</div>
+                                        <div>
+                                            {% render_field form.rooms required="" class="form-control" %}
 {#                                        <input type="number" name="rooms" required="" id="id_rooms" class="form-control">#}
-                                    </div>
-                                </div>
+                                        </div>
+                                        </div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
-                                    <div>
-                                        {% render_field form.bedrooms required="" class="form-control" %}
+                                        <div class="col-md-6 col-sm-12">
+
+                                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
+                                        <div>
+                                            {% render_field form.bedrooms required="" class="form-control" %}
 {#                                        <input type="number" name="city" maxlength="50" required="" id="id_city" class="form-control">#}
+                                        </div>
+
+                                    </div>
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
-                                    <div>
-                                        {% render_field form.bathrooms required="" class="form-control" %}
-{#                                        <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">#}
-                                    </div>
-                                </div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
-                                    <div>
-                                        {% render_field form.construction_status required="" class="form-control" %}
+                                    <div class="row">
+
+                                        <div class="col-md-6 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
+                                            <div>
+                                            {% render_field form.bathrooms required="" class="form-control" %}
+{#                                          <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">#}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
+                                            <div>
+                                                {% render_field form.construction_status required="" class="form-control" %}
 {#                                        <select name="construction_status" id="id_construction_status" class="form-control">#}
 {#                                            <option value="" selected="">---------</option>#}
 {#                                            <option value="RM">Ready to Move</option>#}
 {#                                            <option value="UC">Under Construction</option>#}
 {#                                        </select>#}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
-                                    <div>
-                                        {% render_field form.available_from class="form-control" %}
-{#                                        <input type="text" name="available_from" id="id_available_from" class="form-control">#}
-                                    </div>
-                                </div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
-                                    <div>
-                                        {% render_field form.price_sq class="form-control" %}
-{#                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">#}
-                                    </div>
-                                </div>
+                                    <div class="row">
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
+                                        <div class="col-md-6 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
                                     <div>
                                         {% render_field form.total_price step="any" required="" class="form-control" %}
 {#                                        <input type="number" name="total_price" step="any" required="" id="id_total_price" class="form-control">#}
                                     </div>
+
+
+
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
+                                            <div>{% render_field form.price_sq class="form-control" %}
+{#                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">#}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin: 30px">
+
+                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
+                                            <div>
+                                                {% render_field form.available_from class="form-control" %}
+{#                                        <input type="text" name="available_from" id="id_available_from" class="form-control">#}
+                                            </div>
+
                                 </div>
 
                                 <div style="margin: 30px">
@@ -131,11 +163,43 @@
                                 </div>
 
                                 <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
-                                    <div>
-                                        {% render_field form.main_image class="form-control" %}
+
+                                    <div class="row">
+
+                                        <div class="col-md-4 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
+                                            <div>
+                                            {% render_field form.main_image class="form-control" %}
 {#                                        <input type="file" name="main_image" accept="image/*" required="" id="id_main_image" class="form-control">#}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Add a Video (Optional):</div>
+                                            <div>
+                                            {% render_field form.video class="form-control" %}
+{#                                          <input type="file" name="video" id="id_video" class="form-control">#}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-12">
+
+                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Image:</div>
+                                            <div>
+{#                                          {% render_field form.file class="form-control" %}#}
+                                            <input type="file" name="image" multiple="" accept="image/*" required="" id="id_image" class="form-control">
+                                            </div>
+
+                                        </div>
+
                                     </div>
+
+
+
                                 </div>
 
                                 <div style="margin: 30px">
@@ -173,22 +237,6 @@
                                     <div>
                                         {% render_field form.youtube_video_2 maxlength="512" class="form-control" %}
 {#                                        <input type="text" name="youtube_video_2" maxlength="512" id="id_youtube_video_2" class="form-control">#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Add a Video (Optional):</div>
-                                    <div>
-                                        {% render_field form.video class="form-control" %}
-{#                                        <input type="file" name="video" id="id_video" class="form-control">#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Image:</div>
-                                    <div>
-{#                                        {% render_field form.file class="form-control" %}#}
-                                        <input type="file" name="image" multiple="" accept="image/*" required="" id="id_image" class="form-control">
                                     </div>
                                 </div>
 

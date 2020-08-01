@@ -8,10 +8,17 @@
 ================================================== -->
 <div id="titlebar">
 	<div class="container">
+
+        <ol class="breadcrumb">
+            <li><a href={% url 'core:home' %}>Home</a></li>
+            <li class="active">Profile</li>
+        </ol>
+
 		<div class="row">
+
 			<div class="col-md-12">
 
-				<h2>Bookmarked Listings</h2>
+				<h3>Bookmarked Listings</h3>
 
 
 			</div>
@@ -27,30 +34,47 @@
 
 
 		{% include 'dashboard/dashboardsidenav.html' %}
-		<div class="col-md-8">
-			<table class="manage-table bookmarks-table responsive-table">
-
-				<tr>
-					<th><i class="fa fa-file-text"></i> Property</th>
-					<th></th>
-				</tr>
+		<div class="col-md-9">
+			<div class="manage-table bookmarks-table responsive-table">
 
             {% if bookmark %}
                 {% for property in bookmark.properties.all %}
 				<!-- Item #1 -->
-				<tr>
-					<td class="title-container">
-						<img src="{{ property.main_image.url }}" alt="">
-						<div class="title">
-							<h4><a href="#">{{ property.property_name }}</a></h4>
-							<span>{{ property.city }}</span>
-							<span class="table-property-price">Rs {{ property.total_price }}</span>
-						</div>
-					</td>
-					<td class="action">
-						<a href="{% url 'core:removefrombookmarks' property.id %}" class="delete"><i class="fa fa-remove"></i> Remove</a>
-					</td>
-				</tr>
+
+                    <div class="information-block" style="margin-bottom: 10px">
+									<div class="wide-2">
+										<div class="wht-cont">
+											<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
+												<span class="filter"></span>
+												<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">Show more</label></span>
+												<div class="overlay">
+
+												</div>
+											</div>
+											<div class="item-title">
+												<h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
+												<p class="team-color">{{ property.city }}</p>
+
+
+											</div>
+											<hr>
+											<div class="item-title btm-part">
+												<div class="row">
+													<div class="col-md-8 col-sm-8 col-xs-8">
+														<p>Rs {{ property.total_price }}</p>
+														<p class="team-color">FOR {{ property.get_type_display|upper }}</p>
+													</div>
+													<div class="col-md-4 col-sm-4 col-xs-4 favorite">
+														<div class="bookmark" data-bookmark-state="empty">
+                                                            <a href={% url 'core:removefrombookmarks' property.id %}><span class="title-add">Remove bookmark</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
                 {% endfor %}
             {% else %}
                 <tr>
@@ -62,8 +86,7 @@
 					</td>
 				</tr>
             {% endif %}
-
-			</table>
+            </div>
 		</div>
 
 	</div>
