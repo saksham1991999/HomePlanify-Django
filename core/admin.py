@@ -2,9 +2,18 @@ from django.contrib import admin
 from . import models
 
 
-admin.site.site_header = 'Huda Haryana'
+admin.site.site_header = 'HomePlanify'
+
+class ImagesInlineAdmin(admin.TabularInline):
+    model = models.images
+
+class InquiryInlineAdmin(admin.TabularInline):
+    model  = models.enquiry
+    extra = 0
 
 class PropertyAdmin(admin.ModelAdmin):
+    inlines = [ImagesInlineAdmin, InquiryInlineAdmin]
+
     list_display = [
         'id',
         'owner',
@@ -40,7 +49,7 @@ class ImagesAdmin(admin.ModelAdmin):
         'city',
         'visible',
         'verified',
-                    ]
+        ]
     list_display_links = [
         'id',
         'owner',
@@ -61,6 +70,13 @@ class ImagesAdmin(admin.ModelAdmin):
     ]
 
 
+class AreaInlineAdmin(admin.TabularInline):
+    model  = models.Area
+    extra = 3
+
+class DistrictAdmin(admin.ModelAdmin):
+    inlines = [AreaInlineAdmin]
+
 admin.site.register(models.User)
 admin.site.register(models.property, PropertyAdmin)
 admin.site.register(models.images)
@@ -71,5 +87,5 @@ admin.site.register(models.bookmark)
 admin.site.register(models.Compare)
 admin.site.register(models.enquiry)
 
-admin.site.register(models.District)
+admin.site.register(models.District, DistrictAdmin)
 admin.site.register(models.Area)

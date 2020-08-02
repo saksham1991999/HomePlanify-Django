@@ -2,8 +2,14 @@ from django.contrib import admin
 from . import models
 # Register your models here.
 
+class CommentInlineAdmin(admin.TabularInline):
+    model  = models.comment
+    extra = 0
+
 
 class postAdmin(admin.ModelAdmin):
+    inlines = [CommentInlineAdmin]
+
     list_display = ['title',
                     'category',
                     'date',

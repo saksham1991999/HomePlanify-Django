@@ -1,0 +1,423 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block extra_stylesheet %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/selectize.css' %}" type="text/css">
+{% endblock extra_stylesheet %}
+
+{% block content %}
+
+		<!-- Page Content -->
+		<div id="page-content">
+			<div class="wide-4">
+				<div class="container">
+					<ol class="breadcrumb">
+						<li><a href="{% url 'core:home' %}">Home</a></li>
+						<li class="active">Add Property</li>
+					</ol>
+				</div>
+				<div class="container">
+					<div class="explore">
+						<h2>Create a new Property</h2>
+						<h5 class="team-color">It is easy and takes 15 min maximum</h5>
+					</div>
+					<form id="form-submit" class="form-submit">
+                        {% csrf_token %}
+						<div class="wide-3">
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">1</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Main Information</h3>
+{#										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>#}
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont">
+								<hr>
+								<div class="form-group">
+									<label>Property Title:</label>
+                                    {% render_field form.property_name maxlength="50" required="" class="form-control" %}
+                                </div>
+								<div class="row">
+									<div class="col-md-3 col-sm-3 col-xs-12">
+										<div class="form-group">
+											<label>Currency</label>
+											<select class="selection">
+												<option>$ USD</option>
+												<option>€ EUR</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<div class="form-group">
+											<label>Price:</label>
+											<input type="text" class="form-control" placeholder="$" pattern="\d*" required>
+										</div>
+									</div>
+									<div class="col-md-7 col-sm-7 col-xs-12">
+										<div class="form-group">
+											<label>Price Format</label>
+											<select class="selection">
+												<option>Default Format</option>
+												<option>Payment</option>
+												<option>Area units</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xs-12">
+										<div class="form-group">
+											<label for="text-area-2">Description:</label>
+											<textarea id="text-area-2" rows="6" cols="45" class="form-control"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">2</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Summary</h3>
+										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont">
+								<hr>
+								<div class="row">
+									<div class=" col-md-8 col-sm-8">
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Conditions</label>
+													<select class="selection">
+														<option>No Conditions</option>
+														<option>Sold</option>
+														<option>In Hold</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Interval payment for rent</label>
+													<select class="selection">
+														<option>No Payment</option>
+														<option>Monthly</option>
+														<option>Quarter</option>
+														<option>Yearly</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Property Type</label>
+													<select class="selection">
+														<option>No Types</option>
+														<option>Apartment</option>
+														<option>Condominium</option>
+														<option>Cottage</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Status</label>
+													<select class="selection">
+														<option>No Status</option>
+														<option>Rent</option>
+														<option>Sale</option>
+													</select>
+												</div>
+											</div>
+										</div>
+												<hr>
+										<div class="row">
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Rooms</label>
+													<select class="selection">
+														<option>Select ...</option>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Beds</label>
+													<select class="selection">
+														<option>Select ...</option>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Bathrooms</label>
+													<select class="selection">
+														<option>Select ...</option>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+													</select>
+												</div>
+											</div>
+										</div>
+												<hr>
+										<div class="row">
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Garages</label>
+													<select class="selection">
+														<option>Select ...</option>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Area:</label>
+													<input type="text" class="form-control" placeholder="Enter your area" pattern="\d*" required>
+												</div>
+											</div>
+											<div class="col-md-4 col-sm-4 col-xs-12">
+												<div class="form-group">
+													<label>Area Units</label>
+													<select class="selection">
+														<option>m2</option>
+														<option>km2</option>
+														<option>acre</option>
+														<option>sq ft</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class=" col-md-4 col-sm-4 summary-image">
+										<label>Featured Photo</label>
+										<div class="featured-image-block">
+											<img src="assets/img/camera.png" alt="" class="property-icon camera">
+											<h3> Add Featured Photo</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+											<input id="file-upload" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">
+											<label for="file-upload">
+												<img src="assets/img/upload.png" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">3</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Location Information</h3>
+										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont">
+								<hr>
+								<div class="row">
+									<div class="location-info col-md-6 col-sm-6 col-xs-12">
+										<div class="form-group">
+											<label>Country</label>
+											<select class="selection">
+												<option>United States (US)</option>
+												<option>Canada (CAN)</option>
+												<option>Spain (ESP)</option>
+											</select>
+										</div>
+										<div class="form-group grey-color">
+											<label class="team-color">State</label>
+											<select class="selection">
+												<option>Alabama</option>
+												<option>Arizona</option>
+												<option>Arkansas</option>
+											</select>
+										</div>
+										<div class="input-group">
+											<label>Address</label>
+											<input type="text" class="form-control" placeholder="Enter property address" required>
+										</div>
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Town/City:</label>
+													<input type="text" class="form-control" placeholder="Ex. New York"  required>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>Post/ZIP Code:</label>
+													<input type="text" class="form-control" placeholder="_ _ - _ _ _">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label>District:</label>
+													<input type="text" class="form-control" placeholder="Ex. Manhattan"  required>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="location-map col-md-6 col-sm-6 col-xs-12">
+										<div class="input-group">
+											<label for="address-map">Place on map</label>
+											<input type="text" class="form-control" id="address-map" name="address">
+											<i class="fa fa-search"></i>
+										</div>
+										<div id="submit-map"></div>
+										<div class="row">
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label for="latitude">Coordinates</label>
+													<input type="text" class="form-control" placeholder="Latitude" id="latitude" readonly>
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<div class="form-group">
+													<label for="longitude">&nbsp;</label>
+													<input type="text" class="form-control" placeholder="Longitude" id="longitude" readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">4</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Media Files</h3>
+										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont media">
+								<hr>
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="assets/img/files.png" alt="" class="property-icon files">
+											<h3> Add Files</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+											<input id="file-upload-2" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="doc/txt,doc/doc" data-browse-class="btn btn-default" data-browse-label="Add Files">
+											<label for="file-upload-2">
+												<img src="assets/img/upload.png" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="assets/img/gallery.png" alt="" class="property-icon gallery">
+											<h3> Photo Gallery</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+											<input id="file-upload-3" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">
+											<label for="file-upload-3">
+												<img src="assets/img/upload.png" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="assets/img/plan.png" alt="" class="property-icon plan">
+											<h3> Floor Plans</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+											<input id="file-upload-4" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">
+											<label for="file-upload-4">
+												<img src="assets/img/upload.png" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="input-group">
+									<label>Video Presentation:</label>
+									<input type="text" class="form-control" placeholder="Add link to your video">
+								</div>
+								<span class="ffs-bs"><a href="#" class="btn btn-small btn-primary">Add Video</a></span>
+							</div>
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">5</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Property Features</h3>
+										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont features">
+								<hr>
+								<div class="row">
+									<div id="property-features" class="block">
+										<div class="row">
+											<ul class="submit-features">
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox" checked="checked">Air conditioning</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Hi-Fi</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Internet</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Beach</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Iron</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Coffee pot</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Parquet</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+												<li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox">Bedding</label></div></li>
+											</ul>
+										</div>
+										<hr>
+									</div>
+									<span class="ffs-bs"><button type="submit" class="btn btn-large btn-primary">create property</button></span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+			<!-- end Page Content -->
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
+
+{% block extra_scripts %}
+    <script type="text/javascript" src= {% static 'js/icheck.min.js' %}/>
+    <script type="text/javascript" src={% static 'js/fileinput.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/markerwithlabel_packed.js' %}></script>
+	<script type="text/javascript" src={% static 'js/masonry.pkgd.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/jquery.validate.min.js' %}></script>
+	<script type="text/javascript" src={% static 'js/jquery.placeholder.js' %}></script>
+    <script>
+
+        inputelement = document.getElementsByTagName("INPUT");
+        inputelement.classList.add("form-control");
+    </script>
+
+{% endblock %}
