@@ -1,3 +1,5 @@
+{% load static %}
+
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700);
 @import url(https://fonts.googleapis.com/css?family=Lora:400,700italic);
@@ -1901,7 +1903,7 @@ figure {
 
 /* line 1358, ../scss/helpers/_classes.scss */
 .master-logo {
-  background: url(../img/logo.svg);
+  background: url('{% static "img/logo.png" %}');
   width: 100px;
   height: 28px;
   border: none;
@@ -1962,7 +1964,7 @@ figure {
 }
 /* line 1406, ../scss/helpers/_classes.scss */
 .menu-wht .master-logo {
-  background: url(../img/logo-white.svg);
+  background: url('{% static "img/logo.png" %}');
   background-size: cover;
 }
 
@@ -4750,7 +4752,7 @@ figure {
 }
 /* line 3712, ../scss/helpers/_classes.scss */
 #page-content-agent .content .agent-info .agency .agency-logo {
-  background: url(../img/agency-logo.png);
+  background: url('{% static "img/logo.png" %}');
   background-size: cover;
   float: left;
   width: 15px;

@@ -77,10 +77,6 @@
 													<p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>
 												</div>
 												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-													<img src={% static 'img/square.png' %} alt="">
-													<p class="info-line">{{ property.price_sq }} m<span class="rank">2</span></p>
-												</div>
-												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
 													<img src={% static 'img/garage.png' %} alt="">
 													<p class="info-line">{{ property.rooms }} Room(s)</p>
 												</div>
@@ -94,10 +90,10 @@
 										</div>
 										<div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
 											<div class="sum col-sm-12 col-xs-6">
-												<h4>$ {{ property.total_price }}</h4>
+												<h4>₹ {{ property.total_price|floatword_indian }}</h4>
 												<p class="team-color">for {{ property.get_type_display }}</p>
 											</div>
-											<span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">Show more <i class="fa fa-caret-right"></i></a></span>
+											<span class="ffs-bs col-xs-12 btn-half-wth"><a href="{% url 'core:property' property.id %}" class="btn btn-default btn-small">Show more <i class="fa fa-caret-right"></i></a></span>
 											<div class="sum favorite col-sm-12 col-xs-6">
                                                 <a href={% url 'core:addtobookmarks' property.id %}>
 												<div class="bookmark col-xs-3" data-bookmark-state="empty">

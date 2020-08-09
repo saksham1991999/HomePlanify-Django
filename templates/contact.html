@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% widget_tweak %}
 
 
 {% block content %}
@@ -16,25 +17,25 @@
                     <div class="col-md-6">
                         <div class="input-group">
                             <label>Your Name:</label>
-                            <input id="input-name" type="text" class="form-control" placeholder="Enter your Name" required>
+                            {% render_field form.name class="form-control" placeholder="Enter your Name" %}
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="input-group">
                             <label>Your Email Address:</label>
-                            <input id="input-email" type="text" class="form-control" placeholder="Enter your Email" required>
+                            {% render_field form.email class="form-control" placeholder="Enter your Email" %}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
-                            <label>Subject:</label>
-                            <input id="input-subject" type="text" class="form-control" placeholder="Example: Lorem Ipsum" required>
+                            <label>Mobile:</label>
+                            {% render_field form.mobile_no class="form-control" placeholder="Enter your Mobile Number" %}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
                             <label>Your Message:</label>
-                            <textarea id="text-area-contact" rows="8" cols="45" class="form-control"></textarea>
+                            {% render_field form.subject class="form-control" rows="8" cols="45" %}
                         </div>
                     </div>
                     <div class="submit">
