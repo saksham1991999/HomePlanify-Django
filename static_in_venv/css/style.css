@@ -451,7 +451,7 @@ a.link-icon .fa {
 
 /* line 226, ../scss/helpers/_classes.scss */
 .navigation .navbar .navbar-brand {
-  padding: 10px 0 10px 25px;
+  padding: 4px 0 0px 10px;
 }
 /* line 228, ../scss/helpers/_classes.scss */
 .navigation .navbar .navbar-brand img {
@@ -1903,8 +1903,8 @@ figure {
 /* line 1358, ../scss/helpers/_classes.scss */
 .master-logo {
   background: url(../img/logo.svg);
-  width: 100px;
-  height: 28px;
+  width: 235px;
+  height: 56px;
   border: none;
   background-size: cover;
   display: table;

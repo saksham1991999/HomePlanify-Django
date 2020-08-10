@@ -34,7 +34,7 @@ class contactForm(forms.ModelForm):
         fields = [
             'name',
             'email',
-            'subject',
+            'mobile',
             'message',
         ]
 
@@ -92,7 +92,7 @@ class MainEnquiryForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = models.User
-        fields = ['first_name', 'last_name']
+        fields = ['first_name', 'last_name', 'mobile', 'email', 'profile_pic']
 
 
 class ImagesForm(forms.ModelForm):

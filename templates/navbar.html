@@ -6,12 +6,13 @@
 			<div class="container">
 				<div class="navbar-brand nav">
 					<a class="navbar-brand nav logo" href={% url 'core:home' %} title="" rel="home">
-						<object class="master-logo" type="image/svg+xml" style="background: url({% static "img/logo.png" %}); !important;"></object>
+						<object class="master-logo" type="image/svg+xml" style="background: url({% static "img/logo.png" %}); !important; background-size: auto; !important;"></object>
 					</a>
 					<a class="navbar-brand nav logo retina" href={% url 'core:home' %} title="" rel="home">
-						<object class="master-logo" type="image/svg+xml" style="background: url({% static "img/logo.png" %}); !important;"></object>
+						<object class="master-logo" type="image/svg+xml" style="background: url({% static "img/logo.png" %}); !important; background-size: auto; !important;"></object>
 					</a>
 				</div>
+
 				<nav class="secondary main-menu">
 					<a href="#" data-toggle="dropdown" class="pull-right drop-left">More
 						<div class="gamb-button">
@@ -21,19 +22,12 @@
 						</div>
 					</a>
 					<ul class="nav navbar-nav dropdown-menu pull-right slide-left">
-						<li class="active"><a href={% url 'core:home' %}>Home</a></li>
-						<li><a href={% url 'core:agents' %}>Agents</a></li>
-						<li class="has-child"><a href="#">Properties</a>
-							<ul class="child-navigation">
-								<li><a href={% url 'core:addproperty' %}>Add Property</a></li>
-								<li><a href={% url 'core:properties' %}>Property Page</a></li>
-							</ul>
-						</li>
 
-						<li><a href={% url 'blog:home' %}>Blog</a>
+
+						<li><a href={% url 'blog:home' %}>Blogs</a>
 
 						</li>
-						<li><a href={% url 'core:about' %}>About Us</a></li>
+{#						<li><a href={% url 'core:about' %}>About Us</a></li>#}
 						<li><a href={% url 'core:contact' %}>Contact us</a></li>
 						<li>
 							<a href="#" data-toggle="dropdown" class="pull-right drop-close">Close
@@ -44,6 +38,7 @@
 				</nav><!-- /.navbar collapse-->
 				<nav class="primary start main-menu">
 					<ul class="nav navbar-nav pull-right">
+                        <li><a href="{% url 'core:properties' %}">Properties</a></li>
 						<li><a href={% url 'core:addproperty' %}>Add Property</a></li>
 
                         {% if request.user.is_authenticated %}
@@ -96,20 +91,13 @@
 							    <li><a href={% url 'account_login' %} >Log In</a></li>
 
                             {% endif %}
-							<li class="active"><a href={% url 'core:home' %}>Home</a>
 
-							</li>
-							<li><a href={% url 'core:agents' %}>Agents</a>
 
-							</li>
-							<li><a href={% url 'core:properties' %}>All Properties</a>
-
-							</li>
 
 							<li><a href={% url 'blog:home' %}>Blog</a>
 
 							</li>
-							<li><a href={% url 'core:about' %}>About Us</a></li>
+{#							<li><a href={% url 'core:about' %}>About Us</a></li>#}
 							<li><a href={% url 'core:contact' %}>Contact us</a></li>
 
 						</ul>

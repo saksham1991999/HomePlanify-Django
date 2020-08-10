@@ -2,6 +2,10 @@
 {%  load static %}
 {% load indian_numbers_tags %}
 
+{% block body_class %}
+<body class="page-search" id="page-top">
+{% endblock body_class %}
+
 {% block content %}
 
 <!-- Page Content -->
@@ -32,7 +36,7 @@
                                     <div class="row">
 
                                         <div class="col-md-9 col-sm-12">
-                                            <input class="price-input" type="text" name="price" placeholder="Price Range - ₹0 - ₹50,00,000" style="height: 50px; width: 100%; border: 1px solid lightgray; border-top-left-radius: 4px; border-bottom-left-radius: 4px">
+                                            <input class="form-control" type="text" name="price" placeholder="Search Keyword" style="height: 50px; width: 100%; border: 1px solid lightgray; border-top-left-radius: 4px; border-bottom-left-radius: 4px">
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <button class="btn btn-dark" style=" height: 50px; width: 100%">Search</button>

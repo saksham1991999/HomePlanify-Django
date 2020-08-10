@@ -6,52 +6,15 @@
 			<section id="footer-main">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-3 col-sm-3">
+						<div class="col-md-6 col-sm-6">
 							<article>
 								<h3>About Us</h3>
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed
-								</p>
+								<p>
+                                    At HomePlanify, we believe that when it comes to finding a home what's outside the front door is just as important as what's behind it. A Home is one of the most expensive things in one's life and we make certain you get the best deals with us.. We're committed to helping them discover a place where they will love to live and where they will feel more connected to the community and to each other. It's why we strive every day to help build a more neighborly world.
+                                </p>
 							</article>
 						</div><!-- /.col-sm-3 -->
-						<div class="col-md-3 col-sm-3">
-							<article>
-								<h3>Recent Properties For Sale</h3>
-                                {% if properties %}
-                                {% for property in properties %}
 
-
-								<div class="property small">
-									<a href=>
-										<div class="property-thumbnail" style="background-size: cover; width: 100px">
-											<img alt="" src={{ property.main_image.url }} width="100px">
-										</div>
-									</a>
-									<div class="info">
-										<a href={% url 'core:property' property.id %}>{{ property.property_name }}</a>
-										<figure>{{ property.city }}</figure>
-										<div class="tag price">{{ property.total_price }}</div>
-									</div>
-								</div><!-- /.property -->
-
-                                {% endfor %}
-                                    {% else %}
-                                    <div>No Property to Show</div>
-                            {% endif %}
-
-							</article>
-						</div><!-- /.col-sm-3 -->
-						<div class="col-md-3 col-sm-3">
-							<article class="contact-us">
-								<h3>Contact Us</h3>
-								<address>
-									HomePlanify<br>
-									Faridabad<br>
-									Haryana, India
-								</address>
-								+91-9999998627<br>
-								<a href="homeplanify@gmail.com" class="mailto">homeplanify@gmail.com</a>
-							</article>
-						</div><!-- /.col-sm-3 -->
 						<div class="col-md-3 col-sm-3">
 							<article>
 								<h3>Useful Links</h3>
@@ -61,6 +24,18 @@
 									<li><a href={% url 'core:about' %}>About</a></li>
 									<li><a href={% url 'core:addproperty' %}>Add Property</a></li>
 								</ul>
+							</article>
+						</div><!-- /.col-sm-3 -->
+                        <div class="col-md-3 col-sm-3">
+							<article class="contact-us">
+								<h3>Contact Us</h3>
+								<address>
+									HomePlanify<br>
+									Faridabad<br>
+									Haryana, India
+								</address>
+								+91-9999998627<br>
+								<a href="homeplanify@gmail.com" class="mailto">homeplanify@gmail.com</a>
 							</article>
 						</div><!-- /.col-sm-3 -->
 						<div class="col-md-12 col-sm-12">

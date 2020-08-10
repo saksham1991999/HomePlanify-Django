@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% widget_tweak %}
+{% load widget_tweaks %}
 
 
 {% block content %}
@@ -29,13 +29,13 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <label>Mobile:</label>
-                            {% render_field form.mobile_no class="form-control" placeholder="Enter your Mobile Number" %}
+                            {% render_field form.mobile class="form-control" placeholder="Enter your Mobile Number" %}
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="input-group">
                             <label>Your Message:</label>
-                            {% render_field form.subject class="form-control" rows="8" cols="45" %}
+                            {% render_field form.message class="form-control" rows="8" cols="45" %}
                         </div>
                     </div>
                     <div class="submit">

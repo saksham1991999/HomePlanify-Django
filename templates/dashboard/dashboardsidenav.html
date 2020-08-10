@@ -1,38 +1,19 @@
-<!-- Widget -->
+<div class="col-md-3 col-sm-2 col-xs-12 horiz-tab">
+    <ul class="nav nav-tabs">
+        <li {% if request.resolver_match.view_name == 'core:userprofile' %}class="active li-md"{% else %}class="li-md"{% endif %}>
+            <a href="{% url 'core:userprofile' %}">
+                <i class="fa fa-user"></i><span class="img-tab">Profile</span>
+            </a>
+        </li>
 
-    <style>
+        <li {% if request.resolver_match.view_name == 'core:myproperties' %}class="active li-md"{% else %}class="li-md"{% endif %}><a href="{% url 'core:myproperties' %}"><i class="fa fa-home"></i><span class="img-tab">My properties</span></a></li>
+        <li {% if request.resolver_match.view_name == 'core:bookmarks' %}class="active li-md"{% else %}class="li-md"{% endif %}><a href="{% url 'core:bookmarks' %}"><i class="fa fa-heart"></i><span class="img-tab">Bookmarked properties</span></a></li>
 
+        <li {% if request.resolver_match.view_name == 'core:addproperty' %}class="active li-md"{% else %}class="li-md"{% endif %}><a href="{% url 'core:addproperty' %}"><i class="fa fa-home"></i><span class="img-tab">Add Property</span></a></li>
+        <li {% if request.resolver_match.view_name == 'account_change_password' %}class="active li-md"{% else %}class="li-md"{% endif %}><a href="{% url 'account_change_password' %}"><i class="fa fa-credit-card"></i><span class="img-tab">Change Password</span></a></li>
 
-        .li-md{
-            width: 250px;
-            background-color: white;
-        }
-
-        @media only screen and (max-width: 768px) {
-        /* For mobile phones: */
-            [class*="li-md"] {
-                width: auto;
-            }
-        }
-
-
-
-
-    </style>
-
-    <div class="col-md-3" style="margin-bottom: 50px">
-        <div class="sidebar left">
-            <div class=" my-account-nav-container">
-                <div class="col-md-3 col-sm-2 col-xs-12 horiz-tab">
-                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                        <li class="li-md"><a href="{% url 'core:userprofile' %}" {% if request.resolver_match.view_name == 'core:userprofile' %}class="current"{% endif %}><i class="fa fa-user"></i><span class="img-tab"> My Profile</span></a></li>
-                        <li class="li-md"><a href="{% url 'core:bookmarks' %}" {% if request.resolver_match.view_name == 'core:bookmarks' %}class="current"{% endif %}><i class="fa fa-heart"></i><span class="img-tab"> Bookmarked Listings</span></a></li>
-                        <li class="li-md"><a href="{% url 'core:myproperties' %}" {% if request.resolver_match.view_name == 'core:myproperties' %}class="current"{% endif %}><i class="fa fa-home"></i><span class="img-tab"> My properties</span></a></li>
-                        <li class="li-md"><a href="{% url 'core:addproperty' %}" {% if request.resolver_match.view_name == 'core:addproperty' %}class="current"{% endif %}><i class="fa fa-building"></i><span class="img-tab"> Submit New Property</span></a></li>
-                        <li class="li-md"><a href="{% url 'account_change_password' %}"><i class="fa fa-credit-card"></i><span class="img-tab"> Change Password</span></a></li>
-{#                        <li class="li-md"><a href="{% url 'account_logout' %}"><i class="fa fa-lock"></i><span class="img-tab"> Log Out</span></a></li>#}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+{#        <li class="li-md"><a href="#messages"><i class="fa fa-envelope"></i><span class="img-tab">My messages</span></a></li>#}
+{#        <li class="li-md"><a href="#agencies"><i class="fa fa-building"></i><span class="img-tab">My agencies</span></a></li>#}
+{#        <li class="li-md"><a href="#invites"><i class="fa fa-users"></i><span class="img-tab">My invites</span></a></li>#}
+    </ul>
+</div>

@@ -2,73 +2,118 @@
 {% load static %}
 {% load widget_tweaks %}
 
+{% block body_class %}
+<body class="page user-profile" id="page-top">
+{% endblock body_class %}
+
 {% block content %}
-<!-- Titlebar
-================================================== -->
-<div id="titlebar">
-	<div class="container">
-
-        <ol class="breadcrumb">
-            <li><a href={% url 'core:home' %}>Home</a></li>
-            <li class="active">Profile</li>
-        </ol>
-
-		<div class="row">
-			<div class="col-md-12">
-
-				<h3>My Profile</h3>
+    <!-- Page Content -->
+    <div id="page-content">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'core:home' %}">Home</a></li>
+                <li class="active">User profile</li>
+            </ol>
+        </div>
+        <div class="container">
+            <header class="header"><h2>Profile Settings</h2>
+                <p>Setup your Account</p>
+            </header>
 
 
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="row">
+
+                {% include 'dashboard/dashboardsidenav.html' %}
 
 
-<!-- Content
-================================================== -->
+                <div class="col-md-9 col-sm-10 col-xs-12 horizontal">
+                    <div id="my-tab-content" class="tab-content">
 
-<div class="container">
-	<div class="row">
+                        <div id="profile" class="tab-pane active">
+                            <div class="information-block">
+                                <form id="form-account-profile" method="post">
+                                    {% csrf_token %}
+                                    <section id="personal" class="clearfix">
+                                        <header class="header"><h3>Personal Information</h3>
+                                        </header>
+                                        <hr />
+                                        <div class="form-inline">
+                                            <div class="row">
+                                                <label class="col-md-2 col-sm-3">First Name:</label>
+                                                <div class="col-md-10 col-sm-9">
+                                                    {% render_field form.first_name class="form-control" placeholder="Enter your First Name" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-inline">
+                                            <div class="row">
+                                                <label class="col-md-2 col-sm-3">Last Name:</label>
+                                                <div class="col-md-10 col-sm-9">
+                                                    {% render_field form.last_name class="form-control" placeholder="Enter your Last Name" %}
+                                                </div>
+                                            </div>
+                                        </div>
 
-        {% include 'dashboard/dashboardsidenav.html' %}
+                                        <div class="form-inline">
+                                            <div class="row">
+                                                <label class="col-md-2 col-sm-3">Mobile Phone:</label>
+                                                <div class="col-md-10 col-sm-9">
+                                                    {% render_field form.mobile class="form-control" placeholder="10 digits number" %}
+                                                </div>
+                                            </div>
+                                        </div>
 
+{#                                        <div class="form-inline">#}
+{#                                            <div class="row">#}
+{#                                                <label class="col-md-2 col-sm-3">Email Adress:</label>#}
+{#                                                <div class="col-md-10 col-sm-9">#}
+{#                                                    <input type="text" class="form-control" placeholder="Enter your Email Adress">#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
 
-		<div class="col-md-9">
-			<div class="row">
-
-
-            <div class="col my-profile wide-3" style="padding: 10px; margin-bottom: 10px">
-                <form class="form-a contactForm" action="" method="post" role="form">
-                    {% csrf_token %}
-
-                    <div style="padding-top: 30px; padding-left: 30px; padding-right: 30px;">
-                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">First Name: </div>
-                        <div>
-                            {% render_field form.first_name class="form-control" %}
+                                        <div class="form-group clearfix">
+                                            <button type="submit" class="btn pull-right btn-large btn-primary" id="account-submit">Save Changes</button>
+                                        </div>
+                                    </section>
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
-                    <div style="margin: 30px">
-                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Last Name: </div>
-                        <div>
-                            {% render_field form.last_name class="form-control" %}
-                        </div>
-                    </div>
 
-                    <div style="margin: 30px ">
-                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Last Name: </div>
-                        <div>
-                            <button class="btn-default form-control" type = "submit">Save Changes</button>
-                        </div>
-                    </div>
 
-                </form>
+
+                    </div>
+                </div>
             </div>
-
-			</div>
-		</div>
-
-	</div>
-</div>
+        </div>
+    </div>
+    <!-- end Page Content -->
 {% endblock content %}
+
+
+{% block extra_scripts %}
+	<script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.placeholder.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/fileinput.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/selectize.min.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+	<script>
+		jQuery(document).ready(function() {
+			var hash = document.location.hash;
+			var prefix = "tab_";
+			if (hash) {
+				$('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+			}
+	    // Change hash for page-reload
+	    $('.nav-tabs a').on('shown', function (e) {
+	    	window.location.hash = e.target.hash.replace("#", "#" + prefix);
+	    });
+	  });
+	</script>
+<!--[if gt IE 8]>
+<script type="text/javascript" src="{% static 'js/ie.js' %}"></script>
+<![endif]-->
+{% endblock extra_scripts %}

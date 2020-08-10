@@ -1,95 +1,124 @@
 {% extends 'base.html' %}
-
 {% load static %}
+{% load widget_tweaks %}
+
+{% block body_class %}
+<body class="page user-profile" id="page-top">
+{% endblock body_class %}
 
 {% block content %}
-
-<!-- Titlebar
-================================================== -->
-<div id="titlebar">
-	<div class="container">
-
-        <ol class="breadcrumb">
-            <li><a href={% url 'core:home' %}>Home</a></li>
-            <li class="active">Profile</li>
-        </ol>
-
-		<div class="row">
-
-			<div class="col-md-12">
-
-				<h3>Bookmarked Listings</h3>
+    <!-- Page Content -->
+    <div id="page-content">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'core:home' %}">Home</a></li>
+                <li class="active">User profile</li>
+            </ol>
+        </div>
+        <div class="container">
+            <header class="header"><h2>Profile Settings</h2>
+                <p>My Properties</p>
+            </header>
 
 
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="row">
+
+                {% include 'dashboard/dashboardsidenav.html' %}
 
 
-<!-- Content
-================================================== -->
-<div class="container">
-	<div class="row">
+                <div class="col-md-9 col-sm-10 col-xs-12 horizontal">
+                    <div id="my-tab-content" class="tab-content">
 
 
-		{% include 'dashboard/dashboardsidenav.html' %}
-		<div class="col-md-9">
-			<div class="manage-table bookmarks-table responsive-table">
+                        <div id="properties" class="tab-pane active">
+                            <div class="information-block">
+                                <div class="wide-2">
+                                    <div class="row">
 
-            {% if bookmark %}
-                {% for property in bookmark.properties.all %}
-				<!-- Item #1 -->
+                                        {% for property in properties %}
+                                        <div class="col-sm-4 col-xs-12 prop">
+                                            <div class="wht-cont">
+                                                <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
+                                                    <span class="filter"></span>
+                                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                                    <div class="overlay">
+                                                        <div class="img-counter"></div>
+                                                    </div>
+                                                </div>
 
-                    <div class="information-block" style="margin-bottom: 10px">
-									<div class="wide-2">
-										<div class="wht-cont">
-											<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
-												<span class="filter"></span>
-												<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">Show more</label></span>
-												<div class="overlay">
+                                                <div class="item-title">
+                                                    <h4><a href="{% url 'core:property' property.id %}">{{ property.property_name }}</a></h4>
+                                                    <p class="team-color">{{ property.city }}</p>
+                                                    <div class="col-md-7 col-sm-7 col-xs-7">
+                                                        <p>Bedrooms - {{ property.bedrooms }}</p>
+                                                    </div>
+                                                    <div class="col-md-5 col-sm-5 col-xs-5">
+                                                        <p>Rooms - {{ property.rooms }}</p>
+                                                    </div>
+                                                    <div class="col-md-7 col-sm-7 col-xs-7 lft-brd"></div>
+                                                    <div class="col-md-5 col-sm-5 col-xs-5 lft-brd"></div>
+                                                </div>
+                                                <hr>
+                                                <div class="item-title btm-part">
+                                                    <div class="row">
+                                                        <div class="col-md-8 col-sm-8 col-xs-8">
+                                                            <p>Rs {{ property.total_price }}</p>
+                                                            <p class="team-color">{{ property.views }} Views</p>
+                                                        </div>
 
-												</div>
-											</div>
-											<div class="item-title">
-												<h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
-												<p class="team-color">{{ property.city }}</p>
+                                                        <div class="col-md-4 col-sm-4 col-xs-4 favorite">
+                                                            <a href="{% url 'core:removefrombookmarks' property.id %}" class="delete"><i class="fa fa-remove"></i> Remove</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% empty %}
+                                            <tr>
+                                                <td class="title-container">
+                                                    <div class="title">
+                                                        <h4 align="center"><a href="#">You Haven't Bookmarked any Property !</a></h4>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-											</div>
-											<hr>
-											<div class="item-title btm-part">
-												<div class="row">
-													<div class="col-md-8 col-sm-8 col-xs-8">
-														<p>Rs {{ property.total_price }}</p>
-														<p class="team-color">FOR {{ property.get_type_display|upper }}</p>
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-4 favorite">
-														<div class="bookmark" data-bookmark-state="empty">
-                                                            <a href={% url 'core:removefrombookmarks' property.id %}><span class="title-add">Remove bookmark</span></a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-                {% endfor %}
-            {% else %}
-                <tr>
-					<td class="title-container">
-						<div class="title">
-							<h4><a href="#">You Haven't Bookmarked any Property !</a></h4>
-
-						</div>
-					</td>
-				</tr>
-            {% endif %}
+                    </div>
+                </div>
             </div>
-		</div>
-
-	</div>
-</div>
-
+        </div>
+    </div>
+    <!-- end Page Content -->
 {% endblock content %}
+
+
+{% block extra_scripts %}
+	<script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery.placeholder.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/fileinput.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/masonry.pkgd.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/selectize.min.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+	<script>
+		jQuery(document).ready(function() {
+			var hash = document.location.hash;
+			var prefix = "tab_";
+			if (hash) {
+				$('.nav-tabs a[href='+hash.replace(prefix,"")+']').tab('show');
+			}
+	    // Change hash for page-reload
+	    $('.nav-tabs a').on('shown', function (e) {
+	    	window.location.hash = e.target.hash.replace("#", "#" + prefix);
+	    });
+	  });
+	</script>
+<!--[if gt IE 8]>
+<script type="text/javascript" src="{% static 'js/ie.js' %}"></script>
+<![endif]-->
+{% endblock extra_scripts %}
