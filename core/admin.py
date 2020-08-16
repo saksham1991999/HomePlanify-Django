@@ -89,3 +89,4 @@ admin.site.register(models.enquiry)
 
 admin.site.register(models.District, DistrictAdmin)
 admin.site.register(models.Area)
+admin.site.register(models.Banner)
