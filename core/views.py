@@ -77,6 +77,7 @@ def login_user(request):
 
 def HomeView(request):
     properties = models.property.objects.filter(featured = True)[:4]
+    banners = models.Banner.objects.all()
     recent_posts = blogmodels.post.objects.all().order_by('-date')[:3]
     if request.method == 'POST':
         form = forms.EnquiryForm(request.POST)
@@ -97,6 +98,7 @@ def HomeView(request):
         'properties': properties,
         'form':form,
         'recent_posts':recent_posts,
+        'banners':banners,
     }
     return render(request, 'index.html', context)
 

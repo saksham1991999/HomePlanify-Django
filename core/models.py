@@ -39,8 +39,8 @@ class property(models.Model):
     type = models.CharField(choices=type_choices, max_length=1)
     property_name = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    bedrooms = models.IntegerField()
-    bathrooms = models.IntegerField()
+    bedrooms = models.PositiveSmallIntegerField()
+    bathrooms = models.PositiveSmallIntegerField()
     construction_status = models.CharField(choices=construction_choices, max_length=2, blank=True, null = True)
     available_from = models.DateField(blank=True, null=True)
     price_sq = models.FloatField(blank=True, null=True)
@@ -52,7 +52,7 @@ class property(models.Model):
     views = models.IntegerField(default=0)
     label = models.CharField(max_length = 10, null=True, blank=True)
     dateadded = models.DateField(auto_now_add=True)
-    rooms = models.IntegerField()
+    rooms = models.PositiveSmallIntegerField()
     features = models.ManyToManyField(features)
     youtube_video = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube Video ID')
     youtube_video_2 = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube 2nd Video ID')
@@ -154,3 +154,8 @@ class Area(models.Model):
     title = models.CharField(max_length=256)
     image = models.ImageField()
 
+class Banner(models.Model):
+    title = models.CharField(max_length = 128)
+    description = models.TextField()
+    image = models.ImageField()
+    link = models.CharField(max_length = 512)

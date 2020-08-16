@@ -9,30 +9,22 @@
 <div id="page-content_home">
     <div class="home_2">
         <div id="owl-demo-header" class="owl-carousel owl-theme carousel-full-width">
+
+            {% for banner in banners %}
             <div class="item">
                 <span class="filter"></span>
-                <div class="head-title-2" style="background: url({%  static 'img/homepage/slide1.jpg' %}) center;background-size: cover;">
+                <div class="head-title-2" style="background: url({{ banner.image.url }}) center;background-size: cover;">
                     <div class="container">
                         <div class="title col-lg-6 col-lg-offset-0 col-md-6 col-sm-8 col-sm-offset-1 col-xs-9 col-xs-offset-1">
-                            <h1>Slide 1 <br> to find the right Property</h1>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</h4>
-                            <span class="ffs-bs"><a href={% url 'core:properties' %} class="btn btn-large btn-primary">learn more</a></span>
+                            <h1>{{ banner.title }}</h1>
+                            <h4>{{ banner.description }}</h4>
+                            <span class="ffs-bs"><a href="{{ banner.link }}" class="btn btn-large btn-primary">learn more</a></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <span class="filter"></span>
-                <div class="head-title-2" style="background: url({%  static 'img/homepage/slide2.jpg' %}) center;background-size: cover;">
-                    <div class="container">
-                        <div class="title col-lg-6 col-lg-offset-0 col-md-6 col-sm-8 col-sm-offset-1 col-xs-9 col-xs-offset-1">
-                            <h1>Slide 2<br> to find the right Property</h1>
-                            <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it</h4>
-                            <span class="ffs-bs"><a href="property_page.html" class="btn btn-large btn-primary">learn more</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
+
         </div>
     </div>
 
@@ -141,90 +133,89 @@
 
 
     <!-- end wide-1 Featured Properties -->
-{#    {% if properties %}#}
-{#    <div class="wide-2">#}
-{#        <div class="container">#}
-{#            <div class="explore">#}
-{#                <h2>Featured Properties</h2>#}
-{#                <h5 class="team-color">Featured Properties available. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>#}
-{#            </div>#}
-{#                        {% for property in properties %}#}
-{##}
-{#                        <div class="row white">#}
-{#                            <div class="col-md-3 col-sm-3 prp-img">#}
-{#                                <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">#}
-{#                                    <span class="filter"></span>#}
-{#                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>#}
-{#                                    <div class="overlay">#}
-{#                                        <div class="img-counter">23 Photo</div>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                            <div class="item-info col-lg-7 col-md-6 col-sm-6">#}
-{#                                <h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>#}
-{#                                <p class="team-color">{{ property.city }}</p>#}
-{#                                <div class="block">#}
-{#                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">#}
-{#                                        <img src="{% static 'img/bedroom.png' %}" alt="">#}
-{#                                        <p class="info-line">{{ property.bedrooms }} Bedroom(s)</p>#}
-{#                                    </div>#}
-{#                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">#}
-{#                                        <img src="{% static 'img/bathroom.png' %}" alt="">#}
-{#                                        <p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>#}
-{#                                    </div>#}
-{#                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">#}
-{#                                        <img src="{% static 'img/square.png' %}" alt="">#}
-{#                                        <p class="info-line">{{ property.price_sq }} m<span class="rank">2</span></p>#}
-{#                                    </div>#}
-{#                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">#}
-{#                                        <img src="{% static 'img/marker.png' %}" alt="">#}
-{#                                        <p class="info-line">{{ property.city }} City</p>#}
-{#                                    </div>#}
-{#                                </div>#}
-{#                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>#}
-{#                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>#}
-{#                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>#}
-{#                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>#}
-{#                                <hr>#}
-{#                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>#}
-{#                            </div>#}
-{#                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">#}
-{#                                <div class="sum col-sm-12 col-xs-6">#}
-{#                                    <p>₹{{ property.total_price }}</p>#}
-{#                                    {% if property.type == "R" %}#}
-{#                                        <p class="team-color">Available from {{ property.available_from }}</p>#}
-{#                                    {% else %}#}
-{#                                        <p class="team-color">{{ property.get_construction_status_display }}</p>#}
-{#                                    {% endif %}#}
-{##}
-{#                                </div>#}
-{#                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">See more <i class="fa fa-caret-right"></i></a></span>#}
-{#                                <div class="sum favorite col-sm-12 col-xs-6">#}
-{#                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">#}
-{#                                        <span class="title-add">Add to bookmark</span>#}
-{#                                    </div>#}
-{#                                    <p class="col-xs-3">Fav</p>#}
-{#                                    <div class="compare col-xs-3" data-compare-state="empty">#}
-{#                                        <span class="plus-add">Add to compare</span>#}
-{#                                    </div>#}
-{#                                    <p class="col-xs-3">Comp</p>#}
-{#                                </div>#}
-{#                            </div>#}
-{#                        </div>#}
-{##}
-{#                        {% endfor %}#}
-{#                    {% else %}#}
-{#                        <div class="row text-center">#}
-{#                            No Property to show.#}
-{#                        </div>#}
-{#                    {% endif %}#}
-{##}
-{#            <span class="ffs-bs bottom"><a href={% url 'core:properties' %} class="btn btn-default btn-large">explore property</a></span>#}
-{#        </div>#}
-{#    </div>#}
+    {% if properties %}
+    <div class="wide-2">
+        <div class="container">
+            <div class="explore">
+                <h2>Featured Properties</h2>
+                <h5 class="team-color">Featured Properties available. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>
+            </div>
+                        {% for property in properties %}
 
+                        <div class="row white">
+                            <div class="col-md-3 col-sm-3 prp-img">
+                                <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
+                                    <span class="filter"></span>
+                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
+                                    <div class="overlay">
+                                        <div class="img-counter">23 Photo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item-info col-lg-7 col-md-6 col-sm-6">
+                                <h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
+                                <p class="team-color">{{ property.city }}</p>
+                                <div class="block">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="{% static 'img/bedroom.png' %}" alt="">
+                                        <p class="info-line">{{ property.bedrooms }} Bedroom(s)</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="{% static 'img/bathroom.png' %}" alt="">
+                                        <p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="{% static 'img/square.png' %}" alt="">
+                                        <p class="info-line">{{ property.price_sq }} m<span class="rank">2</span></p>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-3 cat-img">
+                                        <img src="{% static 'img/marker.png' %}" alt="">
+                                        <p class="info-line">{{ property.city }} City</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
+                                <hr>
+                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                            </div>
+                            <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                <div class="sum col-sm-12 col-xs-6">
+                                    <p>₹{{ property.total_price }}</p>
+                                    {% if property.type == "R" %}
+                                        <p class="team-color">Available from {{ property.available_from }}</p>
+                                    {% else %}
+                                        <p class="team-color">{{ property.get_construction_status_display }}</p>
+                                    {% endif %}
 
-{#    <!-- end wide-2 -->#}
+                                </div>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">See more <i class="fa fa-caret-right"></i></a></span>
+                                <div class="sum favorite col-sm-12 col-xs-6">
+                                    <div class="bookmark col-xs-3" data-bookmark-state="empty">
+                                        <span class="title-add">Add to bookmark</span>
+                                    </div>
+                                    <p class="col-xs-3">Fav</p>
+                                    <div class="compare col-xs-3" data-compare-state="empty">
+                                        <span class="plus-add">Add to compare</span>
+                                    </div>
+                                    <p class="col-xs-3">Comp</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    {% else %}
+                        <div class="row text-center">
+                            No Property to show.
+                        </div>
+                    {% endif %}
+
+            <span class="ffs-bs bottom"><a href="{% url 'core:properties' %}" class="btn btn-default btn-large">explore property</a></span>
+        </div>
+    </div>
+    <!-- end wide-2 -->
+
 {#    <div class="wide-3">#}
 {#        <div class="explore">#}
 {#            <h2>Meet the Suburb Team</h2>#}
