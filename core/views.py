@@ -234,11 +234,18 @@ def myProperties(request):
 @login_required
 def editProperty(request, id):
     property = get_object_or_404(models.property, id=id)
+    features = models.features.objects.all()
     if property.owner == request.user:
         if request.method == 'POST':
             form = forms.propertyForm(request.POST, instance=property)
+            imagesform = forms.ImagesForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
+                if imagesform.is_valid():
+                    for image in uploadedimages:
+                        imageinput = models.images(property=property, image=image)
+                        imageinput.save()
+
                 messages.success(
                     request,
                     'Property Details Saved Successfully',
@@ -249,8 +256,11 @@ def editProperty(request, id):
                 return redirect('core:myproperties')
         else:
             form = forms.propertyForm(instance=property)
+            imagesform = forms.ImagesForm()
             context = {
                 'form': form,
+                'imagesform': imagesform,
+                "features": features,
             }
             return render(request, 'dashboard/addproperty.html', context)
     else:
@@ -268,7 +278,7 @@ def addProperty(request):
 
         imagesform = forms.ImagesForm(request.POST, request.FILES)
         uploadedimages = request.FILES.getlist('image')
-
+        print(request.POST)
         if form.is_valid():
             new_form = form.save(commit = False)
             new_form.owner = request.user
@@ -285,12 +295,24 @@ def addProperty(request):
                             extra_tags='alert alert-success alert-dismissible fade show'
                             )
             return redirect('core:myproperties')
+        else:
+            print(form.errors)
+            print(imagesform.errors)
+            features = models.features.objects.all()
+            context = {
+                'form': form,
+                'imagesform': imagesform,
+                "features": features,
+            }
+            return render(request, 'dashboard/addproperty.html', context)
     else:
         form = forms.propertyForm()
         imagesform = forms.ImagesForm()
+        features = models.features.objects.all()
         context = {
             'form': form,
             'imagesform': imagesform,
+            "features":features,
         }
         return render(request, 'dashboard/addproperty.html', context)
 

@@ -2,283 +2,511 @@
 {% load static %}
 {% load widget_tweaks %}
 
+{% block body_class %}
+<body class="page-property" id="page-top">
+{% endblock body_class %}
 
+
+{% block extra_stylesheet %}
+
+	<link href="{% static 'fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+	<link rel="stylesheet" href="{% static 'css/selectize.css' %}" type="text/css">
+
+
+    <style>
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+</style>
+
+{% endblock extra_stylesheet %}
 
 {% block content %}
 
-
-<div id="page-content">
+		<!-- Page Content -->
+		<div id="page-content">
 			<div class="wide-4">
 				<div class="container">
 					<ol class="breadcrumb">
-						<li><a href={% url 'core:home' %}>Home</a></li>
+						<li><a href="{% url 'core:home' %}">Home</a></li>
 						<li class="active">Add Property</li>
 					</ol>
 				</div>
 				<div class="container">
-					<div class="">
-						<h2>Add new Property</h2>
-						<h6 class="team-color" style="font-weight: lighter">It is easy and takes 15 min maximum</h6>
+					<div class="explore">
+						<h2>Create a new Property</h2>
+						<h5 class="team-color">It is easy and takes 15 min maximum</h5>
 					</div>
-					<form id="form-submit" class="form-submit" enctype="multipart/form-data" action="" method="POST" role="form">
-
+					<form id="form-submit" class="form-submit" method="post" enctype="multipart/form-data" >
                         {% csrf_token %}
-
-						<div class="wide-3" style="margin-top: 30px">
-							<div class="container">
-
-                                <div style="margin-top: 20px">
-                                    <div style="font-size: 30px"><i class="fa fa-plus-circle"></i><span> Main Information</span></div>
+						<div class="wide-3">
+							<div class="explore">
+								<div class="property-map-marker"><img src="{% static 'img/marker-full.png' %}" alt="" /><span class="marker-number">1</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Main Information</h3>
+{#										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>#}
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont">
+								<hr>
+								<div class="form-group">
+									<label>Property Title:</label>
+                                    {% render_field form.property_name required="" class="form-control" %}
                                 </div>
+								<div class="row">
 
-                                <hr>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="form-group">
+											<label>Price:</label>
+                                            {% render_field form.total_price class="form-control" placeholder="Total Price" pattern="\d*" %}
+										</div>
+									</div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Select Type:</div>
-                                    <div>
-                                        {% render_field form.type class="form-control" %}
-{#                                        <select name="type" required="" id="id_type" class="form-control">#}
-{#                                            <option value="" selected="">---------</option>#}
-{#                                            <option value="B">Buy</option>#}
-{#                                            <option value="S">Sell</option>#}
-{#                                            <option value="R">Rent</option>#}
-{#                                        </select>#}
-                                    </div>
-                                </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="form-group">
+											<label>Type:</label>
+                                            {% render_field form.type class="form-control" %}
+										</div>
+									</div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Property Name:</div>
-                                    <div>
-                                        {% render_field form.property_name maxlength="50" required="" class="form-control" %}
-{#                                        <input type="text" name="property_name" maxlength="50" required="" id="id_property_name" class="form-control">#}
-                                    </div>
-                                </div>
+                                    <div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="form-group">
+											<label>Area (m sq.):</label>
+                                            {% render_field form.price_sq class="form-control" %}
+										</div>
+									</div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">City:</div>
-                                    <div>
-                                        {% render_field form.city maxlength="50" required="" class="form-control" %}
-{#                                        <input type="text" name="city" maxlength="50" required="" id="id_city" class="form-control">#}
-                                    </div>
-                                </div>
+									<div class="col-xs-12">
+										<div class="form-group">
+											<label for="text-area-2">Description:</label>
+                                            {% render_field form.additional_features id="text-area-2" rows="6" cols="45" class="form-control" %}
+										</div>
+									</div>
+								</div>
+							</div>
 
-                                <div style="margin: 30px">
 
-                                    <div class="row">
+							<div class="explore">
+								<div class="property-map-marker"><img src="{% static 'img/marker-full.png' %}" alt="" /><span class="marker-number">2</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Summary</h3>
+										<h5 class="team-color"> </h5>
+									</div>
+								</div>
+							</div>
 
-                                        <div class="col-md-6 col-sm-12">
-                                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Room(s):</div>
-                                        <div>
-                                            {% render_field form.rooms required="" class="form-control" %}
-{#                                        <input type="number" name="rooms" required="" id="id_rooms" class="form-control">#}
-                                        </div>
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                        <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bedroom(s):</div>
-                                        <div>
-                                            {% render_field form.bedrooms required="" class="form-control" %}
-{#                                        <input type="number" name="city" maxlength="50" required="" id="id_city" class="form-control">#}
-                                        </div>
-
-                                    </div>
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-
-                                    <div class="row">
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">No. of Bathroom(s):</div>
-                                            <div>
-                                            {% render_field form.bathrooms required="" class="form-control" %}
-{#                                          <input type="number" name="bathrooms" required="" id="id_bathrooms" class="form-control">#}
+							<div class="prt-cont">
+								<hr>
+								<div class="row">
+									<div class=" col-md-8 col-sm-8">
+										<div class="row">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Construction Status:</label>
+                                                    {% render_field form.construction_status class="form-control" %}
+                                                </div>
                                             </div>
 
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Construction Status (Optional):</div>
-                                            <div>
-                                                {% render_field form.construction_status required="" class="form-control" %}
-{#                                        <select name="construction_status" id="id_construction_status" class="form-control">#}
-{#                                            <option value="" selected="">---------</option>#}
-{#                                            <option value="RM">Ready to Move</option>#}
-{#                                            <option value="UC">Under Construction</option>#}
-{#                                        </select>#}
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Available From:</label>
+                                                    {% render_field form.available_from class="form-control" placeholder="yyyy-mm-dd" %}
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
+										</div>
+												<hr>
 
-                                <div style="margin: 30px">
+										<div class="row">
 
-                                    <div class="row">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<label>Rooms: &ensp;<span id="rooms"></span></label>
+                                                    <div class="slidecontainer">
+                                                        <input type="range" min="1" max="10" value="4" name="rooms" class="slider" id="rooms-slider">
+                                                    </div>
+												</div>
+											</div>
 
-                                        <div class="col-md-6 col-sm-12">
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<label>Bedrooms: &ensp;<span id="bedrooms"></span></label>
+                                                    <div class="slidecontainer">
+                                                        <input type="range" min="1" max="10" value="3" name="bedrooms" class="slider" id="bedrooms-slider">
+                                                    </div>
+												</div>
+											</div>
 
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Total Price:</div>
-                                    <div>
-                                        {% render_field form.total_price step="any" required="" class="form-control" %}
-{#                                        <input type="number" name="total_price" step="any" required="" id="id_total_price" class="form-control">#}
-                                    </div>
-
-
-
-
-
-
-                                        </div>
-
-                                        <div class="col-md-6 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Price per sq m (Optional):</div>
-                                            <div>{% render_field form.price_sq class="form-control" %}
-{#                                        <input type="number" name="price_sq" step="any" id="id_price_sq" class="form-control">#}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Available from Date (YYYY-MM-DD) (Optional):</div>
-                                            <div>
-                                                {% render_field form.available_from class="form-control" %}
-{#                                        <input type="text" name="available_from" id="id_available_from" class="form-control">#}
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<label>Bathrooms: &ensp;<span id="bathrooms"></span></label>
+                                                    <div class="slidecontainer">
+                                                        <input type="range" min="1" name="bathrooms" max="10" value="2" class="slider" id="bathrooms-slider">
+                                                    </div>
+												</div>
+											</div>
+										</div>
+                                                <hr>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>City:</label>
+                                                    {% render_field form.city class="form-control" %}
+                                                </div>
                                             </div>
 
+										</div>
+												<hr>
+
+									</div>
+
+{#									<div class=" col-md-4 col-sm-4 summary-image">#}
+{#										<label>Featured Photo</label>#}
+{#										<div class="featured-image-block">#}
+{#											<img src="assets/img/camera.png" alt="" class="property-icon camera">#}
+{#											<h3> Add Featured Photo</h3>#}
+{#											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>#}
+{#											<input id="file-upload" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">#}
+{#											<label for="file-upload">#}
+{#												<img src="assets/img/upload.png" alt="" class="image-upload-icon">Add Files#}
+{#											</label>#}
+{#										</div>#}
+{#									</div>#}
+
+
+								</div>
+							</div>
+
+{#							<div class="explore">#}
+{#								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">3</span></div>#}
+{#								<div class="prt-cont">#}
+{#									<div class="property-title">#}
+{#										<h3>Location Information</h3>#}
+{#										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="prt-cont">#}
+{#								<hr>#}
+{#								<div class="row">#}
+{#									<div class="location-info col-md-6 col-sm-6 col-xs-12">#}
+{#										<div class="form-group">#}
+{#											<label>Country</label>#}
+{#											<select class="selection">#}
+{#												<option>United States (US)</option>#}
+{#												<option>Canada (CAN)</option>#}
+{#												<option>Spain (ESP)</option>#}
+{#											</select>#}
+{#										</div>#}
+{#										<div class="form-group grey-color">#}
+{#											<label class="team-color">State</label>#}
+{#											<select class="selection">#}
+{#												<option>Alabama</option>#}
+{#												<option>Arizona</option>#}
+{#												<option>Arkansas</option>#}
+{#											</select>#}
+{#										</div>#}
+{#										<div class="input-group">#}
+{#											<label>Address</label>#}
+{#											<input type="text" class="form-control" placeholder="Enter property address" required>#}
+{#										</div>#}
+{#										<div class="row">#}
+{#											<div class="col-md-6 col-sm-6 col-xs-12">#}
+{#												<div class="form-group">#}
+{#													<label>Town/City:</label>#}
+{#													<input type="text" class="form-control" placeholder="Ex. New York"  required>#}
+{#												</div>#}
+{#											</div>#}
+{#											<div class="col-md-6 col-sm-6 col-xs-12">#}
+{#												<div class="form-group">#}
+{#													<label>Post/ZIP Code:</label>#}
+{#													<input type="text" class="form-control" placeholder="_ _ - _ _ _">#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#										<div class="row">#}
+{#											<div class="col-md-6 col-sm-6 col-xs-12">#}
+{#												<div class="form-group">#}
+{#													<label>District:</label>#}
+{#													<input type="text" class="form-control" placeholder="Ex. Manhattan"  required>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#									</div>#}
+{#									<div class="location-map col-md-6 col-sm-6 col-xs-12">#}
+{#										<div class="input-group">#}
+{#											<label for="address-map">Place on map</label>#}
+{#											<input type="text" class="form-control" id="address-map" name="address">#}
+{#											<i class="fa fa-search"></i>#}
+{#										</div>#}
+{#										<div id="submit-map"></div>#}
+{#										<div class="row">#}
+{#											<div class="col-md-6 col-sm-6 col-xs-12">#}
+{#												<div class="form-group">#}
+{#													<label for="latitude">Coordinates</label>#}
+{#													<input type="text" class="form-control" placeholder="Latitude" id="latitude" readonly>#}
+{#												</div>#}
+{#											</div>#}
+{#											<div class="col-md-6 col-sm-6 col-xs-12">#}
+{#												<div class="form-group">#}
+{#													<label for="longitude">&nbsp;</label>#}
+{#													<input type="text" class="form-control" placeholder="Longitude" id="longitude" readonly>#}
+{#												</div>#}
+{#											</div>#}
+{#										</div>#}
+{#									</div>#}
+{#								</div>#}
+{#							</div>#}
+
+
+							<div class="explore">
+								<div class="property-map-marker"><img src="{% static 'img/marker-full.png' %}" alt="" /><span class="marker-number">4</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Media Files</h3>
+										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont media">
+								<hr>
+								<div class="row">
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="{% static 'img/camera.png' %}" alt="" class="property-icon files">
+											<h3>Featured Photo</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+                                            {% render_field form.main_image  id="file-upload-2" class="file" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files" %}
+{#											<input id="file-upload-2" type="file" class="file" required data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">#}
+											<label for="file-upload-2">
+												<img src="{% static 'img/upload.png' %}" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="{% static 'img/gallery.png' %}" alt="" class="property-icon gallery">
+											<h3> Photo Gallery</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+                                            {% render_field imagesform.image  id="file-upload-3" class="file" multiple='' data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files" %}
+{#											<input id="file-upload-3" name="image" type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">#}
+											<label for="file-upload-3">
+												<img src="{% static 'img/upload.png' %}" alt="" class="image-upload-icon">Add Files
+											</label>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="featured-image-block">
+											<img src="{% static 'img/plan.png' %}" alt="" class="property-icon plan">
+											<h3>Video</h3>
+											<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and</h5>
+                                            {% render_field form.video  id="file-upload-4" data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="video/*" data-browse-class="btn btn-default" data-browse-label="Add Files" %}
+{#											<input i type="file" class="file" required multiple data-show-upload="false" data-show-caption="false" data-show-remove="false" accept="image/jpeg,image/png" data-browse-class="btn btn-default" data-browse-label="Add Files">#}
+											<label for="file-upload-4">
+												<img src="{% static 'img/upload.png' %}" alt="" class="image-upload-icon">Add Video
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<div class="input-group">
+									<label>Youtube Video ID: (Optional)</label>
+                                    {% render_field form.youtube_video class="form-control" placeholder="Add ID of your Youtube video" %}
+								</div>
+
+                                <div class="input-group">
+									<label>Youtube Video 2 ID: (Optional)</label>
+                                    {% render_field form.youtube_video_2 class="form-control" placeholder="Add ID of your Youtube video" %}
                                 </div>
 
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
-                                    <div>
-                                        {% render_field form.additional_features cols="40" rows="10" class="form-control" %}
-{#                                        <textarea name="additional_features" cols="40" rows="10" id="id_additional_features" class="form-control"></textarea>#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-
-                                    <div class="row">
-
-                                        <div class="col-md-4 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Main Image:</div>
-                                            <div>
-                                            {% render_field form.main_image class="form-control" %}
-{#                                        <input type="file" name="main_image" accept="image/*" required="" id="id_main_image" class="form-control">#}
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Add a Video (Optional):</div>
-                                            <div>
-                                            {% render_field form.video class="form-control" %}
-{#                                          <input type="file" name="video" id="id_video" class="form-control">#}
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-4 col-sm-12">
-
-                                            <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Image:</div>
-                                            <div>
-{#                                          {% render_field form.file class="form-control" %}#}
-                                            <input type="file" name="image" multiple="" accept="image/*" required="" id="id_image" class="form-control">
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Label (Optional):</div>
-                                    <div>
-                                        {% render_field form.label maxlength="10" class="form-control" %}
-{#                                        <input type="text" name="label" maxlength="10" id="id_label" class="form-control">#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Aditional Features:</div>
-                                    <div>
-                                        {% render_field form.features style="height:auto;"  required="" multiple="" class="form-control" %}
-{#                                        <select name="features" style="height:auto;"  required="" id="id_features" multiple="" class="form-control">#}
-{#                                            {% for feature in forms.features %}#}
-{##}
-{#                                                <option value={{ feature.id }}>{{ feature.title }}</option>#}
-{##}
-{#                                            {% endfor %}#}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube Video ID:</div>
-                                    <div>
-                                        {% render_field form.youtube_video maxlength="512" class="form-control" %}
-{#                                        <input type="text" name="youtube_video" maxlength="512" id="id_youtube_video" class="form-control">#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">Youtube 2nd Video ID:</div>
-                                    <div>
-                                        {% render_field form.youtube_video_2 maxlength="512" class="form-control" %}
-{#                                        <input type="text" name="youtube_video_2" maxlength="512" id="id_youtube_video_2" class="form-control">#}
-                                    </div>
-                                </div>
-
-                                <div style="margin: 30px">
-                                    <div style="font-weight: bold; font-size: 15px; margin-top: 10px; margin-bottom: 10px">
-                                        <button class="btn btn-primary form-control" type = "submit">Submit Property</button>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            </div>
+							</div>
+							<div class="explore">
+								<div class="property-map-marker"><img src="assets/img/marker-full.png" alt="" /><span class="marker-number">5</span></div>
+								<div class="prt-cont">
+									<div class="property-title">
+										<h3>Property Features</h3>
+{#										<h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and  typesetting industry. </h5>#}
+									</div>
+								</div>
+							</div>
+							<div class="prt-cont features">
+								<hr>
+								<div class="row">
+									<div id="property-features" class="block">
+										<div class="row">
+											<ul class="submit-features">
+                                                {% for feature in features %}
+                                                    <li class="col-md-4 col-sm-4 col-xs-6"><div class="checkbox"><label><input type="checkbox" name="features" value="{{ feature.id }}">{{ feature.title }}</label></div></li>
+                                                {% endfor %}
+											</ul>
+										</div>
+										<hr>
+									</div>
+									<span class="ffs-bs"><button type="submit" class="btn btn-large btn-primary">create property</button></span>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
+			<!-- end Page Content -->
 
 
 
 
 
 
-    <script type="text/javascript" src= {% static 'js/icheck.min.js' %}/>
-    <script type="text/javascript" src={% static 'js/fileinput.min.js' %}></script>
-    <script type="text/javascript" src={% static 'js/markerwithlabel_packed.js' %}></script>
-	<script type="text/javascript" src={% static 'js/masonry.pkgd.min.js' %}></script>
-    <script type="text/javascript" src={% static 'js/jquery.validate.min.js' %}></script>
-	<script type="text/javascript" src={% static 'js/jquery.placeholder.js' %}></script>
+
 
 
 
 {% endblock content %}
 
 {% block extra_scripts %}
+    <script type="text/javascript" src={% static 'js/icheck.min.js' %}/>
+    <script type="text/javascript" src={% static 'js/fileinput.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/markerwithlabel_packed.js' %}></script>
+	<script type="text/javascript" src={% static 'js/masonry.pkgd.min.js' %}></script>
+    <script type="text/javascript" src={% static 'js/jquery.validate.min.js' %}></script>
+	<script type="text/javascript" src={% static 'js/jquery.placeholder.js' %}></script>
 
+    <script type="text/javascript" src="{% static 'js/custom-map.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
     <script>
 
         inputelement = document.getElementsByTagName("INPUT");
         inputelement.classList.add("form-control");
     </script>
+
+    	<script>
+		var _latitude = 40.719457;
+		var _longitude = -73.989642;
+		google.maps.event.addDomListener(window, 'load', initSubmitMap(_latitude,_longitude));
+		function initSubmitMap(_latitude,_longitude){
+			var mapCenter = new google.maps.LatLng(_latitude,_longitude);
+			var mapOptions = {
+				zoom: 14,
+				center: mapCenter,
+				disableDefaultUI: false
+			};
+			var mapElement = document.getElementById('submit-map');
+			var map = new google.maps.Map(mapElement, mapOptions);
+			var marker = new MarkerWithLabel({
+				position: mapCenter,
+				map: map,
+				icon: 'assets/img/marker-h.png',
+				labelAnchor: new google.maps.Point(50, 0),
+				draggable: true
+			});
+			$('#submit-map').removeClass('fade-map');
+			google.maps.event.addListener(marker, "mouseup", function (event) {
+				var latitude = this.position.lat();
+				var longitude = this.position.lng();
+				$('#latitude').val( this.position.lat() );
+				$('#longitude').val( this.position.lng() );
+			});
+
+			//Autocomplete
+			var input = /** @type {HTMLInputElement} */( document.getElementById('address-map') );
+			var autocomplete = new google.maps.places.Autocomplete(input);
+			autocomplete.bindTo('bounds', map);
+			google.maps.event.addListener(autocomplete, 'place_changed', function() {
+				var place = autocomplete.getPlace();
+				if (!place.geometry) {
+					return;
+				}
+				if (place.geometry.viewport) {
+					map.fitBounds(place.geometry.viewport);
+				} else {
+					map.setCenter(place.geometry.location);
+					map.setZoom(15);
+				}
+				marker.setPosition(place.geometry.location);
+				marker.setVisible(true);
+				$('#latitude').val( marker.getPosition().lat() );
+				$('#longitude').val( marker.getPosition().lng() );
+				var address = '';
+				if (place.address_components) {
+					address = [
+					(place.address_components[0] && place.address_components[0].short_name || ''),
+					(place.address_components[1] && place.address_components[1].short_name || ''),
+					(place.address_components[2] && place.address_components[2].short_name || '')
+					].join(' ');
+				}
+			});
+	}
+	function success(position) {
+		initSubmitMap(position.coords.latitude, position.coords.longitude);
+		$('#latitude').val( position.coords.latitude );
+		$('#longitude').val( position.coords.longitude );
+	}
+	</script>
+
+
+    <script>
+    var slider1 = document.getElementById("rooms-slider");
+    var output1 = document.getElementById("rooms");
+    output1.innerHTML = slider1.value;
+
+    slider1.oninput = function() {
+      output1.innerHTML = this.value;
+    }
+
+    var slider2 = document.getElementById("bedrooms-slider");
+    var output2 = document.getElementById("bedrooms");
+    output2.innerHTML = slider2.value;
+
+    slider2.oninput = function() {
+      output2.innerHTML = this.value;
+    }
+    var slider3 = document.getElementById("bathrooms-slider");
+    var output3 = document.getElementById("bathrooms");
+    output3.innerHTML = slider3.value;
+
+    slider3.oninput = function() {
+      output3.innerHTML = this.value;
+    }
+    </script>
+
 
 {% endblock %}

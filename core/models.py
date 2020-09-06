@@ -8,7 +8,11 @@ type_choices = (
     ('S', 'Sell'),
     ('R', 'Rent'),
 )
-
+"""
+Builder floor,
+Residential plot
+Commercial 
+"""
 construction_choices = (
     ('RM', 'Ready to Move'),
     ('UC', 'Under Construction'),
@@ -39,20 +43,25 @@ class property(models.Model):
     type = models.CharField(choices=type_choices, max_length=1)
     property_name = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
+
     bedrooms = models.PositiveSmallIntegerField()
     bathrooms = models.PositiveSmallIntegerField()
+    rooms = models.PositiveSmallIntegerField()
+
     construction_status = models.CharField(choices=construction_choices, max_length=2, blank=True, null = True)
     available_from = models.DateField(blank=True, null=True)
     price_sq = models.FloatField(blank=True, null=True)
     total_price = models.FloatField()
     additional_features = models.TextField(blank = True, null = True)
-    main_image = models.ImageField()
+
+
     visible = models.BooleanField(default=True)
     verified = models.BooleanField(default=False)
     views = models.IntegerField(default=0)
     label = models.CharField(max_length = 10, null=True, blank=True)
     dateadded = models.DateField(auto_now_add=True)
-    rooms = models.PositiveSmallIntegerField()
+
+    main_image = models.ImageField()
     features = models.ManyToManyField(features)
     youtube_video = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube Video ID')
     youtube_video_2 = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube 2nd Video ID')
