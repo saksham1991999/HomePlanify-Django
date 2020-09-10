@@ -6,6 +6,20 @@
 <body class="page-search" id="page-top">
 {% endblock body_class %}
 
+{% block extra_stylesheet %}
+<style>
+input {
+    border: 0px;
+    padding: 15px 15px 15px 20px !important;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 
 <!-- Page Content -->
@@ -18,25 +32,25 @@
                 <div class="row">
                     <div class="explore col-xs-12">
                         <h2>Properties</h2>
-                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Find the best suitable property</h5>
+{#                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Find the best suitable property</h5>#}
                     </div>
                     <div class="col-xs-12" style="padding: 0; ">
                         <div class="row">
-                            <form method="post">
-                                <div class="col-md-2 col-sm-12" style="text-align: center; margin-bottom: 15px">
-                                    <select class="selection" style="width: 100%; height: 50px;  border: 1px solid lightgray; border-radius: 4px; padding-left: 20px; color: grey">
-                                        <option>Sort By : </option>
-                                        <option>Date</option>
-                                        <option>Price</option>
-                                        <option>Type</option>
-                                    </select>
-                                </div>
+                            <form method="get">
+{#                                <div class="col-md-2 col-sm-12" style="text-align: center; margin-bottom: 15px">#}
+{#                                    <select class="selection" style="width: 100%; height: 50px;  border: 1px solid lightgray; border-radius: 4px; padding-left: 20px; color: grey">#}
+{#                                        <option>Sort By : </option>#}
+{#                                        <option>Date</option>#}
+{#                                        <option>Price</option>#}
+{#                                        <option>Type</option>#}
+{#                                    </select>#}
+{#                                </div>#}
 
-                                <div class="col-md-10 col-sm-12" style="text-align: center; margin-bottom: 15px">
+                                <div class="col-md-12 col-sm-12" style="text-align: center; margin-bottom: 15px">
                                     <div class="row">
 
                                         <div class="col-md-9 col-sm-12">
-                                            <input class="form-control" type="text" name="price" placeholder="Search Keyword" style="height: 50px; width: 100%; border: 1px solid lightgray; border-top-left-radius: 4px; border-bottom-left-radius: 4px">
+                                            <input class="form-control" type="text" name="search" placeholder="Search Keyword" style="height: 50px; width: 100%; border: 1px solid lightgray; border-top-left-radius: 4px; border-bottom-left-radius: 4px">
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <button class="btn btn-dark" style=" height: 50px; width: 100%">Search</button>

@@ -131,13 +131,46 @@
         <div class="ab-us-img col-md-4 col-sm-4" style="background-image:url({%  static 'img/homepage/slide2.jpg' %}) !important;"></div>
     </div>
 
+    {% if featured_properties %}
+    <div class="wide-3">
+        <div class="explore">
+            <h2>Featured Properties</h2>
+            <h5 class="team-color">All the Selected Properties<br> As per your requirements</h5>
+        </div>
+        <div class="container">
+            <div class="row owl-carousel" id="owl-demo-2">
+                {% for property in featured_properties %}
+                    <div class="item col-md-12 col-sm-4 col-xs-12">
+                    <div class="image" style="background:url({{ property.image.url }}) center">
+                        <div class="img-info">
+                            <div class="row">
+                                <div class="half col-xs-7">
+                                    <h3><a href="agent_profile.html">{{ property.name }}</a></h3>
+                                    <h6>{{ property.location }}</h6>
+                                </div>
+                                <div class="half col-xs-5 info-right">
+                                    <p></p>
+                                </div>
+                                <hr>
+                            </div>
+                            <p>{{ property.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <span class="ffs-bs"><a href={% url 'core:about' %} class="btn btn-default btn-large">more about us</a></span>
+    </div>
+    {% endif %}
+    <!-- end wide-3 -->
 
     <!-- end wide-1 Featured Properties -->
     {% if properties %}
     <div class="wide-2">
         <div class="container">
             <div class="explore">
-                <h2>Featured Properties</h2>
+                <h2>All Properties</h2>
                 <h5 class="team-color">Featured Properties available. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>
             </div>
                         {% for property in properties %}
@@ -216,91 +249,13 @@
     </div>
     <!-- end wide-2 -->
 
-{#    <div class="wide-3">#}
-{#        <div class="explore">#}
-{#            <h2>Meet the Suburb Team</h2>#}
-{#            <h5 class="team-color">Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br>Lorem Ipsum has been the industry's standard dummy text ever since</h5>#}
-{#        </div>#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
-{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
-{#                        <div class="img-info">#}
-{#                            <div class="row">#}
-{#                                <div class="half col-xs-7">#}
-{#                                    <h3><a href="agent_profile.html">Marta Haufman</a></h3>#}
-{#                                    <h6>Manager Assistent</h6>#}
-{#                                </div>#}
-{#                                <div class="half col-xs-5 info-right">#}
-{#                                    <p></p>#}
-{#                                </div>#}
-{#                                <hr>#}
-{#                            </div>#}
-{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
-{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
-{#                        <div class="img-info">#}
-{#                            <div class="row">#}
-{#                                <div class="half col-xs-7">#}
-{#                                    <h3><a href="agent_profile.html">Lisa Milk</a></h3>#}
-{#                                    <h6>Realtor</h6>#}
-{#                                </div>#}
-{#                                <div class="half col-xs-5 info-right">#}
-{#                                    <p></p>#}
-{#                                </div>#}
-{#                                <hr>#}
-{#                            </div>#}
-{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="item col-md-4 col-sm-4 col-xs-12">#}
-{#                    <div class="image" style="background:url(http://placehold.it/360X450) center">#}
-{#                        <div class="img-info">#}
-{#                            <div class="row">#}
-{#                                <div class="half col-xs-7">#}
-{#                                    <h3><a href="agent_profile.html">Jason Satti</a></h3>#}
-{#                                    <h6>Superhero</h6>#}
-{#                                </div>#}
-{#                                <div class="half col-xs-5 info-right">#}
-{#                                    <p>415 Deals Done</p>#}
-{#                                </div>#}
-{#                                <hr>#}
-{#                            </div>#}
-{#                            <p>“Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry”</p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <span class="ffs-bs"><a href={% url 'core:about' %} class="btn btn-default btn-large">more about us</a></span>#}
-{#    </div>#}
 
-    <!-- end wide-3 -->
     <div class="container">
         <section class="block testimonials">
             <header class="center">
                 <h2 class="no-border">What our Clients say!</h2>
             </header>
             <div class="owl-carousel testimonials-carousel">
-
-
-                <blockquote class="item">
-                    <aside class="cite">
-                        <p class="team-color"> "I felt 110% confident by partnering with HomePlanify."</p>
-                    </aside>
-                    <figure>
-                        <div class="image">
-                            <img src="{%  static 'img/homepage/profileimage.png' %}" alt="">
-                        </div>
-                        <p>Sanjay Choudhary</p>
-                        <p class="team-color">Realtor</p>
-                    </figure>
-                </blockquote>
-
 
                 <blockquote class="item">
                     <aside class="cite">
@@ -315,6 +270,18 @@
                     </figure>
                 </blockquote>
 
+                <blockquote class="item">
+                    <aside class="cite">
+                        <p class="team-color"> "I felt 110% confident by partnering with HomePlanify."</p>
+                    </aside>
+                    <figure>
+                        <div class="image">
+                            <img src="{%  static 'img/homepage/profileimage.png' %}" alt="">
+                        </div>
+                        <p>Sanjay Choudhary</p>
+                        <p class="team-color">Realtor</p>
+                    </figure>
+                </blockquote>
 
                 <blockquote class="item">
                     <aside class="cite">

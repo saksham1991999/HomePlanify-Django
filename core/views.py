@@ -13,6 +13,7 @@ from blog import models as blogmodels
 import requests
 from bs4 import BeautifulSoup
 
+from django.db.models import Q
 
 def get_news():
     URL = "https://www.hsvphry.org.in/Pages/HudaNewsAndUpdate.aspx"
@@ -79,6 +80,9 @@ def HomeView(request):
     properties = models.property.objects.filter(featured = True)[:4]
     banners = models.Banner.objects.all()
     recent_posts = blogmodels.post.objects.all().order_by('-date')[:3]
+
+    featured_properties = models.FeaturedProperty.objects.all()[:20]
+
     if request.method == 'POST':
         form = forms.EnquiryForm(request.POST)
         if form.is_valid():
@@ -99,6 +103,7 @@ def HomeView(request):
         'form':form,
         'recent_posts':recent_posts,
         'banners':banners,
+        "featured_properties":featured_properties,
     }
     return render(request, 'index.html', context)
 
@@ -121,13 +126,13 @@ def PropertiesView(request):
 
     if 'search' in request.GET:
         search_term = request.GET['search']
-        allProperties = allProperties.filter(property_name__icontains= search_term, additional_features__icontains=search_term)
+        allProperties = allProperties.filter(Q(property_name__icontains= search_term) | Q(additional_features__icontains=search_term) | Q(city__icontains=city))
 
     if 'city' in request.GET:
         city = request.GET['city']
         allProperties = allProperties.filter(city__icontains=city)
 
-    paginator = Paginator(allProperties, 2)
+    paginator = Paginator(allProperties, 20)
     page = request.GET.get('page')
     allProperties = paginator.get_page(page)
 

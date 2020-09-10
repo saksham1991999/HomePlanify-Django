@@ -38,6 +38,12 @@ class features(models.Model):
     class Meta:
         verbose_name_plural = 'Features'
 
+class FeaturedProperty(models.Model):
+    name = models.CharField(max_length = 128)
+    location = models.CharField(max_length = 128)
+    description = models.TextField()
+    image = models.ImageField()
+
 class property(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.CharField(choices=type_choices, max_length=1)
@@ -50,14 +56,14 @@ class property(models.Model):
 
     construction_status = models.CharField(choices=construction_choices, max_length=2, blank=True, null = True)
     available_from = models.DateField(blank=True, null=True)
-    price_sq = models.FloatField(blank=True, null=True)
-    total_price = models.FloatField()
+    price_sq = models.PositiveIntegerField(blank=True, null=True)
+    total_price = models.PositiveIntegerField()
     additional_features = models.TextField(blank = True, null = True)
 
 
     visible = models.BooleanField(default=True)
     verified = models.BooleanField(default=False)
-    views = models.IntegerField(default=0)
+    views = models.PositiveIntegerField(default=0)
     label = models.CharField(max_length = 10, null=True, blank=True)
     dateadded = models.DateField(auto_now_add=True)
 
