@@ -44,6 +44,9 @@ class FeaturedProperty(models.Model):
     description = models.TextField()
     image = models.ImageField()
 
+    class Meta:
+        verbose_name_plural = 'Featured Properties'
+
 class property(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     type = models.CharField(choices=type_choices, max_length=1)

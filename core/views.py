@@ -81,7 +81,7 @@ def HomeView(request):
     banners = models.Banner.objects.all()
     recent_posts = blogmodels.post.objects.all().order_by('-date')[:3]
 
-    featured_properties = models.FeaturedProperty.objects.all()[:20]
+    featured_properties = models.FeaturedProperty.objects.all()[:15]
 
     if request.method == 'POST':
         form = forms.EnquiryForm(request.POST)
