@@ -82,6 +82,7 @@ def HomeView(request):
     recent_posts = blogmodels.post.objects.all().order_by('-date')[:3]
 
     featured_properties = models.FeaturedProperty.objects.all()[:15]
+    invest_properties = models.InvestProperties.objects.all()[:15]
 
     if request.method == 'POST':
         form = forms.EnquiryForm(request.POST)
@@ -104,6 +105,7 @@ def HomeView(request):
         'recent_posts':recent_posts,
         'banners':banners,
         "featured_properties":featured_properties,
+        "invest_properties":invest_properties,
     }
     return render(request, 'index.html', context)
 
@@ -145,6 +147,37 @@ def PropertiesView(request):
         'city': city,
     }
     return render(request, 'properties.html', context)
+
+def FeaturedPropertiesView(request):
+    allProperties = models.FeaturedProperty.objects.all()
+    search_term = ''
+    city = ''
+
+    if 'bedrooms' in request.GET:
+        bedrooms = request.GET['bedrooms']
+        allProperties = allProperties.filter(bedrooms=bedrooms)
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        allProperties = allProperties.filter(Q(property_name__icontains= search_term) | Q(additional_features__icontains=search_term) | Q(city__icontains=city))
+
+    if 'city' in request.GET:
+        city = request.GET['city']
+        allProperties = allProperties.filter(city__icontains=city)
+
+    paginator = Paginator(allProperties, 20)
+    page = request.GET.get('page')
+    allProperties = paginator.get_page(page)
+
+    get_dict_copy = request.GET.copy()
+    params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
+    context = {
+        'properties': allProperties,
+        'params': params,
+        'search_term': search_term,
+        'city': city,
+    }
+    return render(request, 'featured_properties.html', context)
 
 def AgentsView(request):
     properties = models.property.objects.all()[:4]

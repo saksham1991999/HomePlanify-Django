@@ -38,14 +38,30 @@ class features(models.Model):
     class Meta:
         verbose_name_plural = 'Features'
 
+class InvestProperties(models.Model):
+    title = models.CharField(max_length = 128)
+    label = models.CharField(max_length = 128,blank=True, null=True)
+    image = models.ImageField()
+    description = models.TextField(blank=True, null=True)
+    link = models.CharField(max_length = 256, blank=True, null=True)
+    datetime = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return self.title
+
 class FeaturedProperty(models.Model):
     name = models.CharField(max_length = 128)
     location = models.CharField(max_length = 128)
     description = models.TextField()
     image = models.ImageField()
+    link = models.CharField(max_length=256, blank=True, null=True)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Featured Properties'
+
+    def __str__(self):
+        return self.name
 
 class property(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -140,9 +156,10 @@ class enquiry(models.Model):
     email = models.EmailField()
     mobile_no = models.CharField(max_length=10)
     subject = models.TextField()
+    datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return str(self.property.property_name) + " (" + str(self.property.id) + ")"
 
     class Meta:
         verbose_name_plural = 'Property Enquiries'

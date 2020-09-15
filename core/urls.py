@@ -11,6 +11,7 @@ urlpatterns = [
     path('about/', views.AboutView, name='about'),
     path('agents/', views.AgentsView, name='agents'),
     path('properties/', views.PropertiesView, name='properties'),
+    path('featured-properties/', views.FeaturedPropertiesView, name='featured_properties'),
     path('property/<int:id>/', views.PropertyView, name='property'),
 
 

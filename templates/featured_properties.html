@@ -3,7 +3,7 @@
 {% load indian_numbers_tags %}
 
 {% block body_class %}
-<body class="page-search" id="page-top">
+<body class="page-search page-homepage" id="page-top">
 {% endblock body_class %}
 
 {% block extra_stylesheet %}
@@ -31,7 +31,7 @@ input {
                 <!-- Range slider -->
                 <div class="row">
                     <div class="explore col-xs-12">
-                        <h2>Properties</h2>
+                        <h2>Featured Properties</h2>
 {#                        <h5 class="team-color col-sm-offset-3 col-sm-6 col-xs-offset-1 col-xs-10">Find the best suitable property</h5>#}
                     </div>
                     <div class="col-xs-12" style="padding: 0; ">
@@ -70,66 +70,35 @@ input {
                     <div class="container">
 
                     {% if properties %}
-                        {% for property in properties %}
 
-                        <div class="row white">
-										<div class="col-md-3 col-sm-3 prp-img">
-											<div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover; height: 100%">
-												<span class="filter"></span>
-{#												<span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>#}
-{#												<div class="overlay">#}
-{#													<div class="img-counter">23 Photo</div>#}
-{#												</div>#}
-											</div>
-										</div>
-										<div class="item-info col-lg-7 col-md-6 col-sm-6">
-											<h4><a href={% url 'core:property' property.id %}>{{ property.property_name }}</a></h4>
-											<p class="team-color">{{ property.city }}</p>
-											<div class="block">
-												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-													<img src={% static 'img/bedroom.png' %} alt="">
-													<p class="info-line">{{ property.bedrooms }} Bedroom(s)</p>
-												</div>
-												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-													<img src={% static 'img/bathroom.png' %} alt="">
-													<p class="info-line">{{ property.bathrooms }} Bathroom(s)</p>
-												</div>
-												<div class="col-md-3 col-sm-3 col-xs-3 cat-img">
-													<img src={% static 'img/garage.png' %} alt="">
-													<p class="info-line">{{ property.rooms }} Room(s)</p>
-												</div>
-											</div>
-											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-											<div class="col-md-3 col-sm-3 col-xs-3 line"></div>
-											<hr>
-											<p style="color: transparent">Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
-										</div>
-										<div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
-											<div class="sum col-sm-12 col-xs-6">
-												<h4>₹ {{ property.total_price|floatword_indian }}</h4>
-												<p class="team-color">for {{ property.get_type_display }}</p>
-											</div>
-											<span class="ffs-bs col-xs-12 btn-half-wth"><a href="{% url 'core:property' property.id %}" class="btn btn-default btn-small">Show more <i class="fa fa-caret-right"></i></a></span>
-											<div class="sum favorite col-sm-12 col-xs-6">
-                                                <a href={% url 'core:addtobookmarks' property.id %}>
-												<div class="bookmark col-xs-3" data-bookmark-state="empty">
-                                                    <span class="title-add">Add to bookmark</span>
-												</div>
-												<p class="col-xs-3">Fav</p>
-                                                </a>
-                                                <a href={% url 'core:addtocompare' property.id %}>
-												<div class="compare col-xs-3" data-compare-state="empty">
-                                                    <span class="plus-add">Add to compare</span>
-												</div>
-												<p class="col-xs-3">Comp</p>
-                                                </a>
-											</div>
-										</div>
-									</div>
+                            <div class="wide-3">
+                                <div class="container">
+                                    {% for property in properties %}
+                                        <div class="item col-md-4 col-sm-4 col-xs-12" style="margin-bottom: 20px">
+                                            <div class="image" style="background:url({{ property.image.url }}) center">
+                                                <div class="img-info">
+                                                    <div class="row">
+                                                        <div class="half col-xs-7">
+                                                            <h3><a href="{{ property.link }}">{{ property.name }}</a></h3>
+                                                            <h6>{{ property.location }}</h6>
+                                                        </div>
+                                                        <div class="half col-xs-5 info-right">
+                                                            <p></p>
+                                                        </div>
+                                                        <hr>
+                                                    </div>
+                                                    <p>{{ property.description }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
 
-                        {% endfor %}
+                                </div>
+
+                            </div>
+                        <!-- end wide-3 -->
+
+
                     {% else %}
 
                         <div class="row text-center">

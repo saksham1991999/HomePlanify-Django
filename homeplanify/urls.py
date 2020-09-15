@@ -13,9 +13,9 @@ router.register('bookmark', BookmarkAPIViewSet, basename='bookmark')
 router.register('main-enquiry', MainEnquiryAPIViewSet, basename='main-enquiry')
 router.register('contact', ContactsAPIViewSet, basename='contact')
 router.register('images', ImagesAPIViewSet, basename='images')
-router.register('property', CategoriesAPIViewSet, basename='blog-category')
-router.register('property', BlogPostAPIViewSet, basename='blog-post')
-router.register('property', BlogPostCommentAPIViewSet, basename='blog-post-comment')
+# router.register('property', CategoriesAPIViewSet, basename='blog-category')
+router.register('property', PropertiesAPIViewSet, basename='property-detail')
+# router.register('property', BlogPostCommentAPIViewSet, basename='blog-post-comment')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

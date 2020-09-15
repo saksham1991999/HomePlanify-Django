@@ -145,7 +145,7 @@
                         <div class="img-info">
                             <div class="row">
                                 <div class="half col-xs-7">
-                                    <h3><a href="agent_profile.html">{{ property.name }}</a></h3>
+                                    <h3><a href="{{ property.link }}">{{ property.name }}</a></h3>
                                     <h6>{{ property.location }}</h6>
                                 </div>
                                 <div class="half col-xs-5 info-right">
@@ -160,10 +160,42 @@
                 {% endfor %}
             </div>
         </div>
-        <span class="ffs-bs"><a href={% url 'core:about' %} class="btn btn-default btn-large">more about us</a></span>
+        <span class="ffs-bs"><a href="{% url 'core:featured_properties' %}" class="btn btn-default btn-large">More Properties</a></span>
     </div>
     {% endif %}
     <!-- end wide-3 -->
+
+    {% if invest_properties %}
+        <div class="wide-3 carousel-full-width">
+            <div class="explore">
+                <h2>Invest with HomePlanify</h2>
+                <h5 class="team-color">Plots, Builder Floors<br>Investment Begins 15 Lacs*</h5>
+            </div>
+            <div id="owl-demo-2" class="owl-carousel owl-theme ">
+                {% for property in invest_properties %}
+                <div class="item">
+                    <div class="image" style="background:url({{ property.image.url }}) center"></div>
+                    <div class="img-info">
+                        <div class="row">
+                            <div class="half col-xs-7">
+                                <h3><a href="{{ property.link }}">{{ property.title }}</a></h3>
+                                <h6>{{ property.label }}</h6>
+                            </div>
+                            <div class="half col-xs-5 info-right">
+                                <p></p>
+                            </div>
+                            <hr>
+                        </div>
+                        <p>{{ property.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+{#            <span class="ffs-bs"><a href="about_us.html" class="btn btn-default btn-large">more about us</a></span>#}
+        </div>
+        <!-- end wide-3 carousel-full-width -->
+    {% endif %}
+
 
     <!-- end wide-1 Featured Properties -->
     {% if properties %}
