@@ -115,16 +115,7 @@
                 <br>
                 <br>
 
-                <div class="row">
-                    <div class="col-md-6 col-sm-6 ex-block">
-                        <h4><i class="fa fa-circle-o"></i>Wide Range of Properties</h4>
-                        <p>More than 100 customers buy or sell a home with us each year. We help people and homes find each together.</p>
-                    </div>
-                    <div class="col-md-6 col-sm-6 ex-block">
-                        <h4><i class="fa fa-circle-o"></i>Home Designs Ideas</h4>
-                        <p>Our specialists can help you get started on that home project. Find paint colors, that perfect tile and more.</p>
-                    </div>
-                </div>
+
                 <span class="ffs-bs"><a href="{% url 'core:properties' %}" class="btn btn-large">Explore Properties</a></span>
             </div>
         </div>
@@ -211,10 +202,10 @@
                             <div class="col-md-3 col-sm-3 prp-img">
                                 <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
                                     <span class="filter"></span>
-                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>
-                                    <div class="overlay">
-                                        <div class="img-counter">23 Photo</div>
-                                    </div>
+{#                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>#}
+{#                                    <div class="overlay">#}
+{#                                        <div class="img-counter">23 Photo</div>#}
+{#                                    </div>#}
                                 </div>
                             </div>
                             <div class="item-info col-lg-7 col-md-6 col-sm-6">
@@ -243,11 +234,11 @@
                                 <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
                                 <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
                                 <hr>
-                                <p>Aenean quis sem nisi. Aliquam vehicula gravida orci, nec pretium mi ultricies in. Donec fermentum pulvinar mauris neque justo ...</p>
+                                <p>Read More ...</p>
                             </div>
                             <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                 <div class="sum col-sm-12 col-xs-6">
-                                    <p>₹{{ property.total_price }}</p>
+                                    <p>₹ {{ property.total_price|floatword_indian }}</p>
                                     {% if property.type == "R" %}
                                         <p class="team-color">Available from {{ property.available_from }}</p>
                                     {% else %}
