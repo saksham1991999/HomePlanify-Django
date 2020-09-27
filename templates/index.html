@@ -162,7 +162,7 @@
                 <h2>Invest with HomePlanify</h2>
                 <h5 class="team-color">Plots, Builder Floors<br>Investment Begins 15 Lacs*</h5>
             </div>
-            <div id="owl-demo-2" class="owl-carousel owl-theme ">
+            <div id="owl-demo-2" class="owl-carousel owl-theme owl-loaded">
                 {% for property in invest_properties %}
                 <div class="item">
                     <div class="image" style="background:url({{ property.image.url }}) center"></div>
@@ -234,7 +234,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
                                 <div class="col-md-3 col-sm-3 col-xs-3 line"></div>
                                 <hr>
-                                <p>Read More ...</p>
+                                <p>{{ property.get_short_description }}</p>
                             </div>
                             <div class="item-price col-lg-2 col-md-3 col-sm-3 col-xs-12">
                                 <div class="sum col-sm-12 col-xs-6">
@@ -246,7 +246,7 @@
                                     {% endif %}
 
                                 </div>
-                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href={% url 'core:property' property.id %} class="btn btn-default btn-small">See more <i class="fa fa-caret-right"></i></a></span>
+                                <span class="ffs-bs col-xs-12 btn-half-wth"><a href="{% url 'core:property' property.id %}" class="btn btn-default btn-small">See more <i class="fa fa-caret-right"></i></a></span>
                                 <div class="sum favorite col-sm-12 col-xs-6">
                                     <div class="bookmark col-xs-3" data-bookmark-state="empty">
                                         <span class="title-add">Add to bookmark</span>

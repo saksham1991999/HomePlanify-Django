@@ -99,6 +99,13 @@ class property(models.Model):
     class Meta:
         verbose_name_plural = 'Properties'
 
+    def get_short_description(self):
+        if len(self.additional_features) > 200:
+            return self.additional_features[:200]
+        else:
+            return self.additional_features
+
+
     # def get_label(self):
     #     if self.label:
     #         return self.label
