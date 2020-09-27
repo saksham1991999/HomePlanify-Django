@@ -202,7 +202,7 @@
                             <div class="col-md-3 col-sm-3 prp-img">
                                 <div class="exp-img-2" style="background:url({{ property.main_image.url }}) center;background-size: cover;">
                                     <span class="filter"></span>
-{#                                    <span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span>#}
+                                    <a href={% url 'core:property' property.id %}><span class="ffs-bs"><label for="op" class="btn btn-small btn-primary">browse photos</label></span></a>
                                     <div class="overlay">
                                         <div class="img-counter"></div>
                                     </div>
