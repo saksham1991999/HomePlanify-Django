@@ -131,15 +131,15 @@
         <div class="container">
             <div class="row owl-carousel" id="owl-demo-22">
                 {% for property in featured_properties %}
-                    <div class="item col-md-12 col-sm-4 col-xs-12">
+                    <div class="item col-md-12 col-sm-12 col-xs-12">
                     <div class="image" style="background:url({{ property.image.url }}) center">
                         <div class="img-info">
                             <div class="row">
-                                <div class="half col-xs-7">
+                                <div class="half col-xs-10">
                                     <h3><a href="{{ property.link }}">{{ property.name }}</a></h3>
                                     <h6>{{ property.location }}</h6>
                                 </div>
-                                <div class="half col-xs-5 info-right">
+                                <div class="half col-xs-2 info-right">
                                     <p></p>
                                 </div>
                                 <hr>
@@ -151,7 +151,7 @@
                 {% endfor %}
             </div>
         </div>
-        <span class="ffs-bs"><a href="{% url 'core:featured_properties' %}" class="btn btn-default btn-large">More Properties</a></span>
+        <span class="ffs-bs"><a href="{% url 'core:featured_properties' %}" class="btn btn-default btn-large">More Projects</a></span>
     </div>
     {% endif %}
     <!-- end wide-3 -->
