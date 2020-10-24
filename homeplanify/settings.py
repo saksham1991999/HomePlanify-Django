@@ -113,11 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTHENTICATION_BACKENDS = (
- 'django.contrib.auth.backends.ModelBackend',
- 'allauth.account.auth_backends.AuthenticationBackend',
- )
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
@@ -143,11 +138,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 STATICFILES_ROOT = os.path.join(BASE_DIR, 'static_root')
 
+
 # Auth
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    # 'allauth.account.auth_backends.AuthenticationBackend'
-)
+ 'django.contrib.auth.backends.ModelBackend',
+ 'allauth.account.auth_backends.AuthenticationBackend',
+ )
+
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
@@ -174,8 +171,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 AUTH_USER_MODEL = 'core.User'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 AWS_ACCESS_KEY_ID = 'AKIAYGY7AB76BQ5VXMEY'
