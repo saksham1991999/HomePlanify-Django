@@ -36,7 +36,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'crispy_forms',
     'storages',
+
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'rest_auth.registration',
+    'django.contrib.sites',
     'corsheaders',
     'indian_numbers',
 
@@ -108,6 +113,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+ 'django.contrib.auth.backends.ModelBackend',
+ 'allauth.account.auth_backends.AuthenticationBackend',
+ )
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -137,8 +148,11 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     # 'allauth.account.auth_backends.AuthenticationBackend'
 )
+
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
+CORS_ORIGIN_ALLOW_ALL = True
+CSRF_COOKIE_NAME = "csrftoken"
 
 # CRISPY FORMS
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -154,7 +168,6 @@ EMAIL_HOST_PASSWORD = 'Kunal_0001'
 
 PHONENUMBER_DB_FORMAT = 'NATIONAL'
 
-CORS_ORIGIN_ALLOW_ALL = True
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -162,6 +175,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
 AUTH_USER_MODEL = 'core.User'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 AWS_ACCESS_KEY_ID = 'AKIAYGY7AB76BQ5VXMEY'
@@ -175,5 +189,26 @@ AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_S3_HOST = 's3.us-east-2.amazonaws.com'
 
 # APPEND_SLASH=False
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DATETIME_FORMAT': "%b %d %Y %H:%M:%S",
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'core.serializers.UserSerializer',
+    'TOKEN_SERIALIZER': 'core.serializers.TokenSerializer',
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'core.serializers.CustomRegisterSerializer',
+}
 
 django_heroku.settings(locals())

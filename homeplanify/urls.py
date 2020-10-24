@@ -18,15 +18,20 @@ router.register('property', PropertiesAPIViewSet, basename='property-detail')
 # router.register('property', BlogPostCommentAPIViewSet, basename='blog-post-comment')
 
 urlpatterns = [
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/', include(router.urls), name='api'),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')).
+
     path('admin/', admin.site.urls),
     path('accounts/signup/', SignupView, name='account_signup'),
     path('accounts/login/', login_user, name='account_login'),
     path('accounts/', include('allauth.urls')),
+
     path('', include('core.urls', namespace='core')),
     path('blog/', include('blog.urls', namespace='blog')),
 
-    path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(router.urls), name='api'),
+
 
 ]
 
