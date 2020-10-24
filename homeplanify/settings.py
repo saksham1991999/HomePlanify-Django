@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_auth',
     'rest_auth.registration',
-    'django.contrib.sites',
     'corsheaders',
     'indian_numbers',
 
