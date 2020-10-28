@@ -6,7 +6,7 @@ from django.conf import settings
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
-from .models import User, property, images, bookmark, contact, enquiry, mainenquiry
+from .models import User, property, images, bookmark, contact, enquiry, mainenquiry, InvestProperties, FeaturedProperty
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -54,6 +54,19 @@ class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Token
         fields = ('key', 'user')
+
+class InvestPropertySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = InvestProperties
+        fields = "__all__"
+
+class FeaturedPropertySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FeaturedProperty
+        fields = "__all__"
+
 
 class PropertySerializer(serializers.ModelSerializer):
 

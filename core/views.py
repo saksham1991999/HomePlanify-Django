@@ -524,6 +524,8 @@ def MapsView(request, id):
 ################################
 ################################
 ################################
+
+
 ########## API VIEWS ###########
 
 class UserAPIViewSet(viewsets.ModelViewSet):
@@ -534,6 +536,14 @@ class UserAPIViewSet(viewsets.ModelViewSet):
         permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
+
+class InvestPropertiesAPIViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.InvestPropertySerializer
+    queryset = models.InvestProperties.objects.all()
+
+class FeaturedPropertiesAPIViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.FeaturedPropertySerializer
+    queryset = models.FeaturedProperty.objects.all()
 
 class PropertiesAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PropertySerializer
