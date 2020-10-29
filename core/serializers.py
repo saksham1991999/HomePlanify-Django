@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CustomRegisterSerializer(RegisterSerializer):
     mobile = serializers.CharField(allow_blank = True, allow_null=True)
-    first_name = serializers.CharField()
+    first_name = serializers.CharField(allow_blank = True, allow_null=True)
     last_name = serializers.CharField(allow_blank = True, allow_null=True)
     email = serializers.EmailField(allow_blank = True, allow_null=True)
 

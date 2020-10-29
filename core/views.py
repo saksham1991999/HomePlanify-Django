@@ -596,7 +596,7 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         return properties
 
     def get_permissions(self):
-        permission_classes = [IsAuthenticatedOrReadOnly]
+        permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
 
