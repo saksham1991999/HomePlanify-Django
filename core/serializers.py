@@ -15,13 +15,11 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = "__all__"
 
-
 class CustomRegisterSerializer(RegisterSerializer):
     mobile = serializers.CharField(allow_blank = True, allow_null=True)
     first_name = serializers.CharField()
     last_name = serializers.CharField(allow_blank = True, allow_null=True)
     email = serializers.EmailField(allow_blank = True, allow_null=True)
-
 
     class Meta:
         model = User
