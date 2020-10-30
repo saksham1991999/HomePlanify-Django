@@ -23,7 +23,9 @@ router.register('contact', ContactsAPIViewSet, basename='contact')
 router.register('images', ImagesAPIViewSet, basename='images')
 # router.register('property', CategoriesAPIViewSet, basename='blog-category')
 
-# router.register('property', BlogPostCommentAPIViewSet, basename='blog-post-comment')
+router.register('blog-categories', CategoriesAPIViewSet, basename='categories-detail')
+router.register('blog-posts', BlogPostAPIViewSet, basename='post-detail')
+router.register('post-comments', BlogPostCommentAPIViewSet, basename='comment-detail')
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
