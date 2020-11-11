@@ -13,8 +13,29 @@ from blog import models as blogmodels
 from rest_framework.decorators import action
 from django.db.models import Q
 from rest_framework.response import Response
-########## API VIEWS ###########
+from .permissions import IsOwnerOrReadOnly, ReadOnly
 
+"""
+Model View Set
+
+    def list(self, request):
+        pass
+
+    def create(self, request):
+        pass
+
+    def retrieve(self, request, pk=None):
+        pass
+
+    def update(self, request, pk=None):
+        pass
+
+    def partial_update(self, request, pk=None):
+        pass
+
+    def destroy(self, request, pk=None):
+        pass
+"""
 class UserAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer
     queryset = models.User.objects.all()
@@ -23,9 +44,6 @@ class UserAPIViewSet(viewsets.ModelViewSet):
         permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
-class ReadOnly(BasePermission):
-    def has_permission(self, request, view):
-        return request.method in SAFE_METHODS
 
 class FeaturesAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.FeaturesSerializer
@@ -36,10 +54,12 @@ class FeaturesAPIViewSet(viewsets.ModelViewSet):
 class InvestPropertiesAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.InvestPropertySerializer
     queryset = models.InvestProperties.objects.all()
+    permissions = [ReadOnly]
 
 class FeaturedPropertiesAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.FeaturedPropertySerializer
     queryset = models.FeaturedProperty.objects.all()
+    permissions = [ReadOnly]
 
 class PropertiesAPIViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.PropertySerializer
@@ -95,6 +115,18 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
 
+    def create(self, request, *args, **kwargs):
+        features = request.data['features']
+        if isinstance(features, str):
+            features_list = list(map(int, features.split("#")))
+            request.data['features'] = features_list
+        # request.data['branches'] =  ast.literal_eval(request.data['branches'])
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def my_properties(self, request, pk=None):
         user = request.user
@@ -116,7 +148,6 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         else:
             return Response({"Status": "No Property Bookmarked"})
 
-
     @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
     def add_to_bookmarks(self, request, pk=None):
         property = self.get_object()
@@ -133,7 +164,6 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             bookmark = models.bookmark.objects.create(user=request.user)
             bookmark.properties.add(property)
             return Response({"Status": "Successfully Bookmarked"})
-
 
     @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
     def remove_from_bookmarks(self, request, pk=None):
@@ -180,7 +210,10 @@ class ContactsAPIViewSet(viewsets.ModelViewSet):
     queryset = models.contact.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
 class EnquiryAPIViewSet(viewsets.ModelViewSet):
@@ -196,7 +229,10 @@ class EnquiryAPIViewSet(viewsets.ModelViewSet):
         return enquiries
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
 class MainEnquiryAPIViewSet(viewsets.ModelViewSet):
@@ -204,7 +240,10 @@ class MainEnquiryAPIViewSet(viewsets.ModelViewSet):
     queryset = models.mainenquiry.objects.all()
 
     def get_permissions(self):
-        permission_classes = [AllowAny]
+        if self.action == 'create':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAdminUser]
         return [permission() for permission in permission_classes]
 
 
