@@ -116,15 +116,26 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def create(self, request, *args, **kwargs):
-        features = request.data['features']
-        if isinstance(features, str):
-            features_list = list(map(int, features.split("#")))
-            request.data['features'] = features_list
+        print(request.data)
+        try:
+            features = request.data['features']
+            if "#" in features:
+                features = features.strip()
+                features = features.strip("#")
+                features_list = features.split("#")
+                request.data.pop('features')
+                features_list = features.split("#")
+                for feature in features_list:
+                    request.data.update({'features':feature})
+        except:
+            pass
         # request.data['branches'] =  ast.literal_eval(request.data['branches'])
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        print("Succeeded")
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])

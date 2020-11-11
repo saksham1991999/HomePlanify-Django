@@ -87,7 +87,7 @@ class property(models.Model):
     dateadded = models.DateField(auto_now_add=True)
 
     main_image = models.ImageField()
-    features = models.ManyToManyField(features)
+    features = models.ManyToManyField(features, blank=True, null=True)
     youtube_video = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube Video ID')
     youtube_video_2 = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube 2nd Video ID')
     video = models.FileField(blank=True, null=True)
