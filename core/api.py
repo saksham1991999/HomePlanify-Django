@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import viewsets, status
-from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly,BasePermission, SAFE_METHODS
 from . import serializers
 from . import models, forms
 from blog import models as blogmodels
@@ -22,6 +22,15 @@ class UserAPIViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_classes = [AllowAny]
         return [permission() for permission in permission_classes]
+
+class ReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+class FeaturesAPIViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.FeaturesSerializer
+    queryset = models.features.objects.all()
+    permissions = [ReadOnly]
 
 
 class InvestPropertiesAPIViewSet(viewsets.ModelViewSet):

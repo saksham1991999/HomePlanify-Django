@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from core.views import login_user, SignupView
-from core.api import UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet, FeaturedPropertiesAPIViewSet, InvestPropertiesAPIViewSet
+from core.api import UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet, FeaturedPropertiesAPIViewSet, InvestPropertiesAPIViewSet, FeaturesAPIViewSet
 from core import views as coreviews
 from rest_framework.routers import DefaultRouter
 
@@ -13,6 +13,7 @@ from blog.views import BlogPostAPIViewSet, CategoriesAPIViewSet, BlogPostComment
 router = DefaultRouter()
 router.register('user', UserAPIViewSet, basename='user')
 
+router.register('features', FeaturesAPIViewSet, basename='features-detail')
 router.register('properties', PropertiesAPIViewSet, basename='property-detail')
 router.register('featured_properties', FeaturedPropertiesAPIViewSet, basename='featuredproperty-detail')
 router.register('invest_properties', InvestPropertiesAPIViewSet, basename='investproperties-detail')
