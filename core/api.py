@@ -116,7 +116,6 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def create(self, request, *args, **kwargs):
-        print(request.data)
         try:
             features = request.data['features']
             if "#" in features:
@@ -130,12 +129,10 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         except:
             pass
         # request.data['branches'] =  ast.literal_eval(request.data['branches'])
-        print(request.data)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
-        print("Succeeded")
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])

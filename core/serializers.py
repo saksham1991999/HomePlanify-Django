@@ -72,13 +72,32 @@ class FeaturedPropertySerializer(serializers.ModelSerializer):
 
 
 class PropertySerializer(serializers.ModelSerializer):
+    photos = serializers.SerializerMethodField(read_only = True)
+    bookmarked = serializers.SerializerMethodField(read_only = True)
 
     class Meta:
         model = property
         fields = "__all__"
 
-class ImagesSerializer(serializers.ModelSerializer):
+    def get_photos(self, obj):
+        serializer_context = {'request': self.context.get('request')}
+        photos = images.objects.filter(property = obj)
+        data = ImagesSerializer(photos, many=True, context = serializer_context).data
+        return data
 
+    def get_bookmarked(self, obj):
+        user = self.context['request'].user
+        if user.id is not None:
+            user_bookmarks = bookmark.objects.filter(user=user)
+            if user_bookmarks:
+                user_bookmarks = user_bookmarks[0]
+                properties_bookmarked = user_bookmarks.properties.all()
+                if obj in properties_bookmarked:
+                    return True
+            return False
+        return None
+
+class ImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = images
