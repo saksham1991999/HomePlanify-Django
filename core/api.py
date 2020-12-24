@@ -66,7 +66,13 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
     # queryset = UserProfile.objects.all()
 
     def get_queryset(self):
-        properties =  models.property.objects.filter(visible=True, verified=True)
+        properties =  models.property.objects.filter()
+
+        if self.request.query_params.get('visible', None):
+            properties = properties.filter(visible=True)
+
+        if self.request.query_params.get('verified', None):
+            properties = properties.filter(verified=True)
 
         if self.request.query_params.get('minprice', None):
             minprice = self.request.query_params.get('minprice', None)
