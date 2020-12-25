@@ -73,6 +73,7 @@ class FeaturedPropertySerializer(serializers.ModelSerializer):
 
 class PropertySerializer(serializers.ModelSerializer):
     photos = serializers.SerializerMethodField(read_only = True)
+    property_features = serializers.SerializerMethodField(read_only = True)
     bookmarked = serializers.SerializerMethodField(read_only = True)
 
     class Meta:
@@ -80,10 +81,13 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_photos(self, obj):
-        serializer_context = {'request': self.context.get('request')}
-        photos = images.objects.filter(property = obj)
-        data = ImagesSerializer(photos, many=True, context = serializer_context).data
-        return data
+        photos = images.objects.filter(property = obj).values_list('image', flat=True)
+        return photos
+
+    def get_property_features(self, obj):
+        features = obj.features.all()
+        list = features.values_list('title', flat=True)
+        return list
 
     def get_bookmarked(self, obj):
         user = self.context['request'].user
