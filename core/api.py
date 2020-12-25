@@ -122,6 +122,9 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         return [permission() for permission in permission_classes]
 
     def create(self, request, *args, **kwargs):
+        serializer_context = {
+            'request': request,
+        }
         try:
             features = request.data['features']
             if "#" in features:
@@ -135,7 +138,7 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         except:
             pass
         # request.data['branches'] =  ast.literal_eval(request.data['branches'])
-        serializer = self.get_serializer(data=request.data)
+        serializer = self.get_serializer(data=request.data, context = serializer_context)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
@@ -143,27 +146,36 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def my_properties(self, request, pk=None):
+        serializer_context = {
+            'request': request,
+        }
         user = request.user
         if request.auth or user:
             queryset = models.property.objects.filter(owner = user)
-            serializer = serializers.PropertySerializer(queryset, many=True)
+            serializer = serializers.PropertySerializer(queryset, many=True, context=serializer_context)
             return Response(serializer.data)
         else:
             return Response({"Status": "Please Log-in"})
 
     @action(detail=False, methods=['get'], permission_classes=[IsAuthenticated])
     def bookmarks(self, request, pk=None):
+        serializer_context = {
+            'request': request,
+        }
         user = self.request.user
         bookmark = models.bookmark.objects.filter(user=user)
         if bookmark.exists():
             queryset = bookmark[0].properties.all()
-            serializer = serializers.PropertySerializer(queryset, many=True)
+            serializer = serializers.PropertySerializer(queryset, many=True, context = serializer_context)
             return Response(serializer.data)
         else:
             return Response({"Status": "No Property Bookmarked"})
 
     @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
     def add_to_bookmarks(self, request, pk=None):
+        serializer_context = {
+            'request': request,
+        }
         property = self.get_object()
         user = self.request.user
         bookmark = models.bookmark.objects.filter(user=user)
@@ -172,15 +184,20 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             bookmark.properties.add(property)
             bookmark.save()
             queryset = bookmark.properties.all()
-            serializer = serializers.PropertySerializer(queryset, many=True)
+            serializer = serializers.PropertySerializer(queryset, many=True, context = serializer_context)
             return Response(serializer.data)
         else:
             bookmark = models.bookmark.objects.create(user=request.user)
             bookmark.properties.add(property)
-            return Response({"Status": "Successfully Bookmarked"})
+            queryset = bookmark.properties.all()
+            serializer = serializers.PropertySerializer(queryset, many=True, context=serializer_context)
+            return Response(serializer.data)
 
     @action(detail=True, methods=['get'], permission_classes=[IsAuthenticated])
     def remove_from_bookmarks(self, request, pk=None):
+        serializer_context = {
+            'request': request,
+        }
         property = self.get_object()
         user = self.request.user
         bookmark = models.bookmark.objects.filter(user=user)
@@ -189,7 +206,7 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             bookmark.properties.remove(property)
             bookmark.save()
             queryset = bookmark.properties.all()
-            serializer = serializers.PropertySerializer(queryset, many=True)
+            serializer = serializers.PropertySerializer(queryset, many=True, context=serializer_context)
             return Response(serializer.data)
         else:
             return Response({"Status": "Bookmarks is Empty"})

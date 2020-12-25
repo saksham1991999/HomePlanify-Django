@@ -8,7 +8,7 @@ class ImagesInlineAdmin(admin.TabularInline):
     model = models.images
 
 class InquiryInlineAdmin(admin.TabularInline):
-    model  = models.enquiry
+    model = models.enquiry
     extra = 0
 
 class PropertyAdmin(admin.ModelAdmin):
@@ -71,7 +71,7 @@ class ImagesAdmin(admin.ModelAdmin):
 
 
 class AreaInlineAdmin(admin.TabularInline):
-    model  = models.Area
+    model = models.Area
     extra = 3
 
 class DistrictAdmin(admin.ModelAdmin):
