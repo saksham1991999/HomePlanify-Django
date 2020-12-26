@@ -70,7 +70,6 @@ class FeaturedPropertySerializer(serializers.ModelSerializer):
         model = FeaturedProperty
         fields = "__all__"
 
-
 class PropertySerializer(serializers.ModelSerializer):
     photos = serializers.SerializerMethodField(read_only = True)
     property_features = serializers.SerializerMethodField(read_only = True)
@@ -81,8 +80,11 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
     def get_photos(self, obj):
-        photos = images.objects.filter(property = obj).values_list('image', flat=True)
-        return photos
+        photos_url = []
+        photos = images.objects.filter(property=obj)
+        for photo in photos:
+            photos_url.append(photo.image.url)
+        return photos_url
 
     def get_property_features(self, obj):
         features = obj.features.all()
@@ -99,7 +101,7 @@ class PropertySerializer(serializers.ModelSerializer):
                 if obj in properties_bookmarked:
                     return True
             return False
-        return None
+        return False
 
 class ImagesSerializer(serializers.ModelSerializer):
 
