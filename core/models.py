@@ -119,6 +119,7 @@ class images(models.Model):
     def __str__(self):
         return self.property.property_name
 
+
     class Meta:
         verbose_name_plural = 'Images'
 

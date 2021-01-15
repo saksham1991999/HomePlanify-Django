@@ -90,6 +90,18 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             maxbhk = self.request.query_params.get('maxbhk', None)
             properties = properties.filter(bedrooms__lte=maxbhk)
 
+        if self.request.query_params.get('bedrooms', None):
+            bedrooms = self.request.query_params.get('bedrooms', None)
+            properties = properties.filter(bedrooms = bedrooms)
+
+        if self.request.query_params.get('rooms', None):
+            rooms = self.request.query_params.get('rooms', None)
+            properties = properties.filter(rooms = rooms)
+
+        if self.request.query_params.get('bathrooms', None):
+            bathrooms = self.request.query_params.get('bathrooms', None)
+            properties = properties.filter(bathrooms = bathrooms)
+
         if self.request.query_params.get('city', None):
             city = self.request.query_params.get('city', None)
             properties = properties.filter( city__icontains = city)
@@ -106,6 +118,21 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             userid = self.request.query_params.get('userid', None)
             properties = properties.filter(owner__id=userid)
 
+        if self.request.query_params.get('construction_status', None):
+            construction_status = self.request.query_params.get('construction_status', None)
+            properties = properties.filter(construction_status=construction_status)
+
+        if self.request.query_params.get('type', None):
+            type = self.request.query_params.get('type', None)
+            properties = properties.filter(type=type)
+
+        if self.request.query_params.get('search', None):
+            search = self.request.query_params.get('search', None)
+            properties = properties.filter(property_name__icontains=search)
+
+        if self.request.query_params.get('featured', None):
+            properties = properties.filter(featured=True)
+
         if self.request.query_params.get('orderby', None):
             orderby = self.request.query_params.get('orderby', None)
             if orderby == 'price':
@@ -114,6 +141,8 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
                 properties = properties.order_by('bedrooms')
             elif orderby == 'views':
                 properties = properties.order_by('-views')
+            elif orderby == 'date':
+                properties = properties.order_by('-dateadded')
 
         return properties
 
