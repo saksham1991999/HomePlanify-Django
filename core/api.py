@@ -74,13 +74,46 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('verified', None):
             properties = properties.filter(verified=True)
 
-        if self.request.query_params.get('minprice', None):
-            minprice = self.request.query_params.get('minprice', None)
-            properties = properties.filter(total_price__gte = minprice)
+        if self.request.query_params.get('search', None):
+            search = self.request.query_params.get('search', None)
+            properties = properties.filter(Q(property_name__icontains=search) | Q(additional_features__icontains = search) | Q(city__icontains=search))
 
-        if self.request.query_params.get('maxprice', None):
-            maxprice = self.request.query_params.get('maxprice', None)
-            properties = properties.filter(total_price__lte=maxprice)
+        if self.request.query_params.get('type', None):
+            type = self.request.query_params.get('type', None)
+            properties = properties.filter(type=type)
+
+        if self.request.query_params.get('bedrooms', None):
+            bedrooms = self.request.query_params.get('bedrooms', None)
+            if int(bedrooms) > 4:
+                properties = properties.filter(bedrooms__gte = int(bedrooms))
+            elif int(bedrooms ) > 0:
+                properties = properties.filter(bedrooms=int(bedrooms))
+
+        if self.request.query_params.get('rooms', None):
+            rooms = self.request.query_params.get('rooms', None)
+            if int(rooms) > 4:
+                properties = properties.filter(rooms__gte = int(rooms))
+            elif int(rooms) > 0:
+                properties = properties.filter(rooms=int(rooms))
+
+        if self.request.query_params.get('bathrooms', None):
+            bathrooms = self.request.query_params.get('bathrooms', None)
+            if int(bathrooms) > 3:
+                properties = properties.filter(bathrooms__gte = int(bathrooms))
+            elif int(bathrooms) > 0:
+                properties = properties.filter(bathrooms=int(bathrooms))
+
+        if self.request.query_params.get('construction_status', None):
+            construction_status = self.request.query_params.get('construction_status', None)
+            properties = properties.filter(construction_status__icontains=construction_status)
+
+        if self.request.query_params.get('price_start', None):
+            price_start = self.request.query_params.get('price_start', None)
+            properties = properties.filter(total_price__gte = price_start)
+
+        if self.request.query_params.get('price_end', None):
+            price_end = self.request.query_params.get('price_end', None)
+            properties = properties.filter(total_price__lte=price_end)
 
         if self.request.query_params.get('minbhk', None):
             minbhk = self.request.query_params.get('minbhk', None)
@@ -90,25 +123,9 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
             maxbhk = self.request.query_params.get('maxbhk', None)
             properties = properties.filter(bedrooms__lte=maxbhk)
 
-        if self.request.query_params.get('bedrooms', None):
-            bedrooms = self.request.query_params.get('bedrooms', None)
-            properties = properties.filter(bedrooms = bedrooms)
-
-        if self.request.query_params.get('rooms', None):
-            rooms = self.request.query_params.get('rooms', None)
-            properties = properties.filter(rooms = rooms)
-
-        if self.request.query_params.get('bathrooms', None):
-            bathrooms = self.request.query_params.get('bathrooms', None)
-            properties = properties.filter(bathrooms = bathrooms)
-
         if self.request.query_params.get('city', None):
             city = self.request.query_params.get('city', None)
             properties = properties.filter( city__icontains = city)
-
-        if self.request.query_params.get('type', None):
-            type = self.request.query_params.get('type', None)
-            properties = properties.filter(type=type)
 
         if self.request.query_params.get('place', None):
             place = self.request.query_params.get('place', None)
@@ -117,18 +134,6 @@ class PropertiesAPIViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('userid', None):
             userid = self.request.query_params.get('userid', None)
             properties = properties.filter(owner__id=userid)
-
-        if self.request.query_params.get('construction_status', None):
-            construction_status = self.request.query_params.get('construction_status', None)
-            properties = properties.filter(construction_status=construction_status)
-
-        if self.request.query_params.get('type', None):
-            type = self.request.query_params.get('type', None)
-            properties = properties.filter(type=type)
-
-        if self.request.query_params.get('search', None):
-            search = self.request.query_params.get('search', None)
-            properties = properties.filter(property_name__icontains=search)
 
         if self.request.query_params.get('featured', None):
             properties = properties.filter(featured=True)
