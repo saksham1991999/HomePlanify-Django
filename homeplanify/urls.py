@@ -41,6 +41,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 
     path('', include('core.urls', namespace='core')),
+    path('leadgrow/', include('leadgrow.urls', namespace='leadgrow')),
     path('blog/', include('blog.urls', namespace='blog')),
 
 

@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'corsheaders',
     'indian_numbers',
+    'widget_tweaks',
 
     'core',
     'blog',
-    'widget_tweaks',
+    'leadgrow',
 ]
 
 MIDDLEWARE = [
