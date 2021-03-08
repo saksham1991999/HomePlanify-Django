@@ -34,7 +34,6 @@ class CustomRegisterSerializer(RegisterSerializer):
             'password2': self.validated_data.get('password2', ''),
             'email': self.validated_data.get('email', ''),
             'mobile': self.validated_data.get('mobile', ''),
-
         }
 
     def save(self, request):

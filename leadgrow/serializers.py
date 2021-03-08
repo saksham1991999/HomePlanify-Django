@@ -1,13 +1,20 @@
 from rest_framework import serializers
+from rest_framework.fields import CurrentUserDefault
+from datetime import datetime
+
 from .models import Business, Customer, Label, Task, Note
 
 
 class BusinessSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
 
     class Meta:
         model = Business
         fields = (
             "id",
+            "user",
             "name",
             "email",
             "mobile",
@@ -32,6 +39,7 @@ class LabelCustomerSerializer(serializers.ModelSerializer):
     def get_customers(self, obj):
         customers = obj.customer_labels.all().values_list('id', flat=True)
         return customers
+
 
 class LabelSerializer(serializers.ModelSerializer):
 
@@ -64,6 +72,9 @@ class CustomerSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField(read_only=True)
     tasks = serializers.SerializerMethodField(read_only=True)
     notes = serializers.SerializerMethodField(read_only=True)
+    # created_at = serializers.DateTimeField(
+    #     default=serializers.CreateOnlyDefault(datetime.now)
+    # )
 
     class Meta:
         model = Customer
@@ -81,7 +92,35 @@ class CustomerSerializer(serializers.ModelSerializer):
             'budget',
             "property_type",
             "pinned",
+            "event_name",
+            "event_date",
         )
+        read_only = (
+            "created_at"
+        )
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+        business = Business.objects.get(user=user)
+        return Customer.objects.create(business = business, **validated_data)
+
+    def get_cleaned_data(self):
+        user = self.context['request'].user
+        business = Business.objects.get(user=user)
+        return {
+            'business': business.id,
+            'name': self.validated_data.get('name', ''),
+            'location': self.validated_data.get('location', ''),
+            'mobile': self.validated_data.get('mobile', ''),
+            'email': self.validated_data.get('email', ''),
+            'address': self.validated_data.get('address', ''),
+            'labels': self.validated_data.get('labels', ''),
+            'budget': self.validated_data.get('budget', ''),
+            'property_type': self.validated_data.get('property_type', ''),
+            'event_name': self.validated_data.get('event_name', ''),
+            'event_date': self.validated_data.get('event_date', ''),
+            'pinned': self.validated_data.get('pinned', ''),
+        }
 
     def get_event(self, obj):
         event = {
@@ -104,3 +143,13 @@ class CustomerSerializer(serializers.ModelSerializer):
         notes = Note.objects.values_list('note', flat=True)
         return notes
 
+
+class NoteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Note
+        fields = (
+            "id",
+            "customer",
+            "note",
+        )

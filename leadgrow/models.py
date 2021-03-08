@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from phonenumber_field.modelfields import PhoneNumberField
 
 
@@ -15,6 +14,7 @@ class Business(models.Model):
     def __str__(self):
         return self.name
 
+
 class Customer(models.Model):
     business = models.ForeignKey("leadgrow.Business", on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
@@ -28,6 +28,7 @@ class Customer(models.Model):
     event_name = models.CharField(max_length=128)
     event_date = models.DateTimeField()
     pinned = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
