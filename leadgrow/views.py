@@ -24,7 +24,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated, IsCustomerBusinessOwner]
 
     def get_queryset(self):
-        business = Business.objects.filter(user=self.request.user)
+        business = Business.objects.get(user=self.request.user)
         customers = Customer.objects.filter(business=business)
 
         if self.request.query_params.get('search', None):
