@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.db.models import Q
 
@@ -30,7 +32,43 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('search', None):
             search = self.request.query_params.get('search', None)
             customers = customers.filter(Q(name__icontains=search) | Q(mobile__icontains=search) | Q(location__icontains=search))
+
+
+        if self.request.query_params.get('sort', None):
+            sort = self.request.query_params.get('sort', None)
+            if sort=='nameasc':
+                customers = customers.order_by('name')
+            elif sort == 'namedsc':
+                customers = customers.order_by('-name')
+            elif sort == 'dateasc':
+                customers = customers.order_by('created_at')
+            elif sort == 'datedsc':
+                customers = customers.order_by('-created_at')
         return customers
+
+    @action(detail=True, methods=['post'])
+    def update_customer_label(self, request, pk, *args, **kwargs):
+        customer = self.get_object()
+        labels = request.data['labels']
+        labels = list(map(int, labels.strip().split(",")))
+        print(labels)
+        customer.labels.clear()
+        for label in labels:
+            customer.labels.add(label)
+        return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
+
+    @action(detail=True, methods=['post'])
+    def add_label(self, request, pk, *args, **kwargs):
+        try:
+            customer = self.get_object()
+            name = request.data['name']
+            color = request.data['color']
+            label = Label.objects.create(customer= customer, name = name, color = color)
+            customer.labels.add(label)
+            return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
+        except:
+            return Response("Error", status = status.HTTP_400_BAD_REQUEST)
+        
 
 
 class LabelAPIViewSet(viewsets.ModelViewSet):
@@ -38,6 +76,25 @@ class LabelAPIViewSet(viewsets.ModelViewSet):
     queryset = Label.objects.all()
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        if self.request.query_params.get('global', None):
+            label = Label.objects.filter(customer__isnull=True)
+        else:
+            label = Label.objects.filter(Q(customer__business__user = self.request.user) | Q(customer__isnull=True))
+
+        if self.request.query_params.get('sort', None):
+            sort = self.request.query_params.get('sort', None)
+            if sort == 'nameasc':
+                label = label.order_by('name')
+            if sort == 'namedsc':
+                label = label.order_by('-name')
+
+        if self.request.query_params.get('search', None):
+            search = self.request.query_params.get('search', None)
+            label = label.filter(color__icontains=search)
+        
+        return label    
+     
 
 class TaskAPIViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
@@ -49,7 +106,19 @@ class TaskAPIViewSet(viewsets.ModelViewSet):
 
         if self.request.query_params.get('search', None):
             search = self.request.query_params.get('search', None)
-            tasks = tasks.filter(Q(task__icontains=search) | Q(importance__icontains=search))
+            tasks = tasks.filter(Q(task__icontains=search) | Q(importance__icontains=search) | Q(completed__icontains=search))
+            
+        if self.request.query_params.get('sort', None):
+            sort = self.request.query_params.get('sort', None)
+            if sort=='nameasc':
+                tasks = tasks.order_by('name')
+            elif sort == 'namedsc':
+                tasks = tasks.order_by('-name')
+            elif sort == 'dateasc':
+                customers = customers.order_by('datetime')
+            elif sort == 'datedsc':
+                customers = customers.order_by('-datetime')    
+
         return tasks
 
 
@@ -64,4 +133,11 @@ class NoteAPIViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('search', None):
             search = self.request.query_params.get('search', None)
             notes = notes.filter(note__icontains=search)
+        
+        if self.request.query_params.get('sort', None):
+            sort = self.request.query_params.get('sort', None)
+            if sort=='nameasc':
+                notes = notes.order_by('name')
+            elif sort == 'namedsc':
+                notes = notes.order_by('-name')
         return notes

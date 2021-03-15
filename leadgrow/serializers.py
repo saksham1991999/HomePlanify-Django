@@ -95,8 +95,8 @@ class CustomerSerializer(serializers.ModelSerializer):
             "event_name",
             "event_date",
         )
-        read_only = (
-            "created_at"
+        read_only_fields = (
+            "created_at",
         )
 
     def create(self, validated_data):
