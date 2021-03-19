@@ -33,7 +33,6 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
             search = self.request.query_params.get('search', None)
             customers = customers.filter(Q(name__icontains=search) | Q(mobile__icontains=search) | Q(location__icontains=search))
 
-
         if self.request.query_params.get('sort', None):
             sort = self.request.query_params.get('sort', None)
             if sort=='nameasc':
@@ -55,20 +54,18 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         customer.labels.clear()
         for label in labels:
             customer.labels.add(label)
+        customer.save()
         return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
 
     @action(detail=True, methods=['post'])
-    def add_label(self, request, pk, *args, **kwargs):
+    def pin(self, request, pk, *args, **kwargs):
         try:
             customer = self.get_object()
-            name = request.data['name']
-            color = request.data['color']
-            label = Label.objects.create(customer= customer, name = name, color = color)
-            customer.labels.add(label)
+            customer.pinned = True
+            customer.save()
             return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
         except:
             return Response("Error", status = status.HTTP_400_BAD_REQUEST)
-        
 
 
 class LabelAPIViewSet(viewsets.ModelViewSet):
@@ -115,9 +112,9 @@ class TaskAPIViewSet(viewsets.ModelViewSet):
             elif sort == 'namedsc':
                 tasks = tasks.order_by('-name')
             elif sort == 'dateasc':
-                customers = customers.order_by('datetime')
+                tasks = tasks.order_by('datetime')
             elif sort == 'datedsc':
-                customers = customers.order_by('-datetime')    
+                tasks = tasks.order_by('-datetime')
 
         return tasks
 

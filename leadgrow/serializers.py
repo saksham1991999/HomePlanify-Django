@@ -40,6 +40,11 @@ class LabelCustomerSerializer(serializers.ModelSerializer):
         customers = obj.customer_labels.all().values_list('id', flat=True)
         return customers
 
+    def create(self, validated_data):
+        user = self.context['request'].user
+        business = Business.objects.get(user=user)
+        return Label.objects.create(business = business, **validated_data)
+
 
 class LabelSerializer(serializers.ModelSerializer):
 

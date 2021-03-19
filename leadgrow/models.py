@@ -8,8 +8,8 @@ class Business(models.Model):
     email = models.EmailField()
     mobile = PhoneNumberField()
     address = models.CharField(max_length=512)
-    image = models.ImageField()
-    website = models.URLField()
+    image = models.ImageField(null=True, blank=True)
+    website = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -20,13 +20,13 @@ class Customer(models.Model):
     name = models.CharField(max_length=128)
     email = models.EmailField()
     mobile = PhoneNumberField()
-    labels = models.ManyToManyField("leadgrow.Label", related_name="customer_labels")
-    location = models.CharField(max_length=256)
-    address = models.CharField(max_length=512)
-    budget = models.PositiveIntegerField()
-    property_type = models.CharField(max_length=128)
-    event_name = models.CharField(max_length=128)
-    event_date = models.DateTimeField()
+    labels = models.ManyToManyField("leadgrow.Label", related_name="customer_labels", null=True)
+    location = models.CharField(max_length=256, null=True, blank=True)
+    address = models.CharField(max_length=512, null=True, blank=True)
+    budget = models.PositiveIntegerField(null=True, blank=True)
+    property_type = models.CharField(max_length=128, null=True, blank=True)
+    event_name = models.CharField(max_length=128, null=True, blank=True)
+    event_date = models.DateTimeField(null=True, blank=True)
     pinned = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -37,7 +37,7 @@ class Customer(models.Model):
 class Label(models.Model):
     name = models.CharField(max_length=128)
     color = models.CharField(max_length=128)
-    customer = models.ForeignKey("leadgrow.Customer", related_name='labelled', on_delete=models.CASCADE, null=True)
+    business = models.ForeignKey("leadgrow.Business", related_name='labelled', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
