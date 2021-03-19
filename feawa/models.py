@@ -29,3 +29,5 @@ class Firm(models.Model):
     home_address = models.TextField()
     phone = models.CharField(max_length=15)
     bloodgroup = models.CharField(max_length=3, choices=bloodgroup_choices)
+    logo = models.ImageField()
+    agent_image = models.ImageField()
