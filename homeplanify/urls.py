@@ -42,9 +42,8 @@ urlpatterns = [
 
     path('', include('core.urls', namespace='core')),
     path('leadgrow/', include('leadgrow.urls', namespace='leadgrow')),
+    path('feawa/', include('feawa.urls', namespace='feawa')),
     path('blog/', include('blog.urls', namespace='blog')),
-
-
 
 ]
 

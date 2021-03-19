@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'core',
     'blog',
     'leadgrow',
+    'feawa',
 ]
 
 MIDDLEWARE = [
