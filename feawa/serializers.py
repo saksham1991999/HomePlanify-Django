@@ -35,4 +35,6 @@ class FirmSerializer(serializers.ModelSerializer):
             "home_address",
             "phone",
             "bloodgroup",
+            "logo",
+            "agent_image",
         )
