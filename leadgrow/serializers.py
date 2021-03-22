@@ -26,6 +26,7 @@ class BusinessSerializer(serializers.ModelSerializer):
 
 class LabelCustomerSerializer(serializers.ModelSerializer):
     customers = serializers.SerializerMethodField(read_only=True)
+    custumers_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Label
@@ -40,6 +41,10 @@ class LabelCustomerSerializer(serializers.ModelSerializer):
     def get_customers(self, obj):
         customers = obj.customer_labels.all().values_list('id', flat=True)
         return customers
+
+    def get_customers_count(self, obj):
+        count = obj.customer_labels.all().count()
+        return count
 
     def create(self, validated_data):
         user = self.context['request'].user
