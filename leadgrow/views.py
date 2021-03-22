@@ -27,7 +27,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         business = Business.objects.get(user=self.request.user)
-        customers = Customer.objects.filter(business=business).order_by("pinned")
+        customers = Customer.objects.filter(business=business).order_by("-pinned")
 
         if self.request.query_params.get('search', None):
             search = self.request.query_params.get('search', None)
