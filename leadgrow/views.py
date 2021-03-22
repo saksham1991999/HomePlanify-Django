@@ -43,6 +43,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
                 customers = customers.order_by('created_at')
             elif sort == 'datedsc':
                 customers = customers.order_by('-created_at')
+        customers = customers.order_by("-pinned")
         return customers
 
     @action(detail=True, methods=['post'])
