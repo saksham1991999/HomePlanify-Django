@@ -34,6 +34,7 @@ class LabelCustomerSerializer(serializers.ModelSerializer):
             "name",
             "color",
             "customers",
+            "business",
         )
 
     def get_customers(self, obj):
@@ -54,6 +55,7 @@ class LabelSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "color",
+            "business",
         )
 
 

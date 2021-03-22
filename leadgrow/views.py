@@ -57,7 +57,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         customer.save()
         return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
 
-    @action(detail=True, methods=['post'])
+    @action(detail=True, methods=['get'])
     def pin(self, request, pk, *args, **kwargs):
         try:
             customer = self.get_object()
@@ -75,9 +75,9 @@ class LabelAPIViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.query_params.get('global', None):
-            label = Label.objects.filter(customer__isnull=True)
+            label = Label.objects.filter(business__isnull=True)
         else:
-            label = Label.objects.filter(Q(customer__business__user = self.request.user) | Q(customer__isnull=True))
+            label = Label.objects.filter(Q(business__user = self.request.user) | Q(business__isnull=True))
 
         if self.request.query_params.get('sort', None):
             sort = self.request.query_params.get('sort', None)
