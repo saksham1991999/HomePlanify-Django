@@ -99,6 +99,7 @@ class CustomerSerializer(serializers.ModelSerializer):
             "pinned",
             "event_name",
             "event_date",
+            "created_at",
         )
 
     def create(self, validated_data):
