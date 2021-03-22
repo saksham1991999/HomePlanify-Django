@@ -23,7 +23,7 @@ class Firm(models.Model):
     name = models.CharField(max_length=256)
     email = models.EmailField()
     firm_name = models.CharField(max_length=256)
-    zone = models.ForeignKey("feawa.Firm", on_delete=models.CASCADE)
+    zone = models.ForeignKey("feawa.Zone", on_delete=models.CASCADE)
     deals = models.TextField()
     office_address = models.TextField()
     home_address = models.TextField()
