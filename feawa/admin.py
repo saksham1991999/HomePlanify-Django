@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Zone, Firm
+
+admin.site.register(Zone)
+admin.site.register(Firm)

@@ -79,9 +79,7 @@ class CustomerSerializer(serializers.ModelSerializer):
     labels = serializers.SerializerMethodField(read_only=True)
     tasks = serializers.SerializerMethodField(read_only=True)
     notes = serializers.SerializerMethodField(read_only=True)
-    # created_at = serializers.DateTimeField(
-    #     default=serializers.CreateOnlyDefault(datetime.now)
-    # )
+    created_at = serializers.DateTimeField(read_only=True)
 
     class Meta:
         model = Customer
@@ -101,9 +99,6 @@ class CustomerSerializer(serializers.ModelSerializer):
             "pinned",
             "event_name",
             "event_date",
-        )
-        read_only_fields = (
-            "created_at",
         )
 
     def create(self, validated_data):
