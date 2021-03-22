@@ -61,21 +61,12 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
     def pin(self, request, pk, *args, **kwargs):
         try:
             customer = self.get_object()
-            customer.pinned = True
+            customer.pinned = not customer.pinned
             customer.save()
             return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
         except:
             return Response("Error", status = status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=True, methods=['get'])
-    def unpin(self, request, pk, *args, **kwargs):
-        try:
-            customer = self.get_object()
-            customer.pinned = False
-            customer.save()
-            return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
-        except:
-            return Response("Error", status = status.HTTP_400_BAD_REQUEST)
 
 
 class LabelAPIViewSet(viewsets.ModelViewSet):
