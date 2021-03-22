@@ -56,7 +56,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         for label in labels:
             customer.labels.add(label)
         customer.save()
-        return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
+        return Response({"status":"Done"}, status = status.HTTP_206_PARTIAL_CONTENT)
 
     @action(detail=True, methods=['get'])
     def pin(self, request, pk, *args, **kwargs):
@@ -64,9 +64,9 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
             customer = self.get_object()
             customer.pinned = not customer.pinned
             customer.save()
-            return Response("Done", status = status.HTTP_206_PARTIAL_CONTENT)
+            return Response({"status":"Done"}, status = status.HTTP_206_PARTIAL_CONTENT)
         except:
-            return Response("Error", status = status.HTTP_400_BAD_REQUEST)
+            return Response({"status":"Error"}, status = status.HTTP_400_BAD_REQUEST)
 
 
 
