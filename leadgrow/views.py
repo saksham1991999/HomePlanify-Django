@@ -50,7 +50,7 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
     def update_customer_label(self, request, pk, *args, **kwargs):
         customer = self.get_object()
         labels = request.data['labels']
-        labels = list(map(int, labels.strip().split(",")))
+        labels = list(map(int, labels.strip().strip(",").split(",")))
         print(labels)
         customer.labels.clear()
         for label in labels:
