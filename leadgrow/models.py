@@ -1,12 +1,11 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Business(models.Model):
     user = models.OneToOneField('core.User', on_delete=models.CASCADE)
     name = models.CharField(max_length=512)
     email = models.EmailField()
-    mobile = PhoneNumberField()
+    mobile = models.CharField(max_length=15)
     address = models.CharField(max_length=512)
     image = models.ImageField(null=True, blank=True)
     website = models.URLField(null=True, blank=True)
@@ -19,7 +18,7 @@ class Customer(models.Model):
     business = models.ForeignKey("leadgrow.Business", on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
     email = models.EmailField()
-    mobile = PhoneNumberField()
+    mobile = models.CharField(max_length=15)
     labels = models.ManyToManyField("leadgrow.Label", related_name="customer_labels", null=True)
     location = models.CharField(max_length=256, null=True, blank=True)
     address = models.CharField(max_length=512, null=True, blank=True)
