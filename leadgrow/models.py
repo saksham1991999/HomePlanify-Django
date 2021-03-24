@@ -43,7 +43,7 @@ class Label(models.Model):
 
 
 class Task(models.Model):
-    customer = models.ForeignKey("leadgrow.Customer", on_delete=models.CASCADE)
+    customer = models.ForeignKey("leadgrow.Customer", on_delete=models.CASCADE, null=True)
     datetime = models.DateTimeField(auto_now_add=True)
     time = models.DurationField()
     task = models.TextField()
