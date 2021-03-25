@@ -119,6 +119,16 @@ class TaskAPIViewSet(viewsets.ModelViewSet):
         tasks = tasks.order_by("-completed")
         return tasks
 
+    @action(detail=True, methods=['get'])
+    def complete(self, request, pk, *args, **kwargs):
+        try:
+            task = self.get_object()
+            task.completed = not task.completed
+            task.save()
+            return Response({"status":"Done"}, status = status.HTTP_206_PARTIAL_CONTENT)
+        except:
+            return Response({"status":"Error"}, status = status.HTTP_400_BAD_REQUEST)
+
 
 class NoteAPIViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
