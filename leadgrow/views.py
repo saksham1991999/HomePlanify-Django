@@ -36,13 +36,13 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         if self.request.query_params.get('sort', None):
             sort = self.request.query_params.get('sort', None)
             if sort=='nameasc':
-                customers = customers.order_by('name')
+                customers = customers.order_by("-pinned", 'name')
             elif sort == 'namedsc':
-                customers = customers.order_by('-name')
+                customers = customers.order_by("-pinned", '-name')
             elif sort == 'dateasc':
-                customers = customers.order_by('created_at')
+                customers = customers.order_by("-pinned", 'created_at')
             elif sort == 'datedsc':
-                customers = customers.order_by('-created_at')
+                customers = customers.order_by("-pinned", '-created_at')
         customers = customers.order_by("-pinned")
         return customers
 
