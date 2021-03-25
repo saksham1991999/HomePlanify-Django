@@ -26,7 +26,7 @@ class BusinessSerializer(serializers.ModelSerializer):
 
 class LabelCustomerSerializer(serializers.ModelSerializer):
     customers = serializers.SerializerMethodField(read_only=True)
-    custumers_count = serializers.SerializerMethodField(read_only=True)
+    customers_count = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Label
@@ -36,7 +36,7 @@ class LabelCustomerSerializer(serializers.ModelSerializer):
             "color",
             "customers",
             "business",
-            "custumers_count",
+            "customers_count",
         )
 
     def get_customers(self, obj):
