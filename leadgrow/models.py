@@ -17,7 +17,7 @@ class Business(models.Model):
 class Customer(models.Model):
     business = models.ForeignKey("leadgrow.Business", on_delete=models.CASCADE)
     name = models.CharField(max_length=128)
-    email = models.EmailField()
+    email = models.EmailField(null=True, blank=True)
     mobile = models.CharField(max_length=15)
     labels = models.ManyToManyField("leadgrow.Label", related_name="customer_labels", null=True)
     location = models.CharField(max_length=256, null=True, blank=True)

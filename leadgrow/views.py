@@ -69,7 +69,6 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
             return Response({"status":"Error"}, status = status.HTTP_400_BAD_REQUEST)
 
 
-
 class LabelAPIViewSet(viewsets.ModelViewSet):
     serializer_class = LabelCustomerSerializer
     queryset = Label.objects.all()
@@ -117,7 +116,7 @@ class TaskAPIViewSet(viewsets.ModelViewSet):
                 tasks = tasks.order_by('datetime')
             elif sort == 'datedsc':
                 tasks = tasks.order_by('-datetime')
-
+        tasks = tasks.order_by("-completed")
         return tasks
 
 
