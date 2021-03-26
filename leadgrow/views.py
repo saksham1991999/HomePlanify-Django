@@ -45,6 +45,14 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
                 customers = customers.order_by("-pinned", '-created_at')
         return customers
 
+    @action(detail=False, methods=['post'])
+    def import_customers(self, request, *args, **kwargs):
+        business = Business.objects.get(user = request.user)
+        customers = request.data['customers']
+        for customer in customers:
+            customer_qs = Customer.objects.create(business = business, name = customer['name'], mobile = customer['mobile'])
+        return Response({"status":"Imported Successfully"}, status = status.HTTP_206_PARTIAL_CONTENT)
+
     @action(detail=True, methods=['post'])
     def update_customer_label(self, request, pk, *args, **kwargs):
         customer = self.get_object()
