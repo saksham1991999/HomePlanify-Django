@@ -49,8 +49,13 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
     def import_customers(self, request, *args, **kwargs):
         business = Business.objects.get(user = request.user)
         customers = request.data['customers']
+        customers = list(eval(customers))
+        print(customers)
         for customer in customers:
-            customer_qs = Customer.objects.create(business = business, name = customer['name'], mobile = customer['mobile'])
+            print(customer)
+            print(customer.get('name'))
+            print(customer.get('contact'))
+            customer_qs = Customer.objects.create(business = business, name = customer['name'], mobile = customer['contact'])
         return Response({"status":"Imported Successfully"}, status = status.HTTP_206_PARTIAL_CONTENT)
 
     @action(detail=True, methods=['post'])
@@ -58,7 +63,6 @@ class CustomerAPIViewSet(viewsets.ModelViewSet):
         customer = self.get_object()
         labels = request.data['labels']
         labels = list(map(int, labels.strip().strip(",").split(",")))
-        print(labels)
         customer.labels.clear()
         for label in labels:
             customer.labels.add(label)
