@@ -36,7 +36,7 @@ class Customer(models.Model):
 class Label(models.Model):
     name = models.CharField(max_length=128)
     color = models.CharField(max_length=128)
-    business = models.ForeignKey("leadgrow.Business", related_name='labelled', on_delete=models.CASCADE, null=True)
+    business = models.ForeignKey("leadgrow.Business", related_name='labelled', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
