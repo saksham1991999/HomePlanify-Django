@@ -7,6 +7,7 @@ from core.views import login_user, SignupView
 from core.api import UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet, FeaturedPropertiesAPIViewSet, InvestPropertiesAPIViewSet, FeaturesAPIViewSet
 from core import views as coreviews
 from rest_framework.routers import DefaultRouter
+from core.views import GoogleLogin
 
 from blog.views import BlogPostAPIViewSet, CategoriesAPIViewSet, BlogPostCommentAPIViewSet
 
@@ -34,6 +35,7 @@ urlpatterns = [
     path('api/', include(router.urls), name='api'),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
+    path('rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
 
     path('admin/', admin.site.urls),
     path('accounts/signup/', SignupView, name='account_signup'),

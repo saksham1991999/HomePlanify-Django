@@ -4,9 +4,11 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib.auth import authenticate, login, logout
-
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAdminUser, AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
+
 from . import serializers
 from . import models, forms
 from blog import models as blogmodels
@@ -14,6 +16,10 @@ import requests
 from bs4 import BeautifulSoup
 
 from django.db.models import Q
+
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
 
 def get_news():
     URL = "https://www.hsvphry.org.in/Pages/HudaNewsAndUpdate.aspx"
