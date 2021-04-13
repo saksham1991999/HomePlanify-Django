@@ -36,7 +36,10 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('rest-auth/google/', GoogleLogin.as_view(), name='google_login'),
-
+    path('accounts/password_reset/', auth_views.PasswordResetView.as_view(
+        html_email_template_name='account/email/password_reset_key_message.html'
+    )),
+    path('', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('accounts/signup/', SignupView, name='account_signup'),
     path('accounts/login/', login_user, name='account_login'),
