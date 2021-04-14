@@ -3,12 +3,13 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from rest_framework.routers import DefaultRouter
+
 from core.views import login_user, SignupView
 from core.api import UserAPIViewSet, EnquiryAPIViewSet, BookmarkAPIViewSet, MainEnquiryAPIViewSet, ContactsAPIViewSet, ImagesAPIViewSet, PropertiesAPIViewSet, FeaturedPropertiesAPIViewSet, InvestPropertiesAPIViewSet, FeaturesAPIViewSet
-from core import views as coreviews
-from rest_framework.routers import DefaultRouter
 from core.views import GoogleLogin
-
+from core import views as coreviews
 from blog.views import BlogPostAPIViewSet, CategoriesAPIViewSet, BlogPostCommentAPIViewSet
 
 router = DefaultRouter()
