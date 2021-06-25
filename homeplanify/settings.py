@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'cloudinary_storage',
+    'cloudinary',
     'phonenumber_field',
     'django.contrib.humanize',
     'django.contrib.sites',
@@ -140,7 +142,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_venv')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 STATICFILES_ROOT = os.path.join(BASE_DIR, 'static_root')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': config('CLOUDINARY_API_KEY'),
+    'API_SECRET': config('CLOUDINARY_API_SECRET')
+}
 
 # Auth
 AUTHENTICATION_BACKENDS = (
@@ -182,7 +190,7 @@ AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = config('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = config('AWS_S3_FILE_OVERWRITE')
 AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
+# DEFAULT_FILE_STORAGE = config('DEFAULT_FILE_STORAGE')
 AWS_S3_REGION_NAME = config('AWS_S3_REGION_NAME')
 AWS_S3_SIGNATURE_VERSION = config('AWS_S3_SIGNATURE_VERSION')
 AWS_S3_HOST = config('AWS_S3_HOST')
@@ -198,7 +206,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    'DATETIME_FORMAT': "%b %d %Y %H:%M:%S",
+    'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
 }
 
 REST_AUTH_SERIALIZERS = {
@@ -225,7 +233,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 DEFAULT_FROM_DOMAIN = "HomePlanify.com"
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =  config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 
 django_heroku.settings(locals())

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from cloudinary_storage.storage import VideoMediaCloudinaryStorage
+from cloudinary_storage.validators import validate_video
 
 from datetime import datetime
 
@@ -90,7 +92,8 @@ class property(models.Model):
     features = models.ManyToManyField(features, blank=True, null=True)
     youtube_video = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube Video ID')
     youtube_video_2 = models.CharField(max_length=512, blank=True, null=True, verbose_name='Youtube 2nd Video ID')
-    video = models.FileField(blank=True, null=True)
+    video = models.FileField(blank=True, null=True, storage=VideoMediaCloudinaryStorage(),
+                              validators=[validate_video])
     featured = models.BooleanField(default=False)
 
     def __str__(self):
