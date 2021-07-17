@@ -149,7 +149,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         return data
 
     def get_notes(self, obj):
-        notes = Note.objects.values_list('note', flat=True)
+        notes = Note.objects.filter(customer=obj).values_list('note', flat=True)
         return notes
 
 
